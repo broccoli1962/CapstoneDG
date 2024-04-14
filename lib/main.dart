@@ -23,7 +23,9 @@ class MainPage extends StatefulWidget {
 
 enum Page { A, B, C, D }
 
-List<int> list = [3, 2, 4, 4];
+List<String> nameList = ['1장', '2장', '3장', '4장'];
+
+List<int> list = [3, 2, 6, 8];
 
 class _MainPageState extends State<MainPage> {
   Page page = Page.A;
@@ -62,48 +64,20 @@ class _MainPageState extends State<MainPage> {
               decoration: BoxDecoration(
                   color: Colors.blue, border: Border.all(color: Colors.black)),
               child: Center(
-                child: ListView(
+                child: GridView(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4),
                   children: [
-                    RadioListTile(
-                      title: const Text("radio 1"),
-                      value: Page.A,
-                      groupValue: page,
-                      onChanged: ((Page? value) {
-                        setState(() {
-                          page = value!;
-                        });
-                      }),
-                    ),
-                    RadioListTile(
-                      title: const Text("radio 2"),
-                      value: Page.B,
-                      groupValue: page,
-                      onChanged: ((Page? value) {
-                        setState(() {
-                          page = value!;
-                        });
-                      }),
-                    ),
-                    RadioListTile(
-                      title: const Text("radio 3"),
-                      value: Page.C,
-                      groupValue: page,
-                      onChanged: ((Page? value) {
-                        setState(() {
-                          page = value!;
-                        });
-                      }),
-                    ),
-                    RadioListTile(
-                      title: const Text("radio 4"),
-                      value: Page.D,
-                      groupValue: page,
-                      onChanged: ((Page? value) {
-                        setState(() {
-                          page = value!;
-                        });
-                      }),
-                    )
+                    for (int i = 0; i < Page.values.length; i++)
+                      RadioListTile(
+                          title: Text(nameList[i]),
+                          value: Page.values[i],
+                          groupValue: page,
+                          onChanged: ((Page? value) {
+                            setState(() {
+                              page = value!;
+                            });
+                          }))
                   ],
                 ),
               ),
@@ -115,7 +89,9 @@ class _MainPageState extends State<MainPage> {
             child: Container(
               width: double.infinity,
               color: Colors.yellow,
-              child: ListView(
+              child: GridView(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 4),
                 children: [
                   for (int i = 0; i < list[page.index]; i++) MakeTest(pg: page),
                 ],
@@ -131,15 +107,15 @@ class _MainPageState extends State<MainPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Icon(
-              Icons.book,
+              Icons.bookmark,
               size: 80,
             ),
             Icon(
-              Icons.book,
+              Icons.edit,
               size: 80,
             ),
             Icon(
-              Icons.book,
+              Icons.perm_contact_calendar,
               size: 80,
             ),
           ],
@@ -149,6 +125,7 @@ class _MainPageState extends State<MainPage> {
   }
 }
 
+//문제칸 만들기
 class MakeTest extends StatelessWidget {
   const MakeTest({
     super.key,
@@ -165,10 +142,10 @@ class MakeTest extends StatelessWidget {
       // color: Colors.lightBlueAccent,
       child: ElevatedButton(
         onPressed: () {},
-        child: Text("problem $pg"),
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
         ),
+        child: Text("problem $pg"),
       ),
     );
   }
