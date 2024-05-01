@@ -41,7 +41,6 @@ class _MainPageState extends State<MainPage> {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
-        children: [
           //book image
           Container(
               height: cSize.height*0.25,
