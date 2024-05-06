@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/problem.dart';
-import 'database.dart';
+import 'package:untitled/model/model.dart';
+import 'package:untitled/repository/database.dart';
+import 'package:untitled/repository/databaseCrud.dart';
 
 void main() {
-  runApp(MyApp());
+  WidgetsFlutterBinding.ensureInitialized(); //비동기적 이벤트를 사용하는 경우 바인딩 보장 필요하다고 한다.
+  var a = SqlDataBase();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -41,6 +45,7 @@ class _MainPageState extends State<MainPage> {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
       body: Column(
+        children:[
           //book image
           Container(
               height: cSize.height*0.25,
