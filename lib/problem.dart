@@ -14,7 +14,7 @@ class Front extends StatefulWidget {
 }
 
 class _FrontState extends State<Front> {
-
+  final _model = SqlDataBase();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +31,11 @@ class _FrontState extends State<Front> {
             width: double.infinity,
             height: cSize.height*0.25,
             decoration: const BoxDecoration(color: Colors.lightBlue),
+            child: OutlinedButton(onPressed: (){
+              var db= _model.database;
+            },
+              child: Text('DB생성'),
+            ),
 
           ),
           //problem

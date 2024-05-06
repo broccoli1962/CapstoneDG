@@ -1,47 +1,35 @@
+import 'dart:async';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:untitled/model/model.dart';
 
-class SqlDataBase{
-  static final SqlDataBase instance = SqlDataBase._instance();
-
+class SqlDataBase {
   Database? _database;
 
-  SqlDataBase._instance(){
-    _initDataBase();
-  }
-
-  factory SqlDataBase(){
-    return instance;
-  }
-
   Future<Database> get database async {
-    if(_database != null) return _database!;
-    await _initDataBase();
-    return _database!;
+    if (_database != null) return _database!;
+    return await initDB();
   }
 
-  Future<void> _initDataBase() async {
-    var dataBasePath = await getDatabasesPath();
-    String path = join(dataBasePath, 'Capstone.db');
-    _database = await openDatabase(path,version: 1,onCreate: _databaseCreate);
+  initDB() async {
+    String path = join(await getDatabasesPath(), 'Capstone.db');
+    return await openDatabase(path,
+        version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
   }
 
   //데이터 베이스 초기화
-  void _databaseCreate(Database db, int version) async{
-    await db.execute('''
-    create table ${MyDB.tableName}(
-      ${MyDBFields.id} integer primary key autoincrement,
-      ${MyDBFields.type} type integer not null,
-      ${MyDBFields.title} title text not null,
-      ${MyDBFields.contents} contents text not null,
-      ${MyDBFields.answer} answer text not null
-    )
-    ''');
+  FutureOr<void> _onCreate(Database db, int version){
+    String sql = '''CREATE TABLE Capstone(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    type INTEGER,
+    title TEXT,
+    contents TEXT,
+    answer TEXT)
+    ''';
+
+    db.execute(sql);
   }
 
-  void closeDataBase() async{
-    if(_database !=null) await _database!.close();
-  }
-
+  FutureOr<void> _onUpgrade(Database db, int oldVersion, int newVersion){}
 }

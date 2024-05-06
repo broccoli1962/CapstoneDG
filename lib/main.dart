@@ -6,7 +6,7 @@ import 'package:untitled/repository/databaseCrud.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized(); //비동기적 이벤트를 사용하는 경우 바인딩 보장 필요하다고 한다.
-  var a = SqlDataBase();
+  SqlDataBase();
   runApp(const MyApp());
 }
 
