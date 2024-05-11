@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/problem.dart';
-import 'package:untitled/model/model.dart';
-import 'package:untitled/repository/database.dart';
-import 'package:untitled/repository/databaseCrud.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized(); //비동기적 이벤트를 사용하는 경우 바인딩 보장 필요하다고 한다.
-  SqlDataBase();
   runApp(const MyApp());
 }
 
@@ -22,14 +17,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+enum Page { A, B, C, D }
+
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
 
   @override
   State<MainPage> createState() => _MainPageState();
 }
-
-enum Page { A, B, C, D }
 
 List<String> nameList = ['1장', '2장', '3장', '4장'];
 
@@ -97,7 +92,7 @@ class _MainPageState extends State<MainPage> {
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4, childAspectRatio: 1.2),
               children: [
-                for (int i = 0; i < list[page.index]; i++) MakeTest(pg: page),
+                for (int i = 0; i < list[page.index]; i++) MakeTest(pg: page, number: i+1,),
               ],
             ),
           ),
@@ -133,9 +128,11 @@ class MakeTest extends StatelessWidget {
   const MakeTest({
     super.key,
     required this.pg,
+    required this.number,
   });
 
   final Page pg;
+  final int number;
 
   @override
   Widget build(BuildContext context) {
@@ -145,7 +142,7 @@ class MakeTest extends StatelessWidget {
       // color: Colors.lightBlueAccent,
       child: ElevatedButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context)=> const Front()));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=> Front(pg: pg.index+1, number: number)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
@@ -155,4 +152,30 @@ class MakeTest extends StatelessWidget {
       ),
     );
   }
+}
+
+class Problem {
+  int page;
+  int number;
+  String title;
+  String contents;
+  String contents2;
+  String hint;
+
+  static List<Problem> problems = [
+    Problem(1, 1,'printf', '#include<stdio.h>\nvoid main() {\n', 'contents2\n}', 'hint'),
+  ];
+
+  static Problem get(int a, int b){
+    for(Problem p in problems){
+      if(a==p.page&&b==p.number){
+        return p;
+      }
+    }
+    return dummy;
+  }
+
+  static Problem dummy = Problem(0, 0, '', 'contents', 'contents2', 'hint');
+
+  Problem(this.page, this.number, this.title, this.contents, this.contents2, this.hint);
 }
