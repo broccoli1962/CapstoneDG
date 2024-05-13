@@ -26,8 +26,10 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 
+//문제 장
 List<String> nameList = ['1장', '2장', '3장', '4장'];
 
+//문제 개수
 List<int> list = [3, 2, 6, 8];
 
 class _MainPageState extends State<MainPage> {
@@ -148,7 +150,7 @@ class MakeTest extends StatelessWidget {
           backgroundColor: Colors.amber,
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero) ,side: BorderSide.none),
         ),
-        child: Text("problem $pg"),
+        child: Text("problem $number"),
       ),
     );
   }
@@ -159,11 +161,13 @@ class Problem {
   int number;
   String title;
   String contents;
+  String myAnswer;
   String contents2;
   String hint;
+  String answer;
 
   static List<Problem> problems = [
-    Problem(1, 1,'printf', '#include<stdio.h>\nvoid main() {\n', 'contents2\n}', 'hint'),
+    Problem(1, 1,'printf', '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}', '','', 'hint', 'answer'),
   ];
 
   static Problem get(int a, int b){
@@ -175,7 +179,7 @@ class Problem {
     return dummy;
   }
 
-  static Problem dummy = Problem(0, 0, '', 'contents', 'contents2', 'hint');
+  static Problem dummy = Problem(0, 0, '', 'contents', 'dummy','contents2', 'hint', 'answer');
 
-  Problem(this.page, this.number, this.title, this.contents, this.contents2, this.hint);
+  Problem(this.page, this.number, this.title, this.contents, this.myAnswer, this.contents2, this.hint, this.answer);
 }
