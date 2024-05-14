@@ -18,7 +18,7 @@ class Front extends StatefulWidget {
 }
 
 class _FrontState extends State<Front> {
-  final getapi = jdoodleAPI(ClientId: 'c545e7d1c9cfdfb23050d82cc1d7238e', ClientSecret: '3cfe0a0759248985345d668251e65b5335a633ef4de3000f900c7d8c5d7b1ad');
+  final getapi = jdoodleAPI(ClientId: '', ClientSecret: '');
   String _output = '';
 
   @override
