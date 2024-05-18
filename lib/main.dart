@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/problem.dart';
 
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -45,27 +50,27 @@ class _MainPageState extends State<MainPage> {
         children:[
           //book image
           Container(
-              height: cSize.height*0.25,
+              height: cSize.height*0.24,
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
               child: Column(
                 children: [
                   Icon(
-                    Icons.book,
+                    Icons.menu_book,
                     size: cSize.height*0.15,
                   ),
                   const Text(
                     '공부',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
                 ],
               )),
+          const Divider(height: 0.01,color: Colors.black,),
           //witch page?
           Container(
             height: cSize.height*0.2,
             width: double.infinity,
-            decoration: BoxDecoration(
-                color: Colors.blue, border: Border.all(color: Colors.black)),
+            color: Colors.blue,
             child: Center(
               child: GridView(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -73,7 +78,7 @@ class _MainPageState extends State<MainPage> {
                 children: [
                   for (int i = 0; i < Page.values.length; i++)
                     RadioListTile(
-                        title: Text(nameList[i],),
+                        title: Text(nameList[i], style: TextStyle(fontWeight: FontWeight.bold),),
                         value: Page.values[i],
                         groupValue: page,
                         onChanged: ((Page? value) {
@@ -85,9 +90,10 @@ class _MainPageState extends State<MainPage> {
               ),
             ),
           ),
+          const Divider(color: Colors.black,height: 0.01,),
           //witch page count?
           Container(
-            height: cSize.height*0.45,
+            height: cSize.height*0.43,
             width: double.infinity,
             color: Colors.yellow,
             child: GridView(
@@ -98,25 +104,56 @@ class _MainPageState extends State<MainPage> {
               ],
             ),
           ),
+          const Divider(color: Colors.black,height: 0.01,),
         ],
       ),
       bottomNavigationBar: Container(
-        height: cSize.height*0.1,
+        height: cSize.height*0.129,
         color: Colors.cyan,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Icon(
-              Icons.bookmark,
-              size: cSize.height*0.075,
+            SizedBox(
+              height: cSize.height*0.1,
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.menu_book),
+                    iconSize: 40,
+                    color: Colors.black,
+                    onPressed: () {  },
+                  ),
+                  const Text("공부", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+                ],
+              ),
             ),
-            Icon(
-              Icons.edit,
-              size: cSize.height*0.075,
+            SizedBox(
+              height: cSize.height*0.1,
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.article),
+                    iconSize: 40,
+                    color: Colors.black,
+                    onPressed: () {  },
+                  ),
+                  const Text("시험", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+                ],
+              ),
             ),
-            Icon(
-              Icons.perm_contact_calendar,
-              size: cSize.height*0.075,
+            SizedBox(
+              height: cSize.height*0.1,
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.person),
+                    iconSize: 40,
+                    color: Colors.black,
+                    onPressed: () {  },
+                  ),
+                  const Text("설정", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),)
+                ],
+              ),
             ),
           ],
         ),
@@ -150,7 +187,7 @@ class MakeTest extends StatelessWidget {
           backgroundColor: Colors.amber,
           shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.zero) ,side: BorderSide.none),
         ),
-        child: Text("problem $number"),
+        child: Text("problem $number", style: TextStyle(fontWeight: FontWeight.bold),),
       ),
     );
   }
@@ -160,14 +197,16 @@ class Problem {
   int page;
   int number;
   String title;
+  String title2;
   String contents;
   String myAnswer;
   String contents2;
   String hint;
   String answer;
 
+  //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
   static List<Problem> problems = [
-    Problem(1, 1,'printf', '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}', '','', 'hint', 'answer'),
+    Problem(1, 1,'<printf>\nprintf 문을 공부해보자.','소제목', '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}', '','', 'hint', 'answer'),
   ];
 
   static Problem get(int a, int b){
@@ -179,7 +218,7 @@ class Problem {
     return dummy;
   }
 
-  static Problem dummy = Problem(0, 0, '', 'contents', 'dummy','contents2', 'hint', 'answer');
+  static Problem dummy = Problem(0, 0, 'dummy title', 'dummy title2', 'contents', 'dummy','contents2', 'hint', 'answer');
 
-  Problem(this.page, this.number, this.title, this.contents, this.myAnswer, this.contents2, this.hint, this.answer);
+  Problem(this.page, this.number, this.title, this.title2 ,this.contents, this.myAnswer, this.contents2, this.hint, this.answer);
 }
