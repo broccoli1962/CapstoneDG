@@ -2,7 +2,7 @@ import 'dart:core';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'main.dart';
+import 'package:untitled/practice.dart';
 import 'utils/http_api.dart';
 
 class Front extends StatefulWidget {
@@ -30,7 +30,7 @@ class _FrontState extends State<Front> {
 
     //초기값
     String tt = view.contents;
-    TextEditingController inputController = TextEditingController();
+    TextEditingController inputController = TextEditingController(text: tt);
     // final CustomTagController controller = CustomTagController();
 
     void dispose(){
@@ -88,8 +88,6 @@ class _FrontState extends State<Front> {
                   border: OutlineInputBorder(),
                 ),
                 maxLines: 20,
-                controller: inputController,
-                
               ),
             ),
             Divider(height: 0.1, color: Colors.black,),
@@ -168,35 +166,3 @@ class _FrontState extends State<Front> {
     );
   }
 }
-
-// class CustomTagController extends TextEditingController{
-//   @override
-//   TextSpan buildTextSpan({
-//     required BuildContext context,
-//     TextStyle? style,
-//     required bool withComposing,
-//   }) {
-//     List<String> words = text.split(" ");
-//     List<TextSpan> children= [];
-//
-//     for(final String word in words){
-//       TextSpan span;
-//       switch(word){
-//         case "int":
-//           span = TextSpan(text: word, style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold));
-//           break;
-//         case "String":
-//           span = TextSpan(text: word, style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold));
-//           break;
-//         default:
-//           span = TextSpan(text: word, style: TextStyle(fontSize: 20, color: Colors.green, fontWeight: FontWeight.bold));
-//           break;
-//       }
-//       children.add(span);
-//       children.add(const TextSpan(text: " "));
-//     }
-//
-//     return TextSpan(children: children);
-//   }
-//
-// }
