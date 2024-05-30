@@ -1,12 +1,11 @@
 import 'dart:core';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:path/path.dart';
 import 'package:untitled/practice.dart';
-import 'utils/http_api.dart';
+import 'package:untitled/test.dart';
 
-class Front extends StatefulWidget {
-  const Front({
+class Practice_in extends StatefulWidget {
+  const Practice_in({
     required this.pg,
     required this.number,
     super.key,
@@ -16,147 +15,150 @@ class Front extends StatefulWidget {
   final int number;
 
   @override
-  State<Front> createState() => _FrontState();
+  State<Practice_in> createState() => _Practice_inState();
 }
 
-class _FrontState extends State<Front> {
-  final getapi = jdoodleAPI(ClientId: '', ClientSecret: '');
-  String _output = '';
+class _Practice_inState extends State<Practice_in> {
 
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
-    final Problem view = Problem.get(widget.pg, widget.number);
-
-    //초기값
-    String tt = view.contents;
-    TextEditingController inputController = TextEditingController(text: tt);
-    // final CustomTagController controller = CustomTagController();
-
-    void dispose(){
-      inputController.dispose();
-      super.dispose();
-    }
-
-
-    Future<void> _executeCode() async {
-      final code = view.contents+view.contents2;
-      final language = 'c';
-
-      try{
-        final output = await getapi.executeCode(code, language);
-        setState(() {
-          _output = '출력 결과 : $output';
-        });
-      } on Exception catch(e){
-        setState(() {
-          _output = 'Error:$e';
-        });
-      }
-    }
+    final Problem_p view = Problem_p.get(widget.pg, widget.number);
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('문제 풀기'),
+        automaticallyImplyLeading:false,
+        title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.pop(context);
+          }, child: Text('돌아가기')),
+        ],
+        centerTitle: true,
+        backgroundColor: Colors.white,
+        elevation: 0,
       ),
-      body: GestureDetector(
-        onTap: () => FocusScope.of(context).unfocus(),
-        child: Column(
-          children: [
-            //title
-            Container(
-              width: double.infinity,
-              height: cSize.height * 0.17,
-              padding: EdgeInsets.all(20),
-              decoration: const BoxDecoration(color: Colors.yellow),
-              child: Column(
-                children: [
-                  Text(view.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-                  Text(view.title2, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
-                ],
-              ),
+      body: Column(
+        children: [
+          //
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
+                  child: Text('설명\n ${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+                  height: cSize.height*0.65,
+                  width: double.infinity,
+                  color: Colors.brown,
+                )
+              ],
             ),
-            //problem
-            Container(
-              height: cSize.height * 0.4,
-              child: TextFormField(
-                cursorHeight: 22,
-                cursorColor: Colors.orange,
-                decoration: const InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(),
-                ),
-                maxLines: 20,
-              ),
-            ),
-            Divider(height: 0.1, color: Colors.black,),
-            Container(
-              width: double.infinity,
-              height: cSize.height * 0.31,
-              decoration: const BoxDecoration(color: Colors.white),
-              padding: EdgeInsets.all(10.0),
-              child: Column(
-                children: [
-                  ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        view.myAnswer = inputController.text;
-                      });
-                    },
-                    child: Text('입력'),
-                  ),
-                  ElevatedButton(onPressed: _executeCode, child: Text('출력되라')),
-                  Text('$_output'),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
+            height: cSize.height*0.145,
+            width: double.infinity,
+            color: Colors.lightBlueAccent,
+            child: Text('팁 ${view.hint}', style:TextStyle(color: Colors.redAccent, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+          ),
+        ],
       ),
       bottomNavigationBar: Container(
-        height: cSize.height*0.129,
+        height: cSize.height * 0.129,
         color: Colors.cyan,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
-              height: cSize.height*0.1,
+              height: cSize.height * 0.1,
               child: Column(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.keyboard_arrow_left),
+                    icon: const Icon(Icons.menu_book),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const Practice()),
+                              (route) => false);
+                    },
+                  ),
+                  const Text(
+                    "공부",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
             ),
             SizedBox(
-              height: cSize.height*0.1,
+              height: cSize.height * 0.1,
               child: Column(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.home),
+                    icon: Icon(Icons.article),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {  },
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const Test()),
+                              (route) => false);
+                    },
                   ),
-                  Text("돌아가기", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+                  const Text(
+                    "시험",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
             ),
             SizedBox(
-              height: cSize.height*0.1,
+              height: cSize.height * 0.1,
               child: Column(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.keyboard_arrow_right),
+                    icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {  },
+                    onPressed: () {},
                   ),
+                  const Text(
+                    "문제",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: cSize.height * 0.1,
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.person),
+                    iconSize: 40,
+                    color: Colors.black,
+                    onPressed: () {},
+                  ),
+                  const Text(
+                    "메모",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  )
+                ],
+              ),
+            ),
+            SizedBox(
+              height: cSize.height * 0.1,
+              child: Column(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.person),
+                    iconSize: 40,
+                    color: Colors.black,
+                    onPressed: () {},
+                  ),
+                  const Text(
+                    "설정",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  )
                 ],
               ),
             ),

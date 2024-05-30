@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
-import 'package:untitled/practice_problem.dart';
+import 'package:untitled/test_problem.dart';
 
 enum Page { A, B, C, D }
 
@@ -221,7 +221,7 @@ class MakeTest extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      Front(pg: pg.index + 1, number: number)));
+                      Test_in(pg: pg.index + 1, number: number)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
@@ -238,33 +238,33 @@ class MakeTest extends StatelessWidget {
   }
 }
 
-class Problem {
+class Problem_t {
   int page;
   int number;
   String title;
-  String title2;
+  String testCase;
+  String rtestCase2;
   String contents;
   String myAnswer;
-  String contents2;
   String hint;
   String answer;
 
   //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
-  static List<Problem> problems = [
-    Problem(
+  static List<Problem_t> problems = [
+    Problem_t(
         1,
         1,
-        '<printf>\nprintf 문을 공부해보자.',
-        '소제목',
+        '<printf>\nprintf 문을 출력하세요.',
+        '10\n20\n30',
+        'hello world',
         '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}',
-        '',
         '',
         'hint',
         'answer'),
   ];
 
-  static Problem get(int a, int b) {
-    for (Problem p in problems) {
+  static Problem_t get(int a, int b) {
+    for (Problem_t p in problems) {
       if (a == p.page && b == p.number) {
         return p;
       }
@@ -272,9 +272,9 @@ class Problem {
     return dummy;
   }
 
-  static Problem dummy = Problem(0, 0, 'dummy title', 'dummy title2',
-      'contents', 'dummy', 'contents2', 'hint', 'answer');
+  static Problem_t dummy = Problem_t(0, 0, 'dummy title', 'dummy testcase','dummy rtestcase',
+      'contents', 'dummy', 'hint', 'answer');
 
-  Problem(this.page, this.number, this.title, this.title2, this.contents,
-      this.myAnswer, this.contents2, this.hint, this.answer);
+  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2, this.contents,
+      this.myAnswer, this.hint, this.answer);
 }

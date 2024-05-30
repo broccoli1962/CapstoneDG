@@ -220,7 +220,7 @@ class MakeTest extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      Front(pg: pg.index + 1, number: number)));
+                      Practice_in(pg: pg.index + 1, number: number)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.amber,
@@ -237,33 +237,25 @@ class MakeTest extends StatelessWidget {
   }
 }
 
-class Problem {
+class Problem_p {
   int page;
   int number;
   String title;
-  String title2;
   String contents;
-  String myAnswer;
-  String contents2;
   String hint;
-  String answer;
 
-  //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
-  static List<Problem> problems = [
-    Problem(
-        1,
-        1,
-        '<printf>\nprintf 문을 공부해보자.',
-        '소제목',
+  //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
+  static List<Problem_p> problems = [
+    Problem_p(1, 1, 'printf 문을 공부해보자.',
+        '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}\n위와 같은 상황에서 hello world를 출력할 수 있다.',
+        'hint'),
+    Problem_p(1, 2, '<printf>\nprintf 문을 공부해보자.',
         '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}',
-        '',
-        '',
-        'hint',
-        'answer'),
+        'hint'),
   ];
 
-  static Problem get(int a, int b) {
-    for (Problem p in problems) {
+  static Problem_p get(int a, int b) {
+    for (Problem_p p in problems) {
       if (a == p.page && b == p.number) {
         return p;
       }
@@ -271,9 +263,8 @@ class Problem {
     return dummy;
   }
 
-  static Problem dummy = Problem(0, 0, 'dummy title', 'dummy title2',
-      'contents', 'dummy', 'contents2', 'hint', 'answer');
+  static Problem_p dummy = Problem_p(0, 0, 'dummy title',
+      'contents', 'hint',);
 
-  Problem(this.page, this.number, this.title, this.title2, this.contents,
-      this.myAnswer, this.contents2, this.hint, this.answer);
+  Problem_p(this.page, this.number, this.title, this.contents, this.hint);
 }
