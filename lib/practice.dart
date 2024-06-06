@@ -337,9 +337,9 @@ class Problem_p {
         '예약어는 다음과 같다.\n'
         '  auto           break          case          char       continue      default\n'
         '   do            double         else          enum        exterm         float\n'
-        '   for             goto             if             int             log          register\n'
+        '   for             goto             if              int             log          register\n'
         ' return          short         sizeof        static        struct        switch\n'
-        'typedef        union       unsigned       void          while         signed\n'),
+        'typedef        union       unsigned       void          while        signed\n'),
 
     Problem_p(1, 6, '문장\n1-6\n<"if문을 사용한 문장">',
         '#include <stdio.h>\n'
