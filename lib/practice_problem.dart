@@ -46,7 +46,7 @@ class _Practice_inState extends State<Practice_in> {
               children: [
                 Container(
                   padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-                  child: Text('설명\n ${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+                  child: Text('설명\n${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
                   height: cSize.height*0.65,
                   width: double.infinity,
                   color: Colors.brown,

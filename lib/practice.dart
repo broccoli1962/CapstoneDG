@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/practice_problem.dart';
 import 'package:untitled/test.dart';
 
-enum Page { A, B, C, D }
+enum Page { A, B, C, D, E, F, G, H }
 
 class Practice extends StatefulWidget {
   const Practice({super.key});
@@ -12,10 +12,10 @@ class Practice extends StatefulWidget {
 }
 
 //문제 장
-List<String> nameList = ['알고리즘', '데이터베이스', '3장', '4장'];
+List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장'];
 
 //문제 개수
-List<int> list = [3, 2, 6, 8];
+List<int> list = [7, 2, 6, 8, 8, 8, 8, 8];
 
 class _PracticeState extends State<Practice> {
   Page page = Page.A;
@@ -246,12 +246,62 @@ class Problem_p {
 
   //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
   static List<Problem_p> problems = [
-    Problem_p(1, 1, 'printf 문을 공부해보자.',
-        '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}\n위와 같은 상황에서 hello world를 출력할 수 있다.',
-        'hint'),
-    Problem_p(1, 2, '<printf>\nprintf 문을 공부해보자.',
-        '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}',
-        'hint'),
+    Problem_p(1, 1, 'printf 문\n1-1\n<"Hello World의 출력">',
+        '#include <stdio.h>\n'
+        'void main(){\n'
+        'printf("hello world");\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
+
+    Problem_p(1, 2, 'scanf 문\n1-2\n<키보드로부터 입력받기>',
+        '#include <stdio.h>\n'
+        'void main(){\n'
+        'int a;\n\n'
+        'scanf("%d", &a);\n\n'
+        'printf("%d %d", a, a);\n}',
+        '정수를 입력할 때에는 %d, 실수는 %f, 문자는 %c를 사용한다.\n'
+        'int a;는 변수 a를 정수형으로 선언하는 문장이다.\n'
+        'scanf("%d", &a);에서 정수형 변수 a의 값을 입력한다.\n'
+        '프로그램을 실행하면 정수값을 입력 후 enter키를 누르면 입력한 정수값이 a에 대입된다.\n'
+        'printf("%d %d", a, a);에서 %d는 정수형 a값을 출력하는 서식이다.'),
+
+    Problem_p(1, 3, '에스케이프 시퀀스\n1-3\n<"에스케이프 시퀀스를 사용하여 문자열 출력">',
+        '#include <stdio.h>\n'
+        'void main(){\n'
+        'printf("Apple ");\n'
+        'printf("Banana ");\n'
+        'printf("Cherry\￦n");\n'
+        'printf("Dragonfruit\￦tEggfruit");\n}',
+        '백스페이스 \￦b\n'
+        '탭 \￦t\n'
+        '행 바꾸기 \￦n\n'
+        '이중 인용부호 \￦"\n'
+        '단일 인용부호\￦\'\n'
+        '역슬래시 \￦￦'),
+
+    Problem_p(1, 4, '주석\n1-4\n<"주석의 사용">',
+        '#include <stdio.h>\n'
+        'void main(){\n'
+        '/*printf("hello world");*/\n'
+        'printf("hello world");\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
+
+    Problem_p(1, 5, 'printf 문\n1-1\n<"Hello World의 출력">',
+        '#include <stdio.h>\n'
+            'void main(){\n'
+            'printf("hello world");\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
+
+    Problem_p(1, 6, 'printf 문\n1-1\n<"Hello World의 출력">',
+        '#include <stdio.h>\n'
+            'void main(){\n'
+            'printf("hello world");\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
+
+    Problem_p(1, 7, 'printf 문\n1-1\n<"Hello World의 출력">',
+        '#include <stdio.h>\n'
+            'void main(){\n'
+            'printf("hello world");\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
   ];
 
   static Problem_p get(int a, int b) {
