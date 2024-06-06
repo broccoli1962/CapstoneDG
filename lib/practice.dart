@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/practice_problem.dart';
-import 'package:untitled/test.dart';
+import 'package:untitled/practice_problem.dart'; // practice_problem.dart 파일의 import 문
+import 'package:untitled/test.dart'; // test.dart 파일의 import 문
 
+// 페이지 열거형 정의
 enum Page { A, B, C, D, E, F, G, H }
 
+// 문제 장의 제목 리스트
+List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장'];
+
+// 각 장의 문제 개수 리스트
+List<int> list = [6, 2, 6, 8, 8, 8, 8, 8];
+
+// Practice 클래스: StatefulWidget을 상속하여 구현
 class Practice extends StatefulWidget {
   const Practice({super.key});
 
@@ -11,22 +19,21 @@ class Practice extends StatefulWidget {
   State<Practice> createState() => _PracticeState();
 }
 
-//문제 장
-List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장'];
-
-//문제 개수
-List<int> list = [6, 2, 6, 8, 8, 8, 8, 8];
-
+// Practice 클래스의 State 클래스
 class _PracticeState extends State<Practice> {
-  Page page = Page.A;
+  Page page = Page.A; // 현재 페이지 상태를 나타내는 변수
 
-  var isChecked = false;
+  var isChecked = false; // 체크 여부를 나타내는 변수
 
+  // 위젯 빌드 메서드
   @override
   Widget build(BuildContext context) {
-    final Size cSize = MediaQuery.of(context).size;
+    final Size cSize = MediaQuery.of(context).size; // 화면 크기 계산
+
+    // Scaffold 위젯 반환
     return Scaffold(
       appBar: AppBar(
+        // AppBar 정의
         title: const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [Icon(Icons.menu_book), Text(' 공부')],
@@ -36,43 +43,46 @@ class _PracticeState extends State<Practice> {
         elevation: 0,
       ),
       body: Column(
+        // Column 위젯으로 세로 배열
         children: [
+          // Divider 추가
           const Divider(
             height: 0.01,
             color: Colors.black,
           ),
-          //witch page?
+          // 페이지 선택 위젯
           Container(
             height: cSize.height * 0.3,
             width: double.infinity,
             color: Colors.white,
             child: Center(
               child: ListView(
-                // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 3, childAspectRatio: 2.5),
                 children: [
                   for (int i = 0; i < Page.values.length; i++)
                     RadioListTile(
-                        title: Text(
-                          nameList[i],
-                          style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
-                        ),
-                        value: Page.values[i],
-                        groupValue: page,
-                        onChanged: ((Page? value) {
-                          setState(() {
-                            page = value!;
-                          });
-                        }))
+                      // 페이지 선택 RadioListTile
+                      title: Text(
+                        nameList[i], // 장 이름
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      value: Page.values[i], // 페이지 값
+                      groupValue: page, // 그룹 값
+                      onChanged: ((Page? value) {
+                        setState(() {
+                          page = value!; // 선택된 페이지 업데이트
+                        });
+                      }),
+                    ),
                 ],
               ),
             ),
           ),
+          // Divider 추가
           const Divider(
             color: Colors.black,
             height: 0.01,
           ),
-          //witch page count?
+          // 페이지 별 문제 그리드
           Container(
             height: cSize.height * 0.494,
             width: double.infinity,
@@ -83,24 +93,27 @@ class _PracticeState extends State<Practice> {
               children: [
                 for (int i = 0; i < list[page.index]; i++)
                   MakeTest(
-                    pg: page,
-                    number: i + 1,
+                    pg: page, // 페이지
+                    number: i + 1, // 문제 번호
                   ),
               ],
             ),
           ),
+          // Divider 추가
           const Divider(
             color: Colors.black,
             height: 0.01,
           ),
         ],
       ),
+      // BottomNavigationBar 추가
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
         color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            // 공부 아이콘 및 텍스트
             SizedBox(
               height: cSize.height * 0.1,
               child: Column(
@@ -118,6 +131,7 @@ class _PracticeState extends State<Practice> {
                 ],
               ),
             ),
+            // 시험 아이콘 및 텍스트
             SizedBox(
               height: cSize.height * 0.1,
               child: Column(
@@ -129,7 +143,7 @@ class _PracticeState extends State<Practice> {
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => const Test()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -139,6 +153,7 @@ class _PracticeState extends State<Practice> {
                 ],
               ),
             ),
+            // 문제 아이콘 및 텍스트
             SizedBox(
               height: cSize.height * 0.1,
               child: Column(
@@ -156,6 +171,7 @@ class _PracticeState extends State<Practice> {
                 ],
               ),
             ),
+            // 메모 아이콘 및 텍스트
             SizedBox(
               height: cSize.height * 0.1,
               child: Column(
@@ -173,6 +189,7 @@ class _PracticeState extends State<Practice> {
                 ],
               ),
             ),
+            // 설정 아이콘 및 텍스트
             SizedBox(
               height: cSize.height * 0.1,
               child: Column(
@@ -197,7 +214,7 @@ class _PracticeState extends State<Practice> {
   }
 }
 
-//문제칸 만들기
+// 문제 위젯
 class MakeTest extends StatelessWidget {
   const MakeTest({
     super.key,
@@ -205,15 +222,14 @@ class MakeTest extends StatelessWidget {
     required this.number,
   });
 
-  final Page pg;
-  final int number;
+  final Page pg; // 페이지
+  final int number; // 문제 번호
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.fromLTRB(0, 2, 0, 0),
       padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
-      // color: Colors.lightBlueAccent,
       child: ElevatedButton(
         onPressed: () {
           Navigator.push(
@@ -237,13 +253,15 @@ class MakeTest extends StatelessWidget {
   }
 }
 
+// 문제 클래스
 class Problem_p {
-  int page;
-  int number;
-  String title;
-  String contents;
-  String hint;
+  int page; // 장
+  int number; // 문제 번호
+  String title; // 제목
+  String contents; // 내용
+  String hint; // 힌트
 
+  // 문제 목록
   //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
   static List<Problem_p> problems = [
     Problem_p(1, 1, 'printf 문\n1-1\n<"Hello World의 출력">',
@@ -252,7 +270,7 @@ class Problem_p {
         'printf("hello world\￦n"); //hello world를 출력한다.\n}',
         '출력하기 위해서는 printf("");를 사용해야 한다.'),
 
-    Problem_p(1, 2, 'scanf 문\n1-2\n<키보드로부터 입력받기>',
+    Problem_p(1, 2, 'scanf 문\n1-2\n<"키보드로부터 입력받기">',
         '#include <stdio.h>\n'
         'void main(){\n'
         'int a; //변수 a를 정수형으로 선언한다.\n\n'
@@ -312,19 +330,28 @@ class Problem_p {
         'printf(""); 출력해라.\n'
         'else는 그렇지 않다면\n'
         'printf(""); 출력해라.'),
+
+    Problem_p(2, 1, 'printf 문\n1-1\n<"Hello World의 출력">',
+        '#include <stdio.h>\n'
+            'void main(){\n'
+            'printf("hello world\￦n"); //hello world를 출력한다.\n}',
+        '출력하기 위해서는 printf("");를 사용해야 한다.'),
   ];
 
+// 페이지와 문제 번호에 해당하는 문제 반환
   static Problem_p get(int a, int b) {
     for (Problem_p p in problems) {
       if (a == p.page && b == p.number) {
         return p;
       }
     }
-    return dummy;
+    return dummy; // 문제가 없는 경우 더미 반환
   }
 
+  // 더미 문제
   static Problem_p dummy = Problem_p(0, 0, 'dummy title',
-      'contents', 'hint',);
+    'contents', 'hint',);
 
+  // Problem_p 클래스 생성자
   Problem_p(this.page, this.number, this.title, this.contents, this.hint);
 }
