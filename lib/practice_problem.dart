@@ -49,7 +49,7 @@ class _Practice_inState extends State<Practice_in> {
                   child: Text('설명\n${view.contents}', style:TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
                   height: cSize.height*0.65,
                   width: double.infinity,
-                  color: Colors.black,
+                  color: Colors.white,
                 )
               ],
             ),
@@ -58,14 +58,14 @@ class _Practice_inState extends State<Practice_in> {
             padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
             height: cSize.height*0.145,
             width: double.infinity,
-            color: Colors.black,
+            color: Colors.white,
             child: Text('팁 ${view.hint}', style:TextStyle(color: Colors.redAccent, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
           ),
         ],
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.black,
+        color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
