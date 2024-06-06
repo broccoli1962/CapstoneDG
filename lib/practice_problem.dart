@@ -28,7 +28,7 @@ class _Practice_inState extends State<Practice_in> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:false,
-        title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+        title: Text(view.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
@@ -46,10 +46,10 @@ class _Practice_inState extends State<Practice_in> {
               children: [
                 Container(
                   padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-                  child: Text('설명\n${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+                  child: Text('설명\n${view.contents}', style:TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
                   height: cSize.height*0.65,
                   width: double.infinity,
-                  color: Colors.brown,
+                  color: Colors.black,
                 )
               ],
             ),
@@ -58,14 +58,14 @@ class _Practice_inState extends State<Practice_in> {
             padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
             height: cSize.height*0.145,
             width: double.infinity,
-            color: Colors.lightBlueAccent,
+            color: Colors.black,
             child: Text('팁 ${view.hint}', style:TextStyle(color: Colors.redAccent, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
           ),
         ],
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
+        color: Colors.black,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
