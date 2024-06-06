@@ -45,7 +45,7 @@ class _TestState extends State<Test> {
           Container(
             height: cSize.height * 0.3,
             width: double.infinity,
-            color: Colors.blue,
+            color: Colors.white,
             child: Center(
               child: ListView(
                 // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -76,7 +76,7 @@ class _TestState extends State<Test> {
           Container(
             height: cSize.height * 0.494,
             width: double.infinity,
-            color: Colors.yellow,
+            color: Colors.white,
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 4, childAspectRatio: 1.2),
@@ -97,7 +97,7 @@ class _TestState extends State<Test> {
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
+        color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -224,7 +224,7 @@ class MakeTest extends StatelessWidget {
                       Test_in(pg: pg.index + 1, number: number)));
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.amber,
+          backgroundColor: Colors.white,
           shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.zero),
               side: BorderSide.none),

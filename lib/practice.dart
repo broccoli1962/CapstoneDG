@@ -34,9 +34,32 @@ class _PracticeState extends State<Practice> {
     return Scaffold(
       appBar: AppBar(
         // AppBar 정의
-        title: const Row(
+        title: Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(Icons.menu_book), Text(' 공부')],
+          children: [
+          Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.menu_book, size: 50,),
+            Text(' 공부', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          ],
+        ),
+          ],
+            ),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              right: 0,
+              child: Divider(
+                height: 2,
+                thickness: 2,
+                color: Colors.grey,
+              ),
+            ),
+          ],
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
