@@ -1,9 +1,8 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/test.dart';
-
-import 'memo.dart';
 
 class Practice_in extends StatefulWidget {
   const Practice_in({
@@ -29,7 +28,10 @@ class _Practice_inState extends State<Practice_in> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:false,
-        title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
+        title: Text(
+          view.title,
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        ),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
@@ -41,29 +43,40 @@ class _Practice_inState extends State<Practice_in> {
       ),
       body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-                child: Text('설명\n ${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
-                height: cSize.height*0.65,
-                width: double.infinity,
-                color: Colors.brown,
-              )
-            ],
+          Divider( // AppBar 아래에 라인 추가
+            color: Colors.grey,
+            thickness: 2,
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
+                  child: SingleChildScrollView(
+                      child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
+                  ),
+                  height: cSize.height*0.65,
+                  width: double.infinity,
+                  color: Colors.white,
+
+                )
+              ],
+            ),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
             height: cSize.height*0.145,
             width: double.infinity,
-            color: Colors.lightBlueAccent,
-            child: Text('팁 ${view.hint}', style:TextStyle(color: Colors.redAccent, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+            color: Colors.white,
+            child: SingleChildScrollView(
+                child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
+            ),
           ),
         ],
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
+        color: Colors.white,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
@@ -134,16 +147,12 @@ class _Practice_inState extends State<Practice_in> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => const memo()),
-                              (route) => false);
-                    },
+                    onPressed: () {},
                   ),
                   const Text(
                     "메모",
                     style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
+                  )
                 ],
               ),
             ),
