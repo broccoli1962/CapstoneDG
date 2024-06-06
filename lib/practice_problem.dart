@@ -47,7 +47,7 @@ class _Practice_inState extends State<Practice_in> {
                 Container(
                   padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
                   child: SingleChildScrollView(
-                  child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0))),
+                  child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))),
                   height: cSize.height*0.65,
                   width: double.infinity,
                   color: Colors.white,
@@ -61,7 +61,7 @@ class _Practice_inState extends State<Practice_in> {
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
-            child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0))),
+            child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))),
           ),
         ],
       ),
