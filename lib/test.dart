@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/test_problem.dart';
+import 'memo.dart';
 
-enum Page { A, B, C, D }
+enum Page { A, B, C, D, E, F, G, H }
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -12,10 +13,10 @@ class Test extends StatefulWidget {
 }
 
 //문제 장
-List<String> nameList = ['실전1', '실전2', '3장', '4장'];
+List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장',];
 
 //문제 개수
-List<int> list = [3, 2, 6, 8];
+List<int> list = [8, 8, 8, 8, 8, 8, 8, 8];
 
 class _TestState extends State<Test> {
   Page page = Page.A;
@@ -148,7 +149,8 @@ class _TestState extends State<Test> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                   ),
                   const Text(
                     "문제",
@@ -165,7 +167,11 @@ class _TestState extends State<Test> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",
