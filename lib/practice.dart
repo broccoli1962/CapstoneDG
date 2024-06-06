@@ -55,28 +55,31 @@ class _PracticeState extends State<Practice> {
             height: cSize.height * 0.3,
             width: double.infinity,
             color: Colors.white,
-            child: Center(
-              child: ListView(
-                children: [
-                  for (int i = 0; i < Page.values.length; i++)
-                    RadioListTile(
-                      // 페이지 선택 RadioListTile
-                      title: Text(
-                        nameList[i], // 장 이름
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      value: Page.values[i], // 페이지 값
-                      groupValue: page, // 그룹 값
-                      onChanged: ((Page? value) {
-                        setState(() {
-                          page = value!; // 선택된 페이지 업데이트
-                        });
-                      }),
-                    ),
-                ],
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4,
+                childAspectRatio: 2,
               ),
+              itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
+              itemBuilder: (BuildContext context, int index) {
+                return RadioListTile(
+                  // 페이지 선택 RadioListTile
+                  title: Text(
+                    nameList[index], // 장 이름
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  value: Page.values[index], // 페이지 값
+                  groupValue: page, // 그룹 값
+                  onChanged: ((Page? value) {
+                    setState(() {
+                      page = value!; // 선택된 페이지 업데이트
+                    });
+                  }),
+                );
+              },
             ),
           ),
+
           // Divider 추가
           const Divider(
             color: Colors.black,
