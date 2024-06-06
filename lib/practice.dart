@@ -80,9 +80,7 @@ class _PracticeState extends State<Practice> {
             color: Colors.white,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, // 4행
-                childAspectRatio: 7, // 그리드 아이템의 가로 세로 비율을 조정합니다.
-              ),
+                crossAxisCount: 4, childAspectRatio: 7,),
               itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
               itemBuilder: (BuildContext context, int index) {
                 return RadioListTile(

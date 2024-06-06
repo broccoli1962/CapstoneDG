@@ -44,31 +44,34 @@ class _TestState extends State<Test> {
           ),
           //witch page?
           Container(
-            height: cSize.height * 0.3,
+            height: cSize.height * 0.09,
             width: double.infinity,
             color: Colors.white,
-            child: Center(
-              child: ListView(
-                // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                //     crossAxisCount: 3, childAspectRatio: 2.5),
-                children: [
-                  for (int i = 0; i < Page.values.length; i++)
-                    RadioListTile(
-                        title: Text(
-                          nameList[i],
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                        value: Page.values[i],
-                        groupValue: page,
-                        onChanged: ((Page? value) {
-                          setState(() {
-                            page = value!;
-                          });
-                        }))
-                ],
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 4, // 4열
+                childAspectRatio: 7, // 그리드 아이템의 가로 세로 비율을 조정합니다.
               ),
+              itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
+              itemBuilder: (BuildContext context, int index) {
+                return RadioListTile(
+                  // 페이지 선택 RadioListTile
+                  title: Text(
+                    nameList[index], // 장 이름
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                  value: Page.values[index], // 페이지 값
+                  groupValue: page, // 그룹 값
+                  onChanged: ((Page? value) {
+                    setState(() {
+                      page = value!; // 선택된 페이지 업데이트
+                    });
+                  }),
+                );
+              },
             ),
           ),
+
           const Divider(
             color: Colors.black,
             height: 0.01,
