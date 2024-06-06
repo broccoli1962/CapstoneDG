@@ -27,14 +27,17 @@ class _PracticeState extends State<Practice> {
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(Icons.menu_book), Text(' 공부')],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.0,),
+        child: AppBar(
+            title: const Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [Icon(Icons.menu_book), Text(' 공부')],
+            ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
       ),
       body: Column(
         children: [
