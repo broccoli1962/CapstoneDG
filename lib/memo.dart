@@ -1,63 +1,38 @@
-import 'dart:core';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/test.dart';
 
-import 'memo.dart';
-
-class Practice_in extends StatefulWidget {
-  const Practice_in({
-    required this.pg,
-    required this.number,
-    super.key,
-  });
-
-  final int pg;
-  final int number;
+class memo extends StatefulWidget {
+  const memo({super.key});
 
   @override
-  State<Practice_in> createState() => _Practice_inState();
+  State<memo> createState() => _memoState();
 }
 
-class _Practice_inState extends State<Practice_in> {
+class _memoState extends State<memo> {
 
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
-    final Problem_p view = Problem_p.get(widget.pg, widget.number);
 
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading:false,
-        title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),),
-        actions: [
-          TextButton(onPressed: (){
-            Navigator.pop(context);
-          }, child: Text('돌아가기')),
-        ],
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-      ),
+      appBar: AppBar(title: Text('메모리스트'),),
       body: Column(
         children: [
-          Column(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-                child: Text('설명\n ${view.contents}', style:TextStyle(color: Colors.white, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
-                height: cSize.height*0.65,
-                width: double.infinity,
-                color: Colors.brown,
-              )
-            ],
+          Container(
+            color: Colors.grey,
+            width: double.infinity,
+            height: cSize.height*0.3,
+            child: ListView(
+
+            ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
-            height: cSize.height*0.145,
+            color: Colors.greenAccent,
             width: double.infinity,
-            color: Colors.lightBlueAccent,
-            child: Text('팁 ${view.hint}', style:TextStyle(color: Colors.redAccent, fontSize: 15,fontWeight: FontWeight.bold, letterSpacing: 2.0)),
+            height: cSize.height*0.495,
           ),
         ],
       ),

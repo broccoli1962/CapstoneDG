@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/test_problem.dart';
+import 'memo.dart';
 
 enum Page { A, B, C, D }
 
@@ -148,7 +149,8 @@ class _TestState extends State<Test> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                    },
                   ),
                   const Text(
                     "문제",
@@ -165,7 +167,11 @@ class _TestState extends State<Test> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",

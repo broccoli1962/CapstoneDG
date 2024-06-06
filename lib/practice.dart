@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice_problem.dart';
 import 'package:untitled/test.dart';
+import 'memo.dart';
 
 enum Page { A, B, C, D }
 
@@ -26,11 +27,9 @@ class _PracticeState extends State<Practice> {
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(Icons.menu_book), Text(' 공부')],
-        ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(90.0),
+      ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
@@ -164,7 +163,11 @@ class _PracticeState extends State<Practice> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",
