@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/test_problem.dart';
 
-enum Page { A, B, C, D }
+enum Page { A, B, C, D, E, F, G, H }
 
 class Test extends StatefulWidget {
   const Test({super.key});
@@ -12,10 +12,10 @@ class Test extends StatefulWidget {
 }
 
 //문제 장
-List<String> nameList = ['실전1', '실전2', '3장', '4장'];
+List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장',];
 
 //문제 개수
-List<int> list = [3, 2, 6, 8];
+List<int> list = [8, 8, 8, 8, 8, 8, 8, 8];
 
 class _TestState extends State<Test> {
   Page page = Page.A;
