@@ -28,7 +28,10 @@ class _Practice_inState extends State<Practice_in> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading:false,
-        title: Text(view.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+        title: Text(
+          view.title,
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+        ),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
@@ -40,7 +43,10 @@ class _Practice_inState extends State<Practice_in> {
       ),
       body: Column(
         children: [
-          //
+          Divider( // AppBar 아래에 라인 추가
+            color: Colors.grey,
+            thickness: 2,
+          ),
           Container(
             child: Column(
               children: [
@@ -62,7 +68,7 @@ class _Practice_inState extends State<Practice_in> {
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
-            child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
+            child: Text('${view.hint}', style:TextStyle(color: Colors.red, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
             ),
           ),
         ],
