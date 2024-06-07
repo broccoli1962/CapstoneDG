@@ -38,25 +38,11 @@ class _settingState extends State<setting> {
                 ),
               ],
             ),
-<<<<<<< HEAD
-=======
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Divider(
-                height: 2,
-                thickness: 2,
-                color: Colors.grey,
-              ),
-            ),
->>>>>>> main
           ],
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-<<<<<<< HEAD
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
@@ -65,8 +51,6 @@ class _settingState extends State<setting> {
             color: Colors.black,
           ),
         ),
-=======
->>>>>>> main
       ),
       body: Column(
         children: [
@@ -75,7 +59,6 @@ class _settingState extends State<setting> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-<<<<<<< HEAD
                   Text('계정 관리', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                   Container(
                     height: cSize.height*0.15,
@@ -85,17 +68,6 @@ class _settingState extends State<setting> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextButton(onPressed: () {}, child: Text('로그인 하기', style: TextStyle(fontSize: 17, color: Colors.black),),),
-=======
-                  Text('계정관리'),
-                  Container(
-                    height: cSize.height*0.2,
-                    width: cSize.width*0.9,
-                    color: Colors.blueGrey,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextButton(onPressed: () {}, child: Text('로그인 하기', style: TextStyle(color: Colors.white),),),
->>>>>>> main
                       ],
                     ),
                   ),
@@ -107,7 +79,6 @@ class _settingState extends State<setting> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-<<<<<<< HEAD
                 Text('이용 정보', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                 Container(
                   height: cSize.height*0.2,
@@ -118,18 +89,6 @@ class _settingState extends State<setting> {
                     children: [
                       TextButton(onPressed: () {}, child: Text('개인정보 이용 방침', style: TextStyle(fontSize: 17, color: Colors.black)),),
                       TextButton(onPressed: () {}, child: Text('이용 약관', style: TextStyle(fontSize: 17, color: Colors.black)),),
-=======
-                Text('이용정보'),
-                Container(
-                  height: cSize.height*0.2,
-                  width: cSize.width*0.9,
-                  color: Colors.blueGrey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton(onPressed: () {}, child: Text('개인정보 이용 방침', style: TextStyle(color: Colors.white)),),
-                      TextButton(onPressed: () {}, child: Text('이용 약관', style: TextStyle(color: Colors.white)),),
->>>>>>> main
                     ],
                   ),
                 ),
@@ -140,7 +99,6 @@ class _settingState extends State<setting> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-<<<<<<< HEAD
                 Text('설정', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                 Container(
                   height: cSize.height*0.2,
@@ -150,39 +108,19 @@ class _settingState extends State<setting> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       TextButton(onPressed: () {}, child: Text('광고 제거 하기', style: TextStyle(fontSize: 17, color: Colors.black)),),
-=======
-                Text('설정'),
-                Container(
-                  height: cSize.height*0.2,
-                  width: cSize.width*0.9,
-                  color: Colors.blueGrey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextButton(onPressed: () {}, child: Text('광고 제거 하기', style: TextStyle(color: Colors.white)),),
->>>>>>> main
                     ],
                   ),
                 ),
               ],
             ),
-<<<<<<< HEAD
           ),
-=======
-          )
->>>>>>> main
         ],
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-<<<<<<< HEAD
         color: Colors.white,
         child: Row(
 
-=======
-        color: Colors.cyan,
-        child: Row(
->>>>>>> main
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
