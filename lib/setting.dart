@@ -119,8 +119,14 @@ class _settingState extends State<setting> {
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
         color: Colors.white,
-        child: Row(
-
+        child: Column(
+          children: [
+          Divider(
+          height: 2,
+          thickness: 1,
+          color: Colors.black,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
@@ -221,6 +227,8 @@ class _settingState extends State<setting> {
                 ],
               ),
             ),
+          ],
+        ),
           ],
         ),
       ),
