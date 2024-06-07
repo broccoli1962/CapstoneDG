@@ -1,23 +1,19 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:untitled/memo.dart';
 import 'package:untitled/practice.dart';
-import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
 
-class memo extends StatefulWidget {
-  const memo({super.key});
+class setting extends StatefulWidget {
+  const setting({super.key});
 
   @override
-  State<memo> createState() => _memoState();
+  State<setting> createState() => _settingState();
 }
 
-class _memoState extends State<memo> {
+class _settingState extends State<setting> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
-    TextEditingController _controller = TextEditingController();
-    TextEditingController _controller2 = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -32,10 +28,10 @@ class _memoState extends State<memo> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.menu_book,
+                      Icons.person,
                       size: 50,
                     ),
-                    Text(' 메모리스트',
+                    Text(' 설정',
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
                   ],
@@ -61,62 +57,65 @@ class _memoState extends State<memo> {
       body: Column(
         children: [
           Container(
-            color: Colors.grey,
-            width: double.infinity,
-            height: cSize.height * 0.3,
-            child: ListView.separated(
-              itemCount: memos.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('${memos[index].Mtitle}'),
-                  subtitle: Text(
-                    '내용: ${memos[index].contents}'
+            child: Center(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('계정관리'),
+                  Container(
+                    height: cSize.height*0.2,
+                    width: cSize.width*0.9,
+                    color: Colors.blueGrey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextButton(onPressed: () {}, child: Text('로그인 하기', style: TextStyle(color: Colors.white),),),
+                      ],
+                    ),
                   ),
-                  trailing: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        memos.removeAt(index);
-                      });
-                    },
-                    icon: const Icon(Icons.delete),
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  height: 2,
-                  color: Colors.redAccent,
-                  indent: 20,
-                  endIndent: 20,
-                );
-              },
+                ],
+              ),
             ),
           ),
           Container(
-            color: Colors.redAccent,
-            width: double.infinity,
-            height: cSize.height * 0.1,
-            child: TextField(
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: '제목 입력'
-              ),
-              maxLines: 1,
-              controller: _controller2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('이용정보'),
+                Container(
+                  height: cSize.height*0.2,
+                  width: cSize.width*0.9,
+                  color: Colors.blueGrey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(onPressed: () {}, child: Text('개인정보 이용 방침', style: TextStyle(color: Colors.white)),),
+                      TextButton(onPressed: () {}, child: Text('이용 약관', style: TextStyle(color: Colors.white)),),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           Container(
-            color: Colors.greenAccent,
-            width: double.infinity,
-            height: cSize.height * 0.395,
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: '내용 입력'
-              ),
-              maxLines: 22,
-              controller: _controller,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('설정'),
+                Container(
+                  height: cSize.height*0.2,
+                  width: cSize.width*0.9,
+                  color: Colors.blueGrey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextButton(onPressed: () {}, child: Text('광고 제거 하기', style: TextStyle(color: Colors.white)),),
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ),
+          )
         ],
       ),
       bottomNavigationBar: Container(
@@ -137,7 +136,7 @@ class _memoState extends State<memo> {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const Practice()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -158,7 +157,7 @@ class _memoState extends State<memo> {
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => const Test()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -193,7 +192,11 @@ class _memoState extends State<memo> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",
@@ -210,12 +213,7 @@ class _memoState extends State<memo> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const setting()),
-                              (route) => false);
-                    },
+                    onPressed: () {},
                   ),
                   const Text(
                     "설정",
@@ -227,24 +225,6 @@ class _memoState extends State<memo> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            memos.add(
-              Memos(_controller2.text ,_controller.text),
-            );
-          });
-        },
-        child: Text('저장'),
-      ),
     );
   }
 }
-
-class Memos {
-  String Mtitle;
-  String contents;
-  Memos(this.Mtitle, this.contents);
-}
-
-List<Memos> memos = [];
