@@ -48,7 +48,7 @@ class _PracticeState extends State<Practice> {
                         Icons.menu_book,
                         size: 50,
                       ),
-                      Text(' 공부',
+                      const Text(' 공부',
                           style: TextStyle(
                               fontSize: 24, fontWeight: FontWeight.bold)),
                     ],

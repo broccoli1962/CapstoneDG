@@ -29,7 +29,7 @@ class _Practice_inState extends State<Practice_in> {
       appBar: AppBar(
         automaticallyImplyLeading:false,
         title: Text(
-          view.title,
+          view.title, textAlign: TextAlign.center,
           style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         actions: [
@@ -51,7 +51,7 @@ class _Practice_inState extends State<Practice_in> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
+                  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
                   child: SingleChildScrollView(
                       child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
                   ),
@@ -64,7 +64,7 @@ class _Practice_inState extends State<Practice_in> {
             ),
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(40, 40, 0, 0),
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
             height: cSize.height*0.109,
             width: double.infinity,
             color: Colors.white,
