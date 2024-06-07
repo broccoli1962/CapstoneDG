@@ -1,28 +1,27 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:untitled/memo_insert.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
 
-import 'memo_contents.dart';
+import 'memo.dart';
 
-class memo extends StatefulWidget {
-  const memo({super.key});
+class Minsert extends StatefulWidget {
+  const Minsert({super.key});
 
   @override
-  State<memo> createState() => _memoState();
+  State<Minsert> createState() => _MinsertState();
 }
 
-class _memoState extends State<memo> {
+class _MinsertState extends State<Minsert> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
+    TextEditingController _controller = TextEditingController();
+    TextEditingController _controller2 = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
-        // AppBar 정의
+        automaticallyImplyLeading:false,
         title: const Stack(
           alignment: Alignment.center,
           children: [
@@ -62,39 +61,28 @@ class _memoState extends State<memo> {
       body: Column(
         children: [
           Container(
-            color: Colors.grey,
+            color: Colors.redAccent,
             width: double.infinity,
-            height: cSize.height * 0.795,
-            child: ListView.separated(
-              itemCount: memos.length,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text('${memos[index].Mtitle}'),
-                  trailing: IconButton(
-                    onPressed: () {
-                      setState(() {
-                        memos.removeAt(index);
-                      });
-                    },
-                    icon: const Icon(Icons.delete),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) =>
-                                Mcontents(mnumber: index,)));
-                  },
-                );
-              },
-              separatorBuilder: (context, index) {
-                return const Divider(
-                  height: 2,
-                  color: Colors.redAccent,
-                  indent: 20,
-                  endIndent: 20,
-                );
-              },
+            height: cSize.height * 0.1,
+            child: TextField(
+              decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: '제목 입력'
+              ),
+              maxLines: 1,
+              controller: _controller2,
+            ),
+          ),
+          Container(
+            color: Colors.greenAccent,
+            width: double.infinity,
+            height: cSize.height * 0.695,
+            child: TextField(
+              decoration: InputDecoration(
+                  hintText: '내용 입력'
+              ),
+              maxLines: 22,
+              controller: _controller,
             ),
           ),
         ],
@@ -117,7 +105,7 @@ class _memoState extends State<memo> {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const Practice()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -138,7 +126,7 @@ class _memoState extends State<memo> {
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => const Test()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -211,38 +199,54 @@ class _memoState extends State<memo> {
         children: [
           Align(
             alignment: Alignment(
-              Alignment.bottomRight.x-0.3, Alignment.bottomRight.y
+                Alignment.bottomRight.x-0.3, Alignment.bottomRight.y
             ),
             child: FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Minsert()));
+                setState(() {
+                  memos.add(
+                    Memos(_controller2.text ,_controller.text),
+                  );
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(
+                          builder: (context) => const memo()),
+                          (route) => false);
+                });
               },
-              tooltip: '추가',
-              child: Text('추가'),
+              tooltip: '수정',
+              child: Text('저장'),
             ),
           ),
           Align(
             alignment: Alignment.bottomRight,
             child: FloatingActionButton(
-              onPressed: () {},
-              tooltip: '삭제',
-              child: Text('삭제'),
+              onPressed: () {
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const memo()),
+                        (route) => false);
+              },
+              tooltip: '취소',
+              child: Text('취소'),
             ),
 
           ),
         ],
       ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     setState(() {
+      //       memos.add(
+      //         Memos(_controller2.text ,_controller.text),
+      //       );
+      //       Navigator.of(context).pushAndRemoveUntil(
+      //           MaterialPageRoute(
+      //               builder: (context) => const memo()),
+      //               (route) => false);
+      //     });
+      //   },
+      //   child: Text('저장'),
+      // ),
     );
   }
 }
-
-class Memos {
-  String Mtitle;
-  String contents;
-  Memos(this.Mtitle, this.contents);
-}
-
-List<Memos> memos = [];

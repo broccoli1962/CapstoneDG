@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
+import 'package:untitled/setting.dart';
 import 'package:untitled/test_problem.dart';
 import 'memo.dart';
 
@@ -219,7 +220,12 @@ class _TestState extends State<Test> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const setting()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "설정",
