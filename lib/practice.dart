@@ -59,9 +59,9 @@ class _PracticeState extends State<Practice> {
               left: 0,
               right: 0,
               child: Divider(
-                height: 2,
-                thickness: 2,
-                color: Colors.grey,
+                height: 1,
+                thickness: 1,
+                color: Colors.black,
               ),
             ),
           ],
@@ -80,13 +80,13 @@ class _PracticeState extends State<Practice> {
           ),
           // 페이지 선택 위젯
           Container(
-            height: cSize.height * 0.09,
+            height: cSize.height * 0.15,
             width: double.infinity,
             color: Colors.white,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 4,
-                childAspectRatio: 7,
+                childAspectRatio: 2,
               ),
               itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
               itemBuilder: (BuildContext context, int index) {
@@ -94,7 +94,7 @@ class _PracticeState extends State<Practice> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -120,7 +120,7 @@ class _PracticeState extends State<Practice> {
             color: Colors.white,
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, childAspectRatio: 1.2),
+                  crossAxisCount: 4, childAspectRatio: 0.7),
               children: [
                 for (int i = 0; i < list[page.index]; i++)
                   MakeTest(
