@@ -1,7 +1,9 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:untitled/memo.dart';
 import 'package:untitled/practice.dart';
+import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
 
 class Practice_in extends StatefulWidget {
@@ -147,7 +149,12 @@ class _Practice_inState extends State<Practice_in> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",
@@ -164,7 +171,12 @@ class _Practice_inState extends State<Practice_in> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const setting()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "설정",

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/memo.dart';
 import 'package:untitled/practice_problem.dart'; // practice_problem.dart 파일의 import 문
+import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart'; // test.dart 파일의 import 문
 
 // 페이지 열거형 정의
@@ -204,7 +206,12 @@ class _PracticeState extends State<Practice> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const memo()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "메모",
@@ -222,7 +229,12 @@ class _PracticeState extends State<Practice> {
                     icon: const Icon(Icons.person),
                     iconSize: 40,
                     color: Colors.black,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                          MaterialPageRoute(
+                              builder: (context) => const setting()),
+                              (route) => false);
+                    },
                   ),
                   const Text(
                     "설정",
