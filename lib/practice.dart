@@ -32,43 +32,45 @@ class _PracticeState extends State<Practice> {
 
     // Scaffold 위젯 반환
     return Scaffold(
-      appBar: AppBar(
-        // AppBar 정의
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.menu_book,
-                      size: 50,
-                    ),
-                    Text(' 공부',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
-            ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Divider(
-                height: 1,
-                thickness: 1,
-                color: Colors.black,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(50.0), // AppBar의 높이를 50으로 조절
+        child: AppBar(
+          title: const Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.menu_book,
+                        size: 50,
+                      ),
+                      Text(' 공부',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
               ),
-            ),
-          ],
+              Positioned(
+                bottom: 0,
+                left: 0,
+                right: 0,
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: Colors.black,
+                ),
+              ),
+            ],
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
         ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
       ),
       body: Column(
         // Column 위젯으로 세로 배열
