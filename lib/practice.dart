@@ -33,14 +33,14 @@ class _PracticeState extends State<Practice> {
     // Scaffold 위젯 반환
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(150.0), // AppBar의 높이를 150으로 조절
+        preferredSize: Size.fromHeight(60.0), // AppBar의 높이를 150으로 조절
         child: AppBar(
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
                 Icons.menu_book,
-                size: 100,
+                size: 50,
               ),
               SizedBox(width: 8), // 아이콘과 텍스트 사이에 간격 조절
               Text(
@@ -62,6 +62,7 @@ class _PracticeState extends State<Practice> {
           ),
         ),
       ),
+
       body: Column(
         // Column 위젯으로 세로 배열
         children: [
@@ -72,13 +73,13 @@ class _PracticeState extends State<Practice> {
           ),
           // 페이지 선택 위젯
           Container(
-            height: cSize.height * 0.15,
+            height: cSize.height * 0.19,
             width: double.infinity,
             color: Colors.white,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                childAspectRatio: 2,
+                crossAxisCount: 3,
+                childAspectRatio: 3,
               ),
               itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
               itemBuilder: (BuildContext context, int index) {
@@ -86,7 +87,7 @@ class _PracticeState extends State<Practice> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -107,12 +108,12 @@ class _PracticeState extends State<Practice> {
           ),
           // 페이지 별 문제 그리드
           Container(
-            height: cSize.height * 0.494,
+            height: cSize.height * 0.57,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, childAspectRatio: 0.7),
+                  crossAxisCount: 3, childAspectRatio: 0.595),
               children: [
                 for (int i = 0; i < list[page.index]; i++)
                   MakeTest(
@@ -268,8 +269,8 @@ class MakeTest extends StatelessWidget {
               side: BorderSide.none),
         ),
         child: Text(
-          "problem $number",
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          "study: $number",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );

@@ -26,45 +26,45 @@ class _TestState extends State<Test> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.article,
-                        size: 50,
-                      ),
-                      Text(' 시험',
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold)),
-                    ],
-                ),
-              ],
-        ),
-        Positioned(
-          bottom: 0,
-          left: 0,
-          right: 0,
-          child: Divider(
-            height: 2,
-            thickness: 2,
-            color: Colors.grey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0), // AppBar의 높이를 100으로 조절
+        child: AppBar(
+          title: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.article,
+                    size: 50,
+                  ),
+                  SizedBox(width: 8), // 아이콘과 텍스트 사이 간격 조정
+                  Text(
+                    '시험',
+                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ],
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              height: 2,
+              thickness: 1,
+              color: Colors.black,
+            ),
           ),
         ),
-        ],
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
       ),
-      body: Column(
+
+    body: Column(
         children: [
           const Divider(
             height: 0.01,
@@ -72,13 +72,13 @@ class _TestState extends State<Test> {
           ),
           //witch page?
           Container(
-            height: cSize.height * 0.09,
+            height: cSize.height * 0.18,
             width: double.infinity,
             color: Colors.white,
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4, // 4열
-                childAspectRatio: 7, // 그리드 아이템의 가로 세로 비율을 조정합니다.
+                crossAxisCount: 3, // 4열
+                childAspectRatio: 3, // 그리드 아이템의 가로 세로 비율을 조정합니다.
               ),
               itemCount: Page.values.length, // 페이지 수에 따라 그리드 아이템 수를 설정합니다.
               itemBuilder: (BuildContext context, int index) {
@@ -106,12 +106,12 @@ class _TestState extends State<Test> {
           ),
           //witch page count?
           Container(
-            height: cSize.height * 0.494,
+            height: cSize.height * 0.57,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, childAspectRatio: 1.2),
+                  crossAxisCount: 3, childAspectRatio: 0.595),
               children: [
                 for (int i = 0; i < list[page.index]; i++)
                   MakeTest(
@@ -267,8 +267,8 @@ class MakeTest extends StatelessWidget {
               side: BorderSide.none),
         ),
         child: Text(
-          "problem $number",
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          "test: $number",
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );
