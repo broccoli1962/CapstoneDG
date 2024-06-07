@@ -72,7 +72,7 @@ class _TestState extends State<Test> {
           ),
           //witch page?
           Container(
-            height: cSize.height * 0.18,
+            height: cSize.height * 0.19,
             width: double.infinity,
             color: Colors.white,
             child: GridView.builder(
