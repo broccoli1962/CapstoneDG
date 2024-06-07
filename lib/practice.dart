@@ -9,7 +9,7 @@ enum Page { A, B, C, D, E, F, G, H }
 List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장'];
 
 // 각 장의 문제 개수 리스트
-List<int> list = [6, 2, 6, 8, 8, 8, 8, 8];
+List<int> list = [6, 8, 8, 8, 8, 8, 8, 8];
 
 // Practice 클래스: StatefulWidget을 상속하여 구현
 class Practice extends StatefulWidget {
@@ -33,43 +33,33 @@ class _PracticeState extends State<Practice> {
     // Scaffold 위젯 반환
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(50.0), // AppBar의 높이를 50으로 조절
+        preferredSize: Size.fromHeight(150.0), // AppBar의 높이를 150으로 조절
         child: AppBar(
-          title: const Stack(
-            alignment: Alignment.center,
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.menu_book,
-                        size: 50,
-                      ),
-                      const Text(' 공부',
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold)),
-                    ],
-                  ),
-                ],
+              Icon(
+                Icons.menu_book,
+                size: 100,
               ),
-              Positioned(
-                bottom: 0,
-                left: 0,
-                right: 0,
-                child: Divider(
-                  height: 1,
-                  thickness: 1,
-                  color: Colors.black,
-                ),
+              SizedBox(width: 8), // 아이콘과 텍스트 사이에 간격 조절
+              Text(
+                '공부',
+                style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ],
           ),
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0,
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              height: 1,
+              thickness: 1,
+              color: Colors.black,
+            ),
+          ),
         ),
       ),
       body: Column(
