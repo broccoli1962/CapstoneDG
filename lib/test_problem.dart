@@ -120,12 +120,12 @@ class _Test_inState extends State<Test_in> {
               width: double.infinity,
               height: cSize.height * 0.17,
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              decoration: const BoxDecoration(color: Colors.yellow),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   //테스트케이스 추가하기
-                  Text('입력 값', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                  Text('입력 값', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
                   Text(view.testCase),
                 ],
               ),
@@ -134,19 +134,19 @@ class _Test_inState extends State<Test_in> {
               width: double.infinity,
               height: cSize.height*0.17,
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              decoration: const BoxDecoration(color: Colors.greenAccent),
+              decoration: const BoxDecoration(color: Colors.white),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('출력 값', style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
+                  Text('출력 값', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
                   Text(view.rtestCase2),
                 ],
               ),
             ),
             Container(
               width: double.infinity,
-              height: cSize.height*0.583,
-              decoration: const BoxDecoration(color: Colors.blueGrey),
+              height: cSize.height*0.550,
+              decoration: const BoxDecoration(color: Colors.white),
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: TextField(
                 maxLines: 22,

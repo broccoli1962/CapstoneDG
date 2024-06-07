@@ -28,9 +28,37 @@ class _TestState extends State<Test> {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [Icon(Icons.article), Text(' 시험')],
+        title: const Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.article,
+                        size: 50,
+                      ),
+                      Text(' 시험',
+                          style: TextStyle(
+                              fontSize: 24, fontWeight: FontWeight.bold)),
+                    ],
+                ),
+              ],
+        ),
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Divider(
+            height: 2,
+            thickness: 2,
+            color: Colors.grey,
+          ),
+        ),
+        ],
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -240,7 +268,7 @@ class MakeTest extends StatelessWidget {
         ),
         child: Text(
           "problem $number",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
       ),
     );
