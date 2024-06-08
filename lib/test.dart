@@ -294,13 +294,13 @@ class Problem_t {
 
   //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
   static List<Problem_t> problems = [
-    Problem_t(
-        1,
-        1,
-        '<printf>\nprintf 문을 출력하세요.',
-        '10\n20\n30',
-        'hello world',
-        '#include <stdio.h>\nint main(){\n printf("hello world");\nreturn 0;\n}',
+    Problem_t(1, 1,
+        '1-1\n<"Hi C programing">\n을 출력하세요.',
+        '10\n20\n30\n40\n50\n60',
+        'Hi C programing',
+        '#include <stdio.h>\n'
+        'int main(){\n'
+        '//안에 들어갈 내용을 적으세요.\n}',
         '',
         'hint',
         'answer'),

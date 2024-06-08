@@ -303,17 +303,13 @@ class Problem_p {
   // 문제 목록
   //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
   static List<Problem_p> problems = [
-    Problem_p(
-        1,
-        1,
+    Problem_p(1, 1,
         'printf 문\n1-1\n<"Hello World의 출력">',
         '#include <stdio.h>\n'
             'void main(){\n'
             'printf("hello world\￦n"); //hello world를 출력한다.\n}',
         '출력하기 위해서는 printf("");를 사용해야 한다.'),
-    Problem_p(
-        1,
-        2,
+    Problem_p(1, 2,
         'scanf 문\n1-2\n<"키보드로부터 입력받기">',
         '#include <stdio.h>\n'
             'void main(){\n'
@@ -322,9 +318,7 @@ class Problem_p {
             'printf("%d %d\￦n", a, a); //%d에 정수형 a값을 대입 후 출력한다.\n}',
         '정수를 입력할 때에는 %d, 실수는 %f, 문자는 %c를 사용한다.\n'
             '프로그램을 실행하면 정수값을 입력 후 enter키를 누르면 입력한 정수값이 a에 대입된다.\n'),
-    Problem_p(
-        1,
-        3,
+    Problem_p(1, 3,
         '에스케이프 시퀀스\n1-3\n<"에스케이프 시퀀스를 사용하여 문자열 출력">',
         '#include <stdio.h>\n'
             'void main(){\n'
@@ -338,9 +332,7 @@ class Problem_p {
             '백스페이스 \￦b       이중 인용부호 \￦"\n'
             '탭 \￦t                   단일 인용부호\￦\'\n'
             '행 바꾸기 \￦n         역슬래시 \￦￦'),
-    Problem_p(
-        1,
-        4,
+    Problem_p(1, 4,
         '주석\n1-4\n<"주석의 사용">',
         '#include <stdio.h>\n'
             'void main(){\n'
@@ -349,9 +341,7 @@ class Problem_p {
             'printf("hello world\￦n");\n}',
         '주석은 /*와 */ 사이, 또는 // 다음에 표시한 임의의 문자열이며, 여백으로 간주된다.\n'
             '주석을 사용하면 프로그램의 작성과 독해력을 증가시키는 효과가 있다.'),
-    Problem_p(
-        1,
-        5,
+    Problem_p(1, 5,
         '예약어\n1-5\n<"예약어를 사용한 덧셈">',
         '#include <stdio.h>\n'
             'void main(){\n'
@@ -366,9 +356,7 @@ class Problem_p {
             '   for             goto             if              int             log          register\n'
             ' return          short         sizeof        static        struct        switch\n'
             'typedef        union       unsigned       void          while        signed\n'),
-    Problem_p(
-        1,
-        6,
+    Problem_p(1, 6,
         '문장\n1-6\n<"if문을 사용한 문장">',
         '#include <stdio.h>\n'
             'void main(){\n'
@@ -382,9 +370,7 @@ class Problem_p {
             'printf(""); 출력해라.\n'
             'else는 그렇지 않다면\n'
             'printf(""); 출력해라.'),
-    Problem_p(
-        2,
-        1,
+    Problem_p(2, 1,
         'printf 문\n1-1\n<"Hello World의 출력">',
         '#include <stdio.h>\n'
             'void main(){\n'
