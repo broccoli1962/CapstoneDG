@@ -110,7 +110,7 @@ class _PracticeState extends State<Practice> {
           ),
           // 페이지 별 문제 그리드
           Container(
-            height: cSize.height * 0.57,
+            height: cSize.height * 0.5736,
             width: double.infinity,
             color: Colors.white,
             child: GridView(

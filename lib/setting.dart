@@ -55,6 +55,7 @@ class _settingState extends State<setting> {
       body: Column(
         children: [
           Container(
+            color: Colors.white,
             child: Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,8 +76,11 @@ class _settingState extends State<setting> {
               ),
             ),
           ),
+
           Container(
-            child: Column(
+            color: Colors.white,
+            child: Center(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('이용 정보', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
@@ -95,8 +99,12 @@ class _settingState extends State<setting> {
               ],
             ),
           ),
+          ),
+
           Container(
-            child: Column(
+            color: Colors.white,
+            child: Center(
+              child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('설정', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
@@ -114,8 +122,14 @@ class _settingState extends State<setting> {
               ],
             ),
           ),
+          ),
+          Container(
+            color: Colors.white,
+            height: cSize.height*0.0745,
+          ),
         ],
       ),
+
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
         color: Colors.white,

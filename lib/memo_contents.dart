@@ -46,6 +46,14 @@ class _McontentsState extends State<Mcontents> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -57,12 +65,12 @@ class _McontentsState extends State<Mcontents> {
           ),
           const Divider(
             height: 0.01,
-            color: Colors.yellow,
+            color: Colors.black,
           ),
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height*0.610,
+            height: cSize.height*0.6175,
             child: Text('${memos[widget.mnumber].contents}'),
           ),
         ],
@@ -75,7 +83,7 @@ class _McontentsState extends State<Mcontents> {
           Divider(
           height: 2,
           thickness: 1,
-          color: Colors.blue,
+          color: Colors.black,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

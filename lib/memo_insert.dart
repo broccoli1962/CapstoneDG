@@ -78,7 +78,7 @@ class _MinsertState extends State<Minsert> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.667,
+            height: cSize.height * 0.6675,
             child: TextField(
               decoration: InputDecoration(
                   hintText: '  내용 입력'

@@ -177,7 +177,7 @@ class _Test_inState extends State<Test_in> {
 
             Container(
               width: double.infinity,
-              height: cSize.height*0.550,
+              height: cSize.height*0.55651,
               decoration: const BoxDecoration(color: Colors.white),
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: TextField(
