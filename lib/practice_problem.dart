@@ -42,13 +42,17 @@ class _Practice_inState extends State<Practice_in> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 2,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [
-          Divider( // AppBar 아래에 라인 추가
-            color: Colors.grey,
-            thickness: 1,
-          ),
           Container(
             child: Column(
               children: [
@@ -64,13 +68,13 @@ class _Practice_inState extends State<Practice_in> {
               ],
             ),
           ),
-          const Divider( // 힌트 컨테이너 위에 라인 추가
+          const Divider(
             color: Colors.black,
-            thickness: 1,
+            height: 0.01,
           ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            height: cSize.height*0.178,
+            height: cSize.height*0.2175,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
