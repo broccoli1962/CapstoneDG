@@ -62,9 +62,9 @@ class _memoState extends State<memo> {
       body: Column(
         children: [
           Container(
-            color: Colors.grey,
+            color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.795,
+            height: cSize.height * 0.767,
             child: ListView.separated(
               itemCount: memos.length,
               itemBuilder: (context, index) {
@@ -90,7 +90,7 @@ class _memoState extends State<memo> {
               separatorBuilder: (context, index) {
                 return const Divider(
                   height: 2,
-                  color: Colors.redAccent,
+                  color: Colors.black,
                   indent: 20,
                   endIndent: 20,
                 );
@@ -101,8 +101,15 @@ class _memoState extends State<memo> {
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
-        child: Row(
+        color: Colors.white,
+        child: Column(
+          children: [
+          Divider(
+          height: 1,
+          thickness: 1,
+          color: Colors.black,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
@@ -206,12 +213,14 @@ class _memoState extends State<memo> {
             ),
           ],
         ),
+          ],
+        ),
       ),
       floatingActionButton: Stack(
         children: [
           Align(
             alignment: Alignment(
-              Alignment.bottomRight.x-0.3, Alignment.bottomRight.y
+              Alignment.bottomRight.x-0.4, Alignment.bottomRight.y
             ),
             child: FloatingActionButton(
               onPressed: () {
