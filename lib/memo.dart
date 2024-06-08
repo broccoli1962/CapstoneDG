@@ -43,21 +43,19 @@ class _memoState extends State<memo> {
                 ),
               ],
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Divider(
-                height: 2,
-                thickness: 2,
-                color: Colors.grey,
-              ),
-            ),
           ],
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 2,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [

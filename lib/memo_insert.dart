@@ -42,21 +42,19 @@ class _MinsertState extends State<Minsert> {
                 ),
               ],
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Divider(
-                height: 2,
-                thickness: 2,
-                color: Colors.black,
-              ),
-            ),
           ],
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 2,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Column(
         children: [
@@ -80,7 +78,7 @@ class _MinsertState extends State<Minsert> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.668,
+            height: cSize.height * 0.667,
             child: TextField(
               decoration: InputDecoration(
                   hintText: '  내용 입력'

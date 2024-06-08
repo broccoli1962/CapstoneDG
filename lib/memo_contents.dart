@@ -41,16 +41,6 @@ class _McontentsState extends State<Mcontents> {
                 ),
               ],
             ),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Divider(
-                height: 2,
-                thickness: 2,
-                color: Colors.black,
-              ),
-            ),
           ],
         ),
         centerTitle: true,
@@ -67,7 +57,7 @@ class _McontentsState extends State<Mcontents> {
           ),
           const Divider(
             height: 0.01,
-            color: Colors.black,
+            color: Colors.yellow,
           ),
           Container(
             color: Colors.white,
@@ -83,9 +73,9 @@ class _McontentsState extends State<Mcontents> {
         child: Column(
           children: [
           Divider(
-          height: 1,
+          height: 2,
           thickness: 1,
-          color: Colors.black,
+          color: Colors.blue,
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
