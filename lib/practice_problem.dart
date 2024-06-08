@@ -47,27 +47,30 @@ class _Practice_inState extends State<Practice_in> {
         children: [
           Divider( // AppBar 아래에 라인 추가
             color: Colors.grey,
-            thickness: 2,
+            thickness: 1,
           ),
           Container(
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
                   child: SingleChildScrollView(
                       child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
                   ),
-                  height: cSize.height*0.60,
+                  height: cSize.height*0.55,
                   width: double.infinity,
                   color: Colors.white,
-
                 )
               ],
             ),
           ),
+          const Divider( // 힌트 컨테이너 위에 라인 추가
+            color: Colors.black,
+            thickness: 1,
+          ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
-            height: cSize.height*0.109,
+            padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
+            height: cSize.height*0.145,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
@@ -79,7 +82,13 @@ class _Practice_inState extends State<Practice_in> {
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
         color: Colors.white,
-        child: Row(
+        child: Column(
+          children: [
+          const Divider( // bottomNavigationBar 위에 라인 추가
+          color: Colors.black,
+          thickness: 1,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
@@ -185,6 +194,8 @@ class _Practice_inState extends State<Practice_in> {
                 ],
               ),
             ),
+          ],
+        ),
           ],
         ),
       ),

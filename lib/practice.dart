@@ -125,18 +125,19 @@ class _PracticeState extends State<Practice> {
               ],
             ),
           ),
-          // Divider 추가
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
-          ),
         ],
       ),
       // BottomNavigationBar 추가
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
         color: Colors.white,
-        child: Row(
+        child: Column(
+          children: [
+          const Divider( // bottomNavigationBar 위에 라인 추가
+          color: Colors.black,
+          thickness: 1,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             // 공부 아이콘 및 텍스트
@@ -243,6 +244,8 @@ class _PracticeState extends State<Practice> {
                 ],
               ),
             ),
+          ],
+        ),
           ],
         ),
       ),
