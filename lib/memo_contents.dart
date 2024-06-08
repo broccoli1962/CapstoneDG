@@ -48,7 +48,7 @@ class _McontentsState extends State<Mcontents> {
               child: Divider(
                 height: 2,
                 thickness: 2,
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ],
@@ -60,23 +60,34 @@ class _McontentsState extends State<Mcontents> {
       body: Column(
         children: [
           Container(
-            color: Colors.red,
+            color: Colors.white,
             width: double.infinity,
-            height: cSize.height*0.1,
+            height: cSize.height*0.15,
             child: Text('${memos[widget.mnumber].Mtitle}'),
           ),
+          const Divider(
+            height: 0.01,
+            color: Colors.black,
+          ),
           Container(
-            color: Colors.blue,
+            color: Colors.white,
             width: double.infinity,
-            height: cSize.height*0.695,
+            height: cSize.height*0.610,
             child: Text('${memos[widget.mnumber].contents}'),
           ),
         ],
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
-        child: Row(
+        color: Colors.white,
+        child: Column(
+          children: [
+          Divider(
+          height: 1,
+          thickness: 1,
+          color: Colors.black,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
@@ -183,6 +194,8 @@ class _McontentsState extends State<Mcontents> {
                 ],
               ),
             ),
+          ],
+        ),
           ],
         ),
       ),

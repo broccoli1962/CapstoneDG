@@ -35,7 +35,7 @@ class _MinsertState extends State<Minsert> {
                       Icons.menu_book,
                       size: 50,
                     ),
-                    Text(' 메모리스트',
+                    Text(' 메모추가',
                         style: TextStyle(
                             fontSize: 24, fontWeight: FontWeight.bold)),
                   ],
@@ -49,7 +49,7 @@ class _MinsertState extends State<Minsert> {
               child: Divider(
                 height: 2,
                 thickness: 2,
-                color: Colors.grey,
+                color: Colors.black,
               ),
             ),
           ],
@@ -61,25 +61,29 @@ class _MinsertState extends State<Minsert> {
       body: Column(
         children: [
           Container(
-            color: Colors.redAccent,
+            color: Colors.white,
             width: double.infinity,
             height: cSize.height * 0.1,
             child: TextField(
               decoration: InputDecoration(
                   border: InputBorder.none,
-                  hintText: '제목 입력'
+                  hintText: '  제목 입력'
               ),
               maxLines: 1,
               controller: _controller2,
             ),
           ),
+          const Divider(
+            height: 0.01,
+            color: Colors.black,
+          ),
           Container(
-            color: Colors.greenAccent,
+            color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.695,
+            height: cSize.height * 0.668,
             child: TextField(
               decoration: InputDecoration(
-                  hintText: '내용 입력'
+                  hintText: '  내용 입력'
               ),
               maxLines: 22,
               controller: _controller,
@@ -89,8 +93,15 @@ class _MinsertState extends State<Minsert> {
       ),
       bottomNavigationBar: Container(
         height: cSize.height * 0.129,
-        color: Colors.cyan,
-        child: Row(
+        color: Colors.white,
+        child: Column(
+          children: [
+          Divider(
+          height: 1,
+          thickness: 1,
+          color: Colors.black,
+        ),
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
@@ -194,12 +205,14 @@ class _MinsertState extends State<Minsert> {
             ),
           ],
         ),
+          ],
+        ),
       ),
       floatingActionButton: Stack(
         children: [
           Align(
             alignment: Alignment(
-                Alignment.bottomRight.x-0.3, Alignment.bottomRight.y
+                Alignment.bottomRight.x-0.4, Alignment.bottomRight.y
             ),
             child: FloatingActionButton(
               onPressed: () {
