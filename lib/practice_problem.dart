@@ -46,7 +46,7 @@ class _Practice_inState extends State<Practice_in> {
       body: Column(
         children: [
           Divider( // AppBar 아래에 라인 추가
-            color: Colors.grey,
+            color: Colors.black,
             thickness: 2,
           ),
           Container(

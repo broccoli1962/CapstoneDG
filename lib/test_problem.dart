@@ -112,7 +112,16 @@ class _Test_inState extends State<Test_in> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
+            height: 2,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
+
       body:
         Column(
           children: [
@@ -121,28 +130,51 @@ class _Test_inState extends State<Test_in> {
               height: cSize.height * 0.17,
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               decoration: const BoxDecoration(color: Colors.white),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  //테스트케이스 추가하기
-                  Text('입력 값', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
-                  Text(view.testCase),
-                ],
+              child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '입력 값',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(view.testCase),
+                  ],
+                ),
               ),
             ),
+
+            const Divider(
+              color: Colors.black,
+              height: 0.01,
+            ),
+
             Container(
               width: double.infinity,
-              height: cSize.height*0.17,
+              height: cSize.height * 0.17,
               padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
               decoration: const BoxDecoration(color: Colors.white),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text('출력 값', style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold), textAlign: TextAlign.left,),
-                  Text(view.rtestCase2),
-                ],
+              child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '출력 값',
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    Text(view.rtestCase2),
+                  ],
+                ),
               ),
             ),
+
+            const Divider(
+              color: Colors.black,
+              height: 0.01,
+            ),
+
             Container(
               width: double.infinity,
               height: cSize.height*0.550,
