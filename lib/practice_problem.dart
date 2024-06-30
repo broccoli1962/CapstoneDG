@@ -1,10 +1,10 @@
 import 'dart:core';
 import 'package:flutter/material.dart';
-import 'package:path/path.dart';
 import 'package:untitled/memo.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
+import 'package:untitled/util.dart';
 
 class Practice_in extends StatefulWidget {
   const Practice_in({

@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:untitled/memo_insert.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
+import 'package:untitled/util.dart';
 
 import 'memo_contents.dart';
 
@@ -14,6 +13,8 @@ class memo extends StatefulWidget {
   @override
   State<memo> createState() => _memoState();
 }
+
+List<Memos> memos = [];
 
 class _memoState extends State<memo> {
   @override
@@ -48,7 +49,7 @@ class _memoState extends State<memo> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
             height: 2,
@@ -67,7 +68,7 @@ class _memoState extends State<memo> {
               itemCount: memos.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text('${memos[index].Mtitle}'),
+                  title: Text(memos[index].Mtitle),
                   trailing: IconButton(
                     onPressed: () {
                       setState(() {
@@ -102,7 +103,7 @@ class _memoState extends State<memo> {
         color: Colors.white,
         child: Column(
           children: [
-          Divider(
+          const Divider(
           height: 1,
           thickness: 1,
           color: Colors.black,
@@ -137,7 +138,7 @@ class _memoState extends State<memo> {
               child: Column(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.article),
+                    icon: const Icon(Icons.article),
                     iconSize: 40,
                     color: Colors.black,
                     onPressed: () {
@@ -228,7 +229,7 @@ class _memoState extends State<memo> {
                         builder: (context) => Minsert()));
               },
               tooltip: '추가',
-              child: Text('추가'),
+              child: const Text('추가'),
             ),
           ),
           Align(
@@ -236,7 +237,7 @@ class _memoState extends State<memo> {
             child: FloatingActionButton(
               onPressed: () {},
               tooltip: '삭제',
-              child: Text('삭제'),
+              child: const Text('삭제'),
             ),
 
           ),
@@ -245,11 +246,3 @@ class _memoState extends State<memo> {
     );
   }
 }
-
-class Memos {
-  String Mtitle;
-  String contents;
-  Memos(this.Mtitle, this.contents);
-}
-
-List<Memos> memos = [];
