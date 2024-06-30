@@ -46,7 +46,7 @@ class _McontentsState extends State<Mcontents> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
             height: 1,
@@ -61,7 +61,7 @@ class _McontentsState extends State<Mcontents> {
             color: Colors.white,
             width: double.infinity,
             height: cSize.height*0.15,
-            child: Text('${memos[widget.mnumber].Mtitle}'),
+            child: Text(memos[widget.mnumber].Mtitle),
           ),
           const Divider(
             height: 0.01,
@@ -71,7 +71,7 @@ class _McontentsState extends State<Mcontents> {
             color: Colors.white,
             width: double.infinity,
             height: cSize.height*0.6175,
-            child: Text('${memos[widget.mnumber].contents}'),
+            child: Text(memos[widget.mnumber].contents),
           ),
         ],
       ),
@@ -80,7 +80,7 @@ class _McontentsState extends State<Mcontents> {
         color: Colors.white,
         child: Column(
           children: [
-          Divider(
+          const Divider(
           height: 2,
           thickness: 1,
           color: Colors.black,
@@ -115,7 +115,7 @@ class _McontentsState extends State<Mcontents> {
               child: Column(
                 children: [
                   IconButton(
-                    icon: Icon(Icons.article),
+                    icon: const Icon(Icons.article),
                     iconSize: 40,
                     color: Colors.black,
                     onPressed: () {
