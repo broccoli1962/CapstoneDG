@@ -1,4 +1,6 @@
 //메모
+import 'package:flutter/material.dart';
+
 class Memos {
   String Mtitle;
   String contents;
@@ -156,3 +158,29 @@ class Problem_t {
   Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2, this.contents,
       this.myAnswer, this.hint, this.answer);
 }
+
+//user_test
+class UserT{
+  String name;
+  String title;
+  String content;
+
+  UserT(this.name, this.title, this.content);
+}
+
+class UserList extends StatelessWidget {
+  UserList(this._data);
+
+  final UserT _data;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(_data.name),
+      subtitle: Text(_data.title),
+    );
+  }
+}
+
+
+final List<UserT> usert = [];
