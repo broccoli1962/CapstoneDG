@@ -1,48 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
-import 'package:untitled/user_make.dart';
-import 'memo.dart';
-import 'util.dart';
+import 'package:untitled/util.dart';
 
-class UserTest extends StatefulWidget {
-  const UserTest({super.key});
+import 'memo.dart';
+
+class UserView extends StatefulWidget {
+  const UserView({super.key, required this.ViewIndex});
+
+  final int ViewIndex;
 
   @override
-  State<UserTest> createState() => _UserTestState();
+  State<UserView> createState() => _UserViewState();
 }
 
-class _UserTestState extends State<UserTest> {
+class _UserViewState extends State<UserView> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
 
+    //텍스트 컨트롤
+    late TextEditingController userController;
+    late FocusNode _focusNode;
+
+
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('hello'),
-        backgroundColor: Colors.greenAccent,
-        leading: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.search),
-        ),
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const UserMake()),
-                );
-              },
-              child: Text('문제 만들기')),
-        ],
+        title: Text('유저 문제 푸는 페이지임'),
       ),
       body: Center(
-        child: ListView.separated(
-          itemBuilder: (BuildContext, int index) {
-            return UserList(usert[index], index);
-          },
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-          itemCount: usert.length,
+        child: Column(
+          children: [
+            Container(child: Text(usert[widget.ViewIndex].name),),
+            Container(child: Text(usert[widget.ViewIndex].title),),
+            Container(child: TextField(
+            ),),
+          ],
         ),
       ),
       bottomNavigationBar: Container(
@@ -63,7 +57,7 @@ class _UserTestState extends State<UserTest> {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const Practice()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -118,7 +112,7 @@ class _UserTestState extends State<UserTest> {
                     onPressed: () {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(builder: (context) => const memo()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(
@@ -140,7 +134,7 @@ class _UserTestState extends State<UserTest> {
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const setting()),
-                          (route) => false);
+                              (route) => false);
                     },
                   ),
                   const Text(

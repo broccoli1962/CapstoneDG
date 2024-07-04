@@ -1,5 +1,6 @@
 //메모
 import 'package:flutter/material.dart';
+import 'package:untitled/user_view.dart';
 
 class Memos {
   String Mtitle;
@@ -129,12 +130,12 @@ class Problem_t {
   String hint;
   String answer;
 
-  //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
+  //Problem(몇장, 몇번문제, 제목, 조건값, 출력값, 내용, 정답, 문제풀이, 정답값),
   static List<Problem_t> problems = [
     Problem_t(1, 1,
         '1-1\n<"Hi C programing">\n을 출력하세요.',
         '10\n20\n30\n40\n50\n60',
-        'Hi C programing',
+        'Hi C programing', //
         '#include <stdio.h>\n'
             'int main(){\n'
             '//안에 들어갈 내용을 적으세요.\n}',
@@ -169,15 +170,23 @@ class UserT{
 }
 
 class UserList extends StatelessWidget {
-  UserList(this._data);
+  UserList(this._data, this.number);
 
   final UserT _data;
+  final int number;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(_data.name),
       subtitle: Text(_data.title),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    UserView(ViewIndex: number)));
+      },
     );
   }
 }
