@@ -1,6 +1,12 @@
 //메모
 import 'package:flutter/material.dart';
+import 'package:untitled/practice.dart';
+import 'package:untitled/setting.dart';
+import 'package:untitled/test.dart';
+import 'package:untitled/user_main.dart';
 import 'package:untitled/user_view.dart';
+
+import 'memo.dart';
 
 class Memos {
   String Mtitle;
@@ -207,6 +213,7 @@ class UserList extends StatelessWidget {
 
 final List<UserT> usert = [];
 
+//바텀 바 클래스
 class BottomNav extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -237,6 +244,73 @@ class BottomNav extends StatelessWidget {
             label,
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           )
+        ],
+      ),
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+  const BottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+      height: MediaQuery.of(context).size.height * 0.129,
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          BottomNav(
+            icon: Icons.menu_book,
+            label: '공부',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const Practice()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.article,
+            label: '시험',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const Test()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '문제',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const UserTest()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '메모',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const memo()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '설정',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const setting()),
+                      (route) => false);
+            },
+          ),
         ],
       ),
     );
