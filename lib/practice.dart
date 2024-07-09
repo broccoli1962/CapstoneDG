@@ -103,7 +103,6 @@ class _PracticeState extends State<Practice> {
               },
             ),
           ),
-
           // Divider 추가
           const Divider(
             color: Colors.black,

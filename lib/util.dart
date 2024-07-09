@@ -5,6 +5,7 @@ import 'package:untitled/user_view.dart';
 class Memos {
   String Mtitle;
   String contents;
+
   Memos(this.Mtitle, this.contents);
 }
 
@@ -132,10 +133,13 @@ class Problem_t {
 
   //Problem(몇장, 몇번문제, 제목, 조건값, 출력값, 내용, 정답, 문제풀이, 정답값),
   static List<Problem_t> problems = [
-    Problem_t(1, 1,
+    Problem_t(
+        1,
+        1,
         '1-1\n<"Hi C programing">\n을 출력하세요.',
         '10\n20\n30\n40\n50\n60',
-        'Hi C programing', //
+        'Hi C programing',
+        //
         '#include <stdio.h>\n'
             'int main(){\n'
             '//안에 들어갈 내용을 적으세요.\n}',
@@ -153,15 +157,24 @@ class Problem_t {
     return dummy;
   }
 
-  static Problem_t dummy = Problem_t(0, 0, 'dummy title', 'dummy testcase','dummy rtestcase',
-      'contents', 'dummy', 'hint', 'answer');
+  static Problem_t dummy = Problem_t(
+      0,
+      0,
+      'dummy title',
+      'dummy testcase',
+      'dummy rtestcase',
+      'contents',
+      'dummy',
+      'hint',
+      'answer');
 
-  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2, this.contents,
+  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2,
+      this.contents,
       this.myAnswer, this.hint, this.answer);
 }
 
 //user_test
-class UserT{
+class UserT {
   String name;
   String title;
   String content;
@@ -193,3 +206,39 @@ class UserList extends StatelessWidget {
 
 
 final List<UserT> usert = [];
+
+class BottomNav extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+
+  const BottomNav({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery
+          .of(context)
+          .size
+          .height * 0.1,
+      child: Column(
+        children: [
+          IconButton(
+            onPressed: onPressed,
+            icon: Icon(icon),
+            iconSize: 40,
+            color: Colors.black,
+          ),
+          Text(
+            label,
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
+    );
+  }
+}
