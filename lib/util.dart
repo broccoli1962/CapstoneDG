@@ -1,7 +1,17 @@
 //메모
+import 'package:flutter/material.dart';
+import 'package:untitled/practice.dart';
+import 'package:untitled/setting.dart';
+import 'package:untitled/test.dart';
+import 'package:untitled/user_main.dart';
+import 'package:untitled/user_view.dart';
+
+import 'memo.dart';
+
 class Memos {
   String Mtitle;
   String contents;
+
   Memos(this.Mtitle, this.contents);
 }
 
@@ -127,12 +137,15 @@ class Problem_t {
   String hint;
   String answer;
 
-  //Problem(몇장, 몇번문제, 문제제목, 소제목, 내용1, 입력받는 정답 ,내용2, 힌트, 정답);
+  //Problem(몇장, 몇번문제, 제목, 조건값, 출력값, 내용, 정답, 문제풀이, 정답값),
   static List<Problem_t> problems = [
-    Problem_t(1, 1,
+    Problem_t(
+        1,
+        1,
         '1-1\n<"Hi C programing">\n을 출력하세요.',
         '10\n20\n30\n40\n50\n60',
         'Hi C programing',
+        //
         '#include <stdio.h>\n'
             'int main(){\n'
             '//안에 들어갈 내용을 적으세요.\n}',
@@ -150,9 +163,156 @@ class Problem_t {
     return dummy;
   }
 
-  static Problem_t dummy = Problem_t(0, 0, 'dummy title', 'dummy testcase','dummy rtestcase',
-      'contents', 'dummy', 'hint', 'answer');
+  static Problem_t dummy = Problem_t(
+      0,
+      0,
+      'dummy title',
+      'dummy testcase',
+      'dummy rtestcase',
+      'contents',
+      'dummy',
+      'hint',
+      'answer');
 
-  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2, this.contents,
+  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2,
+      this.contents,
       this.myAnswer, this.hint, this.answer);
+}
+
+//user_test
+class UserT {
+  String name;
+  String title;
+  String content;
+
+  UserT(this.name, this.title, this.content);
+}
+
+class UserList extends StatelessWidget {
+  UserList(this._data, this.number);
+
+  final UserT _data;
+  final int number;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(_data.name),
+      subtitle: Text(_data.title),
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    UserView(ViewIndex: number)));
+      },
+    );
+  }
+}
+
+
+final List<UserT> usert = [];
+
+//바텀 바 클래스
+class BottomNav extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final VoidCallback onPressed;
+
+  const BottomNav({
+    required this.icon,
+    required this.label,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: MediaQuery
+          .of(context)
+          .size
+          .height * 0.1,
+      child: Column(
+        children: [
+          IconButton(
+            onPressed: onPressed,
+            icon: Icon(icon),
+            iconSize: 40,
+            color: Colors.black,
+          ),
+          Text(
+            label,
+            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class BottomBar extends StatelessWidget {
+  const BottomBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  Container(
+      height: MediaQuery.of(context).size.height * 0.129,
+      color: Colors.white,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          BottomNav(
+            icon: Icons.menu_book,
+            label: '공부',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const Practice()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.article,
+            label: '시험',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const Test()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '문제',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const UserTest()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '메모',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const memo()),
+                      (route) => false);
+            },
+          ),
+          BottomNav(
+            icon: Icons.person,
+            label: '설정',
+            onPressed: () {
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(
+                      builder: (context) => const setting()),
+                      (route) => false);
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }

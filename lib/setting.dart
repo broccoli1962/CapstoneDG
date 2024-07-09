@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/memo.dart';
-import 'package:untitled/practice.dart';
-import 'package:untitled/test.dart';
+import 'package:untitled/util.dart';
 
 class setting extends StatefulWidget {
   const setting({super.key});
@@ -129,123 +127,7 @@ class _settingState extends State<setting> {
           ),
         ],
       ),
-
-      bottomNavigationBar: Container(
-        height: cSize.height * 0.129,
-        color: Colors.white,
-        child: Column(
-          children: [
-          Divider(
-          height: 2,
-          thickness: 1,
-          color: Colors.black,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            SizedBox(
-              height: cSize.height * 0.1,
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.menu_book),
-                    iconSize: 40,
-                    color: Colors.black,
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(
-                              builder: (context) => const Practice()),
-                              (route) => false);
-                    },
-                  ),
-                  const Text(
-                    "공부",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: cSize.height * 0.1,
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: Icon(Icons.article),
-                    iconSize: 40,
-                    color: Colors.black,
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => const Test()),
-                              (route) => false);
-                    },
-                  ),
-                  const Text(
-                    "시험",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: cSize.height * 0.1,
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.person),
-                    iconSize: 40,
-                    color: Colors.black,
-                    onPressed: () {},
-                  ),
-                  const Text(
-                    "문제",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: cSize.height * 0.1,
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.person),
-                    iconSize: 40,
-                    color: Colors.black,
-                    onPressed: () {
-                      Navigator.of(context).pushAndRemoveUntil(
-                          MaterialPageRoute(builder: (context) => const memo()),
-                              (route) => false);
-                    },
-                  ),
-                  const Text(
-                    "메모",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: cSize.height * 0.1,
-              child: Column(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.person),
-                    iconSize: 40,
-                    color: Colors.black,
-                    onPressed: () {},
-                  ),
-                  const Text(
-                    "설정",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-                  )
-                ],
-              ),
-            ),
-          ],
-        ),
-          ],
-        ),
-      ),
+      bottomNavigationBar: BottomBar(),
     );
   }
 }
