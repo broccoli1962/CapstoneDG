@@ -20,6 +20,7 @@ class _UserMakeState extends State<UserMake> {
     TextEditingController ContentController = TextEditingController();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text('유저 문제 제작 페이지임'),

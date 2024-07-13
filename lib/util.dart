@@ -179,6 +179,38 @@ class Problem_t {
       this.myAnswer, this.hint, this.answer);
 }
 
+//시험 텍스트 색 변경
+class CustomTextColor extends TextEditingController{
+  CustomTextColor({String? text}) : super(text: text);
+
+  @override
+  TextSpan buildTextSpan({
+    required BuildContext context,
+    TextStyle? style,
+    required bool withComposing,
+  }){
+    List<String> words = text.split(" ");
+    List<TextSpan> children = [];
+    for(final String word in words){
+      TextSpan span;
+      switch (word) {
+        case "int":
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
+          break;
+        case "float":
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
+          break;
+        default:
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.black));
+          break;
+      }
+      children.add(span);
+      children.add(const TextSpan(text: " "));
+    }
+    return TextSpan(children: children);
+  }
+}
+
 //user_test
 class UserT {
   String name;

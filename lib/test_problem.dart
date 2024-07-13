@@ -25,14 +25,14 @@ class _Test_inState extends State<Test_in> {
   late Problem_t view;
 
   //텍스트 컨트롤
-  late TextEditingController _controller;
+  late CustomTextColor _controller;
   late FocusNode _focusNode;
 
   @override
   void initState(){
     super.initState();
     view = Problem_t.get(widget.pg, widget.number);
-    _controller = TextEditingController(text: view.contents);
+    _controller = CustomTextColor(text: view.contents);
     _focusNode = FocusNode();
 
     _focusNode.addListener(() {
@@ -97,6 +97,7 @@ class _Test_inState extends State<Test_in> {
     }
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading:false,
         title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),

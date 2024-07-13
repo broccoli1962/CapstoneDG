@@ -14,8 +14,6 @@ String searchText = "";
 class _UserTestState extends State<UserTest> {
   @override
   Widget build(BuildContext context) {
-    final Size cSize = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('hello'),
