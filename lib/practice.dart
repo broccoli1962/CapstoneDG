@@ -101,13 +101,9 @@ class _PracticeState extends State<Practice> {
             ),
           ),
           // Divider 추가
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
-          ),
           // 페이지 별 문제 그리드
           Container(
-            height: cSize.height * 0.5736,
+            height: cSize.height * 0.6032,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
@@ -121,6 +117,10 @@ class _PracticeState extends State<Practice> {
                   ),
               ],
             ),
+          ),
+          const Divider(
+            color: Colors.blue,
+            height: 0.01,
           ),
         ],
       ),

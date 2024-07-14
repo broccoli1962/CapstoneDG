@@ -62,14 +62,18 @@ class _McontentsState extends State<Mcontents> {
             child: Text(memos[widget.mnumber].Mtitle),
           ),
           const Divider(
+            color: Colors.blue,
             height: 0.01,
-            color: Colors.black,
           ),
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height*0.6175,
+            height: cSize.height*0.6471,
             child: Text(memos[widget.mnumber].contents),
+          ),
+          const Divider(
+            color: Colors.blue,
+            height: 0.01,
           ),
         ],
       ),

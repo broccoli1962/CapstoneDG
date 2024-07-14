@@ -105,7 +105,7 @@ class _TestState extends State<Test> {
           ),
           //witch page count?
           Container(
-            height: cSize.height * 0.5736,
+            height: cSize.height * 0.6032,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
@@ -121,7 +121,7 @@ class _TestState extends State<Test> {
             ),
           ),
           const Divider(
-            color: Colors.black,
+            color: Colors.blue,
             height: 0.01,
           ),
         ],

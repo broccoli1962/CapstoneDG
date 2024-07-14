@@ -76,7 +76,7 @@ class _MinsertState extends State<Minsert> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.6675,
+            height: cSize.height * 0.6971,
             child: TextField(
               decoration: InputDecoration(
                   hintText: '  내용 입력'
@@ -84,6 +84,10 @@ class _MinsertState extends State<Minsert> {
               maxLines: 22,
               controller: _controller,
             ),
+          ),
+          const Divider(
+            color: Colors.blue,
+            height: 0.01,
           ),
         ],
       ),
