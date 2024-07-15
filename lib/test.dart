@@ -37,10 +37,10 @@ class _TestState extends State<Test> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.article,
-                    size: 50,
+                    Icons.sticky_note_2_outlined,
+                    size: 40,
                   ),
-                  SizedBox(width: 8), // 아이콘과 텍스트 사이 간격 조정
+                  SizedBox(width: 5), // 아이콘과 텍스트 사이 간격 조정
                   Text(
                     '시험',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
