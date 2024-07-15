@@ -70,13 +70,17 @@ class _Practice_inState extends State<Practice_in> {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            height: cSize.height*0.2175,
+            height: cSize.height*0.2231,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
                 child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold, letterSpacing: 2.0))
             ),
           ),
+          const Divider(
+            color: Colors.black,
+            height:0.01,
+          )
         ],
       ),
       bottomNavigationBar: BottomBar(),

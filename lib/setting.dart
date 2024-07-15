@@ -123,10 +123,10 @@ class _settingState extends State<setting> {
           ),
           Container(
             color: Colors.white,
-            height: cSize.height*0.1082,
+            height: cSize.height*0.123,
           ),
           const Divider(
-            color: Colors.blue,
+            color: Colors.black,
             height: 0.01,
           ),
         ],

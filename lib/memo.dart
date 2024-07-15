@@ -60,7 +60,7 @@ class _memoState extends State<memo> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.7971,
+            height: cSize.height * 0.774,
             child: ListView.separated(
               itemCount: memos.length,
               itemBuilder: (context, index) {
@@ -94,7 +94,7 @@ class _memoState extends State<memo> {
             ),
           ),
           const Divider(
-            color: Colors.blue,
+            color: Colors.black,
             height: 0.01,
           ),
         ],
