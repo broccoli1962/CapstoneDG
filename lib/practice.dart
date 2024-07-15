@@ -107,7 +107,7 @@ class _PracticeState extends State<Practice> {
           // Divider 추가
           // 페이지 별 문제 그리드
           Container(
-            height: cSize.height * 0.580,
+            height: cSize.height * 0.574,
             width: double.infinity,
             color: Colors.white,
             child: GridView(

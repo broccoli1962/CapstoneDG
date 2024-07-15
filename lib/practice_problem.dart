@@ -70,7 +70,7 @@ class _Practice_inState extends State<Practice_in> {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            height: cSize.height*0.2231,
+            height: cSize.height*0.218,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(

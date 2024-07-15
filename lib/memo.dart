@@ -60,7 +60,7 @@ class _memoState extends State<memo> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.774,
+            height: cSize.height * 0.768,
             child: ListView.separated(
               itemCount: memos.length,
               itemBuilder: (context, index) {

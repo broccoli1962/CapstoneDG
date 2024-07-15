@@ -104,7 +104,7 @@ class _TestState extends State<Test> {
           ),
           //witch page count?
           Container(
-            height: cSize.height * 0.580,
+            height: cSize.height * 0.574,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
