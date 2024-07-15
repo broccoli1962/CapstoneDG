@@ -100,6 +100,10 @@ class _PracticeState extends State<Practice> {
               },
             ),
           ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
+          ),
           // Divider 추가
           // 페이지 별 문제 그리드
           Container(
