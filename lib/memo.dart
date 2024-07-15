@@ -31,8 +31,8 @@ class _memoState extends State<memo> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.menu_book,
-                      size: 50,
+                      Icons.draw,
+                      size: 40,
                     ),
                     Text(' 메모리스트',
                         style: TextStyle(

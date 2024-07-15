@@ -26,8 +26,8 @@ class _settingState extends State<setting> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.person,
-                      size: 50,
+                      Icons.settings,
+                      size: 40,
                     ),
                     Text(' 설정',
                         style: TextStyle(
