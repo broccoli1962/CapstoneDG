@@ -82,6 +82,19 @@ class _memoState extends State<memo> {
       ),
       body: Column(
         children: [
+          //검색 바
+          Container(
+            child: TextField(
+              controller: searchController,
+              maxLines: 1,
+              decoration: const InputDecoration(
+                prefixIcon: Icon(
+                  Icons.search,
+                  color: Colors.blueAccent,
+                ),
+              ),
+            ),
+          ),
           Container(
             color: Colors.white,
             width: double.infinity,
