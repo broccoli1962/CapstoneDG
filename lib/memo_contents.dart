@@ -18,6 +18,7 @@ class _McontentsState extends State<Mcontents> {
     final Size cSize = MediaQuery.of(context).size;
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Stack(
           alignment: Alignment.center,

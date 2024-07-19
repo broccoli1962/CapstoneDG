@@ -33,9 +33,9 @@ class _PracticeState extends State<Practice> {
     // Scaffold 위젯 반환
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0), // AppBar의 높이를 150으로 조절
+        preferredSize: const Size.fromHeight(60.0), // AppBar의 높이를 150으로 조절
         child: AppBar(
-          title: Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Icon(
@@ -52,7 +52,7 @@ class _PracticeState extends State<Practice> {
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0,
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1),
             child: Divider(
               height: 1,
@@ -166,7 +166,7 @@ class MakeTest extends StatelessWidget {
         ),
         child: Text(
           "study: $number",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );

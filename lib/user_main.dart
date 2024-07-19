@@ -14,8 +14,6 @@ String searchText = "";
 class _UserTestState extends State<UserTest> {
   @override
   Widget build(BuildContext context) {
-    final Size cSize = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         title: const Stack(
@@ -44,7 +42,7 @@ class _UserTestState extends State<UserTest> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
         ),
         actions: [
           TextButton(
@@ -53,7 +51,7 @@ class _UserTestState extends State<UserTest> {
                   MaterialPageRoute(builder: (context) => const UserMake()),
                 );
               },
-              child: Text('문제 만들기')),
+              child: const Text('문제 만들기')),
         ],
         bottom: PreferredSize(
           preferredSize: Size.fromHeight(1.0),
@@ -77,19 +75,7 @@ class _UserTestState extends State<UserTest> {
           itemCount: usert.length,
         ),
       ),
-
-      bottomNavigationBar: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Divider(
-            height: 1,
-            thickness: 1,
-            color: Colors.black,
-          ),
-          BottomBar(),
-        ],
-      ),
-
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }
