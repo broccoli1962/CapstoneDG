@@ -16,8 +16,30 @@ class _UserTestState extends State<UserTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('hello'),
-        backgroundColor: Colors.greenAccent,
+        title: const Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.person,
+                      size: 40,
+                    ),
+                    Text(' 문제',
+                        style: TextStyle(
+                            fontSize: 30, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+
+        backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {},
           icon: const Icon(Icons.search),
@@ -31,12 +53,23 @@ class _UserTestState extends State<UserTest> {
               },
               child: const Text('문제 만들기')),
         ],
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(1.0),
+          child: Divider(
+            height: 1,
+            thickness: 1,
+            color: Colors.black,
+          ),
+        ),
       ),
+      backgroundColor: Colors.white,
       body: Center(
+
         child: ListView.separated(
           itemBuilder: (BuildContext, int index) {
             return UserList(usert[index], index);
           },
+
           separatorBuilder: (BuildContext context, int index) =>
               const Divider(),
           itemCount: usert.length,

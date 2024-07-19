@@ -58,8 +58,8 @@ class _memoState extends State<memo> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.menu_book,
-                      size: 50,
+                      Icons.draw,
+                      size: 40,
                     ),
                     Text(' 메모리스트',
                         style: TextStyle(
@@ -119,6 +119,19 @@ class _memoState extends State<memo> {
                           MaterialPageRoute(
                               builder: (context) =>
                                   Mcontents(mnumber: index,)));
+            color: Colors.white,
+            width: double.infinity,
+            height: cSize.height * 0.768,
+            child: ListView.separated(
+              itemCount: memos.length,
+              itemBuilder: (context, index) {
+                return ListTile(
+                  title: Text(memos[index].Mtitle),
+                  trailing: IconButton(
+                    onPressed: () {
+                      setState(() {
+                        memos.removeAt(index);
+                      });
                     },
                   );
                 },
@@ -132,6 +145,10 @@ class _memoState extends State<memo> {
                 },
               ),
             ),
+          ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
           ),
         ],
       ),

@@ -88,6 +88,10 @@ class _MinsertState extends State<Minsert> {
               ),
             ),
           ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
+          ),
         ],
       ),
       bottomNavigationBar: BottomBar(),

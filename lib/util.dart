@@ -271,7 +271,7 @@ class BottomBar extends StatelessWidget {
             },
           ),
           BottomNav(
-            icon: Icons.article,
+            icon: Icons.sticky_note_2_outlined,
             label: '시험',
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
@@ -291,7 +291,7 @@ class BottomBar extends StatelessWidget {
             },
           ),
           BottomNav(
-            icon: Icons.person,
+            icon: Icons.draw,
             label: '메모',
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(
@@ -301,7 +301,7 @@ class BottomBar extends StatelessWidget {
             },
           ),
           BottomNav(
-            icon: Icons.person,
+            icon: Icons.settings,
             label: '설정',
             onPressed: () {
               Navigator.of(context).pushAndRemoveUntil(

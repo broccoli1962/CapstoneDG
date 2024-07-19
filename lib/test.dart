@@ -37,10 +37,10 @@ class _TestState extends State<Test> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
-                    Icons.article,
-                    size: 50,
+                    Icons.sticky_note_2_outlined,
+                    size: 40,
                   ),
-                  SizedBox(width: 8), // 아이콘과 텍스트 사이 간격 조정
+                  SizedBox(width: 5), // 아이콘과 텍스트 사이 간격 조정
                   Text(
                     '시험',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
@@ -98,14 +98,13 @@ class _TestState extends State<Test> {
               },
             ),
           ),
-
           const Divider(
             color: Colors.black,
             height: 0.01,
           ),
           //witch page count?
           Container(
-            height: cSize.height * 0.5736,
+            height: cSize.height * 0.574,
             width: double.infinity,
             color: Colors.white,
             child: GridView(

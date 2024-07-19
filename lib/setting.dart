@@ -26,8 +26,8 @@ class _settingState extends State<setting> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(
-                      Icons.person,
-                      size: 50,
+                      Icons.settings,
+                      size: 40,
                     ),
                     Text(' 설정',
                         style: TextStyle(
@@ -123,7 +123,11 @@ class _settingState extends State<setting> {
           ),
           Container(
             color: Colors.white,
-            height: cSize.height*0.0745,
+            height: cSize.height*0.110,
+          ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
           ),
         ],
       ),
