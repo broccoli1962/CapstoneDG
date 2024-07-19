@@ -12,12 +12,37 @@ class memo extends StatefulWidget {
 }
 
 List<Memos> memos = [];
+List<Memos> filtered = [];
 
 class _memoState extends State<memo> {
+  TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    searchController.addListener(Searchfilter);
+    filtered = memos;
+  }
+
+  void Searchfilter() {
+    final munja = searchController.text.toLowerCase();
+    setState(() {
+      filtered = memos.where((memo) {
+        return memo.Mtitle.toLowerCase().contains(munja);
+      }).toList();
+    });
+  }
+
+  @override
+  void dispose() {
+    searchController.removeListener(Searchfilter);
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
-
     return Scaffold(
       appBar: AppBar(
         // AppBar 정의
@@ -78,8 +103,9 @@ class _memoState extends State<memo> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                Mcontents(mnumber: index,)));
+                            builder: (context) => Mcontents(
+                                  mnumber: index,
+                                )));
                   },
                 );
               },
@@ -104,14 +130,11 @@ class _memoState extends State<memo> {
         children: [
           Align(
             alignment: Alignment(
-              Alignment.bottomRight.x-0.4, Alignment.bottomRight.y
-            ),
+                Alignment.bottomRight.x - 0.4, Alignment.bottomRight.y),
             child: FloatingActionButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => Minsert()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Minsert()));
               },
               tooltip: '추가',
               child: const Text('추가'),
@@ -124,7 +147,6 @@ class _memoState extends State<memo> {
               tooltip: '삭제',
               child: const Text('삭제'),
             ),
-
           ),
         ],
       ),

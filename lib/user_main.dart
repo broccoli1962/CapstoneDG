@@ -64,7 +64,6 @@ class _UserTestState extends State<UserTest> {
       ),
       backgroundColor: Colors.white,
       body: Center(
-
         child: ListView.separated(
           itemBuilder: (BuildContext, int index) {
             return UserList(usert[index], index);
