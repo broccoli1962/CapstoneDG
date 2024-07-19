@@ -16,11 +16,11 @@ class _UserTestState extends State<UserTest> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('hello'),
+        title: const Text('hello'),
         backgroundColor: Colors.greenAccent,
         leading: IconButton(
           onPressed: () {},
-          icon: Icon(Icons.search),
+          icon: const Icon(Icons.search),
         ),
         actions: [
           TextButton(
@@ -29,7 +29,7 @@ class _UserTestState extends State<UserTest> {
                   MaterialPageRoute(builder: (context) => const UserMake()),
                 );
               },
-              child: Text('문제 만들기')),
+              child: const Text('문제 만들기')),
         ],
       ),
       body: Center(
@@ -42,7 +42,7 @@ class _UserTestState extends State<UserTest> {
           itemCount: usert.length,
         ),
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

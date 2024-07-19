@@ -41,7 +41,7 @@ class _settingState extends State<setting> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
             height: 2,
@@ -58,7 +58,7 @@ class _settingState extends State<setting> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('계정 관리', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
+                  const Text('계정 관리', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                   Container(
                     height: cSize.height*0.15,
                     width: cSize.width*0.9,
@@ -81,7 +81,7 @@ class _settingState extends State<setting> {
               child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('이용 정보', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
+                const Text('이용 정보', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                 Container(
                   height: cSize.height*0.2,
                   width: cSize.width*0.9,
@@ -105,7 +105,7 @@ class _settingState extends State<setting> {
               child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('설정', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
+                const Text('설정', style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.black)),
                 Container(
                   height: cSize.height*0.2,
                   width: cSize.width*0.9,
@@ -127,7 +127,7 @@ class _settingState extends State<setting> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

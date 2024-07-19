@@ -28,7 +28,7 @@ class _Practice_inState extends State<Practice_in> {
         automaticallyImplyLeading:false,
         title: Text(
           view.title, textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         actions: [
           TextButton(onPressed: (){
@@ -38,7 +38,7 @@ class _Practice_inState extends State<Practice_in> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
             height: 2,
@@ -53,13 +53,13 @@ class _Practice_inState extends State<Practice_in> {
             child: Column(
               children: [
                 Container(
-                  padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  child: SingleChildScrollView(
-                      child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
-                  ),
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                   height: cSize.height*0.55,
                   width: double.infinity,
                   color: Colors.white,
+                  child: SingleChildScrollView(
+                      child: Text('${view.contents}', style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
+                  ),
                 )
               ],
             ),
@@ -69,12 +69,12 @@ class _Practice_inState extends State<Practice_in> {
             height: 0.01,
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             height: cSize.height*0.2175,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
-                child: Text('${view.hint}', style:TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold, letterSpacing: 2.0))
+                child: Text(view.hint, style:const TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold, letterSpacing: 2.0))
             ),
           ),
         ],

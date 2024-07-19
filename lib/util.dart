@@ -179,38 +179,6 @@ class Problem_t {
       this.myAnswer, this.hint, this.answer);
 }
 
-//시험 텍스트 색 변경
-class CustomTextColor extends TextEditingController{
-  CustomTextColor({String? text}) : super(text: text);
-
-  @override
-  TextSpan buildTextSpan({
-    required BuildContext context,
-    TextStyle? style,
-    required bool withComposing,
-  }){
-    List<String> words = text.split(" ");
-    List<TextSpan> children = [];
-    for(final String word in words){
-      TextSpan span;
-      switch (word) {
-        case "int":
-          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
-          break;
-        case "float":
-          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
-          break;
-        default:
-          span = TextSpan(text: word, style: const TextStyle(color: Colors.black));
-          break;
-      }
-      children.add(span);
-      children.add(const TextSpan(text: " "));
-    }
-    return TextSpan(children: children);
-  }
-}
-
 //user_test
 class UserT {
   String name;
@@ -241,7 +209,6 @@ class UserList extends StatelessWidget {
     );
   }
 }
-
 
 final List<UserT> usert = [];
 
@@ -345,6 +312,88 @@ class BottomBar extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+//텍스트 색 변경
+class CustomTextColor extends TextEditingController{
+  CustomTextColor({String? text}) : super(text: text);
+
+  @override
+  TextSpan buildTextSpan({
+    required BuildContext context,
+    TextStyle? style,
+    required bool withComposing,
+  }){
+    List<String> words = text.split(" ");
+    List<TextSpan> children = [];
+    for(final String word in words){
+      TextSpan span;
+      switch (word) {
+        case "int":
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
+          break;
+        case "float":
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.red));
+          break;
+        default:
+          span = TextSpan(text: word, style: const TextStyle(color: Colors.black));
+          break;
+      }
+      children.add(span);
+      children.add(const TextSpan(text: " "));
+    }
+    return TextSpan(children: children);
+  }
+}
+
+class CustomTextField extends StatefulWidget {
+  final String initialText;
+  final ValueChanged<String> onTextChanged;
+  int? maxLines;
+
+  CustomTextField({
+    required this.initialText,
+    required this.onTextChanged,
+    this.maxLines,
+});
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+//커스텀 텍스트 필드
+class _CustomTextFieldState extends State<CustomTextField> {
+  late CustomTextColor _controller;
+  late FocusNode _focusNode;
+
+  @override
+  void initState(){
+    super.initState();
+    _controller = CustomTextColor(text: widget.initialText);
+    _focusNode = FocusNode();
+
+    _focusNode.addListener(() {
+      if(!_focusNode.hasFocus){
+        widget.onTextChanged(_controller.text);
+      }
+    });
+  }
+
+  @override
+  void dispose(){
+    _controller.dispose();
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      focusNode: _focusNode,
+      maxLines: widget.maxLines,
     );
   }
 }

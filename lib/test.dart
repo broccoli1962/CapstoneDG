@@ -28,9 +28,9 @@ class _TestState extends State<Test> {
 
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0), // AppBar의 높이를 100으로 조절
+        preferredSize: const Size.fromHeight(60.0), // AppBar의 높이를 100으로 조절
         child: AppBar(
-          title: Column(
+          title: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
@@ -52,7 +52,7 @@ class _TestState extends State<Test> {
           centerTitle: true,
           backgroundColor: Colors.white,
           elevation: 0,
-          bottom: PreferredSize(
+          bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1),
             child: Divider(
               height: 2,
@@ -85,7 +85,7 @@ class _TestState extends State<Test> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -126,7 +126,7 @@ class _TestState extends State<Test> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }
@@ -164,7 +164,7 @@ class MakeTest extends StatelessWidget {
         ),
         child: Text(
           "test: $number",
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
       ),
     );

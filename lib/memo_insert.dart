@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/util.dart';
 
@@ -45,7 +46,7 @@ class _MinsertState extends State<Minsert> {
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
             height: 2,
@@ -61,7 +62,7 @@ class _MinsertState extends State<Minsert> {
             width: double.infinity,
             height: cSize.height * 0.1,
             child: TextField(
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: '  제목 입력'
               ),
@@ -73,16 +74,18 @@ class _MinsertState extends State<Minsert> {
             height: 0.01,
             color: Colors.black,
           ),
-          Container(
-            color: Colors.white,
-            width: double.infinity,
-            height: cSize.height * 0.6675,
-            child: TextField(
-              decoration: InputDecoration(
-                  hintText: '  내용 입력'
+          Expanded(
+            child: Container(
+              color: Colors.white,
+              width: double.infinity,
+              height: cSize.height * 0.6675,
+              child: TextField(
+                decoration: const InputDecoration(
+                    hintText: '  내용 입력'
+                ),
+                maxLines: 22,
+                controller: _controller,
               ),
-              maxLines: 22,
-              controller: _controller,
             ),
           ),
         ],
@@ -120,7 +123,7 @@ class _MinsertState extends State<Minsert> {
                         (route) => false);
               },
               tooltip: '취소',
-              child: Text('취소'),
+              child: const Text('취소'),
             ),
 
           ),

@@ -23,35 +23,17 @@ class _Test_inState extends State<Test_in> {
   String _output = '';
 
   late Problem_t view;
-
-  //텍스트 컨트롤
-  late CustomTextColor _controller;
-  late FocusNode _focusNode;
+  late String _contents;
 
   @override
   void initState(){
     super.initState();
     view = Problem_t.get(widget.pg, widget.number);
-    _controller = CustomTextColor(text: view.contents);
-    _focusNode = FocusNode();
-
-    _focusNode.addListener(() {
-      if(!_focusNode.hasFocus) {
-        _changeTextFieldValue(_controller.text);
-      }
-    });
   }
 
-  @override
-  void dispose(){
-    _controller.dispose();
-    _focusNode.dispose();
-    super.dispose();
-  }
-
-  void _changeTextFieldValue(String newValue){
+  void _onChangedText(String newValue){
     setState(() {
-      _controller.text = newValue;
+      _contents = newValue;
     });
   }
 
@@ -65,10 +47,10 @@ class _Test_inState extends State<Test_in> {
     void explain(context){
       showDialog(context: context, builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('해설'),
+          title: const Text('해설'),
           content: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Text(view.hint, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+            child: Text(view.hint, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           ),
           insetPadding: const EdgeInsets.all(10),
           actions: [
@@ -100,15 +82,15 @@ class _Test_inState extends State<Test_in> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading:false,
-        title: Text(view.title, style: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+        title: Text(view.title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
         actions: [
           TextButton(onPressed: (){
             Navigator.pop(context);
-          }, child: Text('돌아가기')),
+          }, child: const Text('돌아가기')),
         ],
         leading: Padding(
-          padding: EdgeInsets.all(2.0),
-          child: TextButton(child: Text('출력하기'), onPressed: (){}),
+          padding: const EdgeInsets.all(2.0),
+          child: TextButton(onPressed: _executeCode, child: const Text('출력하기')),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
@@ -129,13 +111,13 @@ class _Test_inState extends State<Test_in> {
             Container(
               width: double.infinity,
               height: cSize.height * 0.17,
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
               decoration: const BoxDecoration(color: Colors.white),
               child: SingleChildScrollView( // SingleChildScrollView로 감싸기
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       '입력 값',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
@@ -160,7 +142,7 @@ class _Test_inState extends State<Test_in> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
+                    const Text(
                       '출력 값',
                       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.left,
@@ -180,12 +162,12 @@ class _Test_inState extends State<Test_in> {
               width: double.infinity,
               height: cSize.height*0.55651,
               decoration: const BoxDecoration(color: Colors.white),
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: TextField(
-                maxLines: 22,
-                controller: _controller,
-                focusNode: _focusNode,
-              ),
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+              child: CustomTextField(
+                onTextChanged: _onChangedText,
+                initialText: view.contents,
+                maxLines: 23,
+              )
             )
           ],
         ),
