@@ -98,7 +98,7 @@ class _memoState extends State<memo> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.768,
+            height: cSize.height * 0.710,
             child: ListView.separated(
               itemCount: memos.length,
               itemBuilder: (context, index) {
