@@ -179,7 +179,7 @@ class Problem_t {
       this.myAnswer, this.hint, this.answer);
 }
 
-//user_test
+//유저가 문제 제작
 class UserT {
   String name;
   String title;
@@ -394,6 +394,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
       controller: _controller,
       focusNode: _focusNode,
       maxLines: widget.maxLines,
+      onChanged: widget.onTextChanged,
     );
   }
 }
