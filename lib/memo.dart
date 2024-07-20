@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/memo_insert.dart';
 import 'package:untitled/util.dart';
-
 import 'memo_contents.dart';
 
 class memo extends StatefulWidget {
@@ -100,14 +99,15 @@ class _memoState extends State<memo> {
             width: double.infinity,
             height: cSize.height * 0.768,
             child: ListView.separated(
-              itemCount: memos.length,
+              itemCount: filtered.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  title: Text(memos[index].Mtitle),
+                  title: Text(filtered[index].Mtitle),
                   trailing: IconButton(
                     onPressed: () {
                       setState(() {
                         memos.removeAt(index);
+                        Searchfilter();
                       });
                     },
                     icon: const Icon(Icons.delete),
