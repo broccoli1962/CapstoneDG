@@ -259,7 +259,6 @@ class BottomBar extends StatelessWidget {
         color: Colors.white,
         border: Border(top: BorderSide(color: Colors.black, width: 1),),
       ),
-      color: Colors.white,
       height: MediaQuery.of(context).size.height * 0.129,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
