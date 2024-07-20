@@ -12,6 +12,32 @@ class UserTest extends StatefulWidget {
 String searchText = "";
 
 class _UserTestState extends State<UserTest> {
+  TextEditingController searchController = TextEditingController();
+  List<UserT> filtered = [];
+
+  @override
+  void initState(){
+    super.initState();
+    searchController.addListener(Searchfilter);
+    filtered = usert;
+  }
+
+  void Searchfilter(){
+    final munja = searchController.text.toLowerCase();
+    setState(() {
+      filtered = usert.where((us) {
+        return us.title.toLowerCase().contains(munja);
+      }).toList();
+    });
+  }
+
+  @override
+  void dispose(){
+    searchController.removeListener(Searchfilter);
+    searchController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +79,7 @@ class _UserTestState extends State<UserTest> {
               },
               child: const Text('문제 만들기')),
         ],
-        bottom: PreferredSize(
+        bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Divider(
             height: 1,
@@ -64,14 +90,33 @@ class _UserTestState extends State<UserTest> {
       ),
       backgroundColor: Colors.white,
       body: Center(
-        child: ListView.separated(
-          itemBuilder: (BuildContext, int index) {
-            return UserList(usert[index], index);
-          },
+        child: Column(
+          children: [
+            //검색 바
+            Container(
+              child: TextField(
+                controller: searchController,
+                maxLines: 1,
+                decoration: const InputDecoration(
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: Colors.blueAccent,
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView.separated(
+                itemBuilder: (BuildContext, int index) {
+                  return UserList(filtered[index], index);
+                },
 
-          separatorBuilder: (BuildContext context, int index) =>
-              const Divider(),
-          itemCount: usert.length,
+                separatorBuilder: (BuildContext context, int index) =>
+                    const Divider(),
+                itemCount: filtered.length,
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: const BottomBar(),

@@ -9,17 +9,22 @@ class UserMake extends StatefulWidget {
   State<UserMake> createState() => _UserMakeState();
 }
 
+//텍스트 컨트롤
+String titleController = "";
+String contentController = "";
+
 class _UserMakeState extends State<UserMake> {
   @override
   Widget build(BuildContext context) {
 
-    //텍스트 컨트롤
-    late String titleController;
-    late String contentController;
-
-    void _onChangedText(String newText){
+    void onChangedTitleText(String newText){
       setState(() {
         titleController = newText;
+      });
+    }
+
+    void onChangedContentText(String newText){
+      setState(() {
         contentController = newText;
       });
     }
@@ -36,15 +41,15 @@ class _UserMakeState extends State<UserMake> {
             //제목
             Container(
               child: CustomTextField(
-                initialText: "",
-                onTextChanged: _onChangedText,
+                initialText: titleController,
+                onTextChanged: onChangedTitleText,
               ),
             ),
             //내용
             Container(
               child: CustomTextField(
-                initialText: "",
-                onTextChanged: _onChangedText,
+                initialText: contentController,
+                onTextChanged: onChangedContentText,
                 maxLines: 10,
               ),
             ),
@@ -52,6 +57,7 @@ class _UserMakeState extends State<UserMake> {
               child: Row(
                 children: [
                   OutlinedButton(onPressed: (){
+                    print(titleController);
                     usert.add(UserT('null', titleController, contentController));
                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => const UserTest()), (route) => false);
                   }, child: Text('확인')),
