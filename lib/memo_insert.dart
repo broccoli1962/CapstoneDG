@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/util.dart';
+import 'package:untitled/utils/util.dart';
 
 import 'memo.dart';
 

@@ -51,6 +51,7 @@ class DefaultFirebaseOptions {
     appId: '1:260489373070:android:5294368fbaadd07c15b0df',
     messagingSenderId: '260489373070',
     projectId: 'capstonedg-747c1',
+    databaseURL: 'https://capstonedg-747c1-default-rtdb.firebaseio.com',
     storageBucket: 'capstonedg-747c1.appspot.com',
   );
 
@@ -59,7 +60,9 @@ class DefaultFirebaseOptions {
     appId: '1:260489373070:ios:3051954ec47eefe415b0df',
     messagingSenderId: '260489373070',
     projectId: 'capstonedg-747c1',
+    databaseURL: 'https://capstonedg-747c1-default-rtdb.firebaseio.com',
     storageBucket: 'capstonedg-747c1.appspot.com',
+    iosClientId: '260489373070-qam0sv90lscfmi37l8ciu2kpe1h1u46p.apps.googleusercontent.com',
     iosBundleId: 'com.example.untitled',
   );
 
@@ -69,6 +72,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '260489373070',
     projectId: 'capstonedg-747c1',
     authDomain: 'capstonedg-747c1.firebaseapp.com',
+    databaseURL: 'https://capstonedg-747c1-default-rtdb.firebaseio.com',
     storageBucket: 'capstonedg-747c1.appspot.com',
     measurementId: 'G-8SXBPH8S6P',
   );

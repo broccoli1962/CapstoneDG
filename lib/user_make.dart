@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/user_main.dart';
-import 'package:untitled/util.dart';
+import 'package:untitled/utils/util.dart';
 
 class UserMake extends StatefulWidget {
   const UserMake({super.key});

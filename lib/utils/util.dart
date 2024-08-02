@@ -6,7 +6,7 @@ import 'package:untitled/test.dart';
 import 'package:untitled/user_main.dart';
 import 'package:untitled/user_view.dart';
 
-import 'memo.dart';
+import '../memo.dart';
 
 class Memos {
   String Mtitle;

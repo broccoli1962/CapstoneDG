@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/practice_problem.dart'; // practice_problem.dart 파일의 import 문
-import 'package:untitled/util.dart'; // test.dart 파일의 import 문
+import 'package:untitled/utils/util.dart'; // test.dart 파일의 import 문
 
 // 페이지 열거형 정의
 enum Page { A, B, C, D, E, F, G, H }
