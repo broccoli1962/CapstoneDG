@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/util.dart';
+import 'package:untitled/utils/util.dart';
 
 
 class UserView extends StatefulWidget {
