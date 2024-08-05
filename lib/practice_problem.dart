@@ -67,7 +67,7 @@ class _Practice_inState extends State<Practice_in> {
           child: Divider(
             height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629)
           ),
         ),
       ),
@@ -101,10 +101,6 @@ class _Practice_inState extends State<Practice_in> {
                 child: Text(hint, style:const TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold, letterSpacing: 2.0))
             ),
           ),
-          const Divider(
-            color: Colors.black,
-            height:0.01,
-          )
         ],
       ),
       bottomNavigationBar: BottomBar(),

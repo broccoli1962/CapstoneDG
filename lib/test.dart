@@ -57,7 +57,7 @@ class _TestState extends State<Test> {
             child: Divider(
               height: 2,
               thickness: 1,
-              color: Colors.black,
+                color: Color(0xFF005629)
             ),
           ),
         ),
@@ -118,10 +118,6 @@ class _TestState extends State<Test> {
                   ),
               ],
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),

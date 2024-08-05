@@ -66,10 +66,6 @@ class _UserTestState extends State<UserTest> {
         ),
 
         backgroundColor: Colors.white,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.search),
-        ),
         actions: [
           TextButton(
               onPressed: () {
@@ -82,9 +78,9 @@ class _UserTestState extends State<UserTest> {
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Divider(
-            height: 1,
+            height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629),
           ),
         ),
       ),

@@ -55,9 +55,9 @@ class _PracticeState extends State<Practice> {
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1),
             child: Divider(
-              height: 1,
+              height: 2,
               thickness: 1,
-              color: Colors.black,
+                color: Color(0xFF005629)
             ),
           ),
         ),
@@ -121,10 +121,6 @@ class _PracticeState extends State<Practice> {
                   ),
               ],
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),

@@ -48,9 +48,9 @@ class _McontentsState extends State<Mcontents> {
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
-            height: 1,
+            height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629)
           ),
         ),
       ),
@@ -71,10 +71,6 @@ class _McontentsState extends State<Mcontents> {
             width: double.infinity,
             height: cSize.height*0.618,
             child: SingleChildScrollView(child: Text(memos[widget.mnumber].contents))
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),

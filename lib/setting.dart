@@ -46,7 +46,7 @@ class _settingState extends State<setting> {
           child: Divider(
             height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629)
           ),
         ),
       ),
@@ -124,10 +124,6 @@ class _settingState extends State<setting> {
           Container(
             color: Colors.white,
             height: cSize.height*0.110,
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),

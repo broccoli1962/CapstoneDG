@@ -75,7 +75,7 @@ class _memoState extends State<memo> {
           child: Divider(
             height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629)
           ),
         ),
       ),
@@ -131,10 +131,6 @@ class _memoState extends State<memo> {
                 );
               },
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),

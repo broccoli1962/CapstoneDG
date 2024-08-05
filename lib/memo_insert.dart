@@ -51,7 +51,7 @@ class _MinsertState extends State<Minsert> {
           child: Divider(
             height: 2,
             thickness: 1,
-            color: Colors.black,
+              color: Color(0xFF005629)
           ),
         ),
       ),
@@ -87,10 +87,6 @@ class _MinsertState extends State<Minsert> {
                 controller: _controller,
               ),
             ),
-          ),
-          const Divider(
-            color: Colors.black,
-            height: 0.01,
           ),
         ],
       ),
