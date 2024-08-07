@@ -57,7 +57,7 @@ class _PracticeState extends State<Practice> {
             child: Divider(
               height: 2,
               thickness: 1,
-                color: Color(0xFF005629)
+                color: Colors.black,
             ),
           ),
         ),
@@ -66,14 +66,9 @@ class _PracticeState extends State<Practice> {
       body: Column(
         // Column 위젯으로 세로 배열
         children: [
-          // Divider 추가
-          const Divider(
-            height: 0.01,
-            color: Colors.black,
-          ),
           // 페이지 선택 위젯
           Container(
-            height: cSize.height * 0.19,
+            height: cSize.height * 0.175,
             width: double.infinity,
             color: Colors.white,
             child: GridView.builder(
@@ -87,7 +82,7 @@ class _PracticeState extends State<Practice> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -107,12 +102,12 @@ class _PracticeState extends State<Practice> {
           // Divider 추가
           // 페이지 별 문제 그리드
           Container(
-            height: cSize.height * 0.574,
+            height: cSize.height * 0.589,
             width: double.infinity,
             color: Colors.white,
             child: GridView(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3, childAspectRatio: 0.595),
+                  crossAxisCount: 3, childAspectRatio: 0.558),
               children: [
                 for (int i = 0; i < list[page.index]; i++)
                   MakeTest(
@@ -144,7 +139,7 @@ class MakeTest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0, 2, 0, 0),
+      margin: const EdgeInsets.fromLTRB(0, 10, 0, 12),
       padding: const EdgeInsets.fromLTRB(5, 5, 5, 5),
       child: ElevatedButton(
         onPressed: () {
@@ -157,12 +152,16 @@ class MakeTest extends StatelessWidget {
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,
           shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.zero),
-              side: BorderSide.none),
+              borderRadius: BorderRadius.all(Radius.circular(25)),
+            side: BorderSide(
+              color: Color((0xFFD3D3D3)), // 라인 색상 설정
+              width: 2, // 라인 두께 설정
+            ),
+          ),
         ),
         child: Text(
-          "study: $number",
-          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          "study : $number",
+          style: const TextStyle(fontSize: 25, color: Color(0xFF4169E1), fontWeight: FontWeight.bold),
         ),
       ),
     );
