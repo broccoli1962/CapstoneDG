@@ -56,11 +56,11 @@ class _memoState extends State<memo> {
                   children: [
                     Icon(
                       Icons.draw,
-                      size: 40,
+                      size: 50,
                     ),
                     Text(' 메모리스트',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                            fontSize: 30, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ],
@@ -75,7 +75,7 @@ class _memoState extends State<memo> {
           child: Divider(
             height: 2,
             thickness: 1,
-              color: Color(0xFF005629)
+              color: Colors.black
           ),
         ),
       ),
@@ -83,13 +83,14 @@ class _memoState extends State<memo> {
         children: [
           //검색 바
           Container(
+            color: Colors.white,
             child: TextField(
               controller: searchController,
               maxLines: 1,
               decoration: const InputDecoration(
                 prefixIcon: Icon(
                   Icons.search,
-                  color: Colors.blueAccent,
+                  color: Colors.blue,
                 ),
               ),
             ),
