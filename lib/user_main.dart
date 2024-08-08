@@ -41,7 +41,9 @@ class _UserTestState extends State<UserTest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+      child: AppBar(
         title: const Stack(
           alignment: Alignment.center,
           children: [
@@ -53,7 +55,7 @@ class _UserTestState extends State<UserTest> {
                   children: [
                     Icon(
                       Icons.person,
-                      size: 40,
+                      size: 50,
                     ),
                     Text(' 문제',
                         style: TextStyle(
@@ -87,6 +89,7 @@ class _UserTestState extends State<UserTest> {
               color: Colors.black,
           ),
         ),
+      ),
       ),
       backgroundColor: Colors.white,
       body: Center(
