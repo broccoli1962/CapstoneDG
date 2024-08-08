@@ -12,7 +12,16 @@ class Test extends StatefulWidget {
 }
 
 //문제 장
-List<String> nameList = ['1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장',];
+List<String> nameList = [
+  '1장',
+  '2장',
+  '3장',
+  '4장',
+  '5장',
+  '6장',
+  '7장',
+  '8장',
+];
 
 //문제 개수
 List<int> list = [8, 8, 8, 8, 8, 8, 8, 8];
@@ -55,7 +64,7 @@ class _TestState extends State<Test> {
           bottom: const PreferredSize(
             preferredSize: Size.fromHeight(1),
             child: Divider(
-              height: 1,
+              height: 2,
               thickness: 1,
               color: Colors.black,
             ),
@@ -63,9 +72,8 @@ class _TestState extends State<Test> {
         ),
       ),
 
-    body: Column(
-        children: [
-          //witch page?
+      body: Column(
+        children: [ //witch page?
           Container(
             height: cSize.height * 0.175,
             width: double.infinity,
@@ -81,7 +89,10 @@ class _TestState extends State<Test> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 25,
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -159,7 +170,10 @@ class MakeTest extends StatelessWidget {
         ),
         child: Text(
           "test : $number",
-          style: const TextStyle(fontSize: 25, color: Color(0xFF4169E1), fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              fontSize: 25,
+              color: Color(0xFF4169E1),
+              fontWeight: FontWeight.bold),
         ),
       ),
     );
