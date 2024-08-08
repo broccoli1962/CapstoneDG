@@ -154,7 +154,7 @@ class _settingState extends State<setting> {
           ),
           Container(
             color: Colors.white,
-            height: cSize.height * 0.110,
+            height: cSize.height * 0.108,
           ),
         ],
       ),

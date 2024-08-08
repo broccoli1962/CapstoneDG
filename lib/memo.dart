@@ -150,7 +150,7 @@ class _memoState extends State<memo> {
                     MaterialPageRoute(builder: (context) => Minsert()));
               },
               tooltip: '추가',
-              child: const Text('추가'),
+              child: const Text('추가',style: TextStyle(fontSize: 17),),
             ),
           ),
           Align(
@@ -158,7 +158,7 @@ class _memoState extends State<memo> {
             child: FloatingActionButton(
               onPressed: () {},
               tooltip: '삭제',
-              child: const Text('삭제'),
+              child: const Text('삭제',style: TextStyle(fontSize: 17),),
             ),
           ),
         ],
