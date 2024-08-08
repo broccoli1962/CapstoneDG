@@ -73,14 +73,18 @@ class _UserTestState extends State<UserTest> {
                   MaterialPageRoute(builder: (context) => const UserMake()),
                 );
               },
-              child: const Text('문제 만들기')),
+              child: const Text(
+                  '문제 만들기',
+                style: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+              )
+          ),
         ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1.0),
           child: Divider(
             height: 2,
             thickness: 1,
-              color: Color(0xFF005629),
+              color: Colors.black,
           ),
         ),
       ),
@@ -90,13 +94,14 @@ class _UserTestState extends State<UserTest> {
           children: [
             //검색 바
             Container(
+              color: Colors.white,
               child: TextField(
                 controller: searchController,
                 maxLines: 1,
                 decoration: const InputDecoration(
                   prefixIcon: Icon(
                     Icons.search,
-                    color: Colors.blueAccent,
+                    color: Colors.blue,
                   ),
                 ),
               ),
@@ -108,7 +113,11 @@ class _UserTestState extends State<UserTest> {
                 },
 
                 separatorBuilder: (BuildContext context, int index) =>
-                    const Divider(),
+                    const Divider(
+                      height: 2,
+                      thickness: 1,
+                      color: Colors.black,
+                    ),
                 itemCount: filtered.length,
               ),
             ),
