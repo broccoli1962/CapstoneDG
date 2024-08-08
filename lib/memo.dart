@@ -43,11 +43,13 @@ class _memoState extends State<memo> {
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        // AppBar 정의
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
+        appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+    child: AppBar(
+    // AppBar 정의
+    title: const Stack(
+    alignment: Alignment.center,
+    children: [
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -79,6 +81,7 @@ class _memoState extends State<memo> {
           ),
         ),
       ),
+        ),
       body: Column(
         children: [
           //검색 바
@@ -98,7 +101,7 @@ class _memoState extends State<memo> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height * 0.710,
+            height: cSize.height * 0.706,
             child: ListView.separated(
               itemCount: filtered.length,
               itemBuilder: (context, index) {
