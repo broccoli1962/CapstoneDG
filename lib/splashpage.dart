@@ -30,17 +30,15 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     return Scaffold(
       body: Container(
         width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.blue, Colors.pink],
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft
-          ),
-        ),
+        color: Colors.white,
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Splash Screen', style: TextStyle(color: Colors.white,),)
+            Image(
+              image: AssetImage('assets/image/rogo.png'), // 이미지 경로 설정
+              width: 300, // 이미지의 너비 설정
+              height: 300, // 이미지의 높이 설정
+            ),
           ],
         ),
       ),
