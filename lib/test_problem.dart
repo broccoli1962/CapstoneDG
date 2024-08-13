@@ -100,7 +100,7 @@ class _Test_inState extends State<Test_in> {
           child: Divider(
             height: 2,
             thickness: 1,
-              color: Color(0xFF005629)
+              color: Colors.black
           ),
         ),
       ),
