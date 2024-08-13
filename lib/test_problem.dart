@@ -84,10 +84,29 @@ class _Test_inState extends State<Test_in> {
         automaticallyImplyLeading:false,
         title: Text(view.title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
         actions: [
-          TextButton(onPressed: (){
-            Navigator.pop(context);
-          }, child: const Text('돌아가기')),
+          Container(
+            margin: const EdgeInsets.all(10), // 버튼의 크기 조절을 위한 여백
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                backgroundColor: Colors.white,
+              ),
+              child: Text(
+                '돌아가기',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
         ],
+
         leading: Padding(
           padding: const EdgeInsets.all(2.0),
           child: TextButton(onPressed: _executeCode, child: const Text('출력하기')),
@@ -98,67 +117,67 @@ class _Test_inState extends State<Test_in> {
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
           child: Divider(
-            height: 2,
-            thickness: 1,
+              height: 2,
+              thickness: 1,
               color: Colors.black
           ),
         ),
       ),
 
       body:
-        Column(
-          children: [
-            Container(
-              width: double.infinity,
-              height: cSize.height * 0.17,
-              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              decoration: const BoxDecoration(color: Colors.white),
-              child: SingleChildScrollView( // SingleChildScrollView로 감싸기
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      '입력 값',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(view.testCase),
-                  ],
-                ),
+      Column(
+        children: [
+          Container(
+            width: double.infinity,
+            height: cSize.height * 0.17,
+            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+            decoration: const BoxDecoration(color: Colors.white),
+            child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '입력 값',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(view.testCase),
+                ],
               ),
             ),
+          ),
 
-            const Divider(
-              color: Colors.black,
-              height: 0.01,
-            ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
+          ),
 
-            Container(
-              width: double.infinity,
-              height: cSize.height * 0.17,
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              decoration: const BoxDecoration(color: Colors.white),
-              child: SingleChildScrollView( // SingleChildScrollView로 감싸기
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      '출력 값',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                      textAlign: TextAlign.left,
-                    ),
-                    Text(view.rtestCase2),
-                  ],
-                ),
+          Container(
+            width: double.infinity,
+            height: cSize.height * 0.17,
+            padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+            decoration: const BoxDecoration(color: Colors.white),
+            child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '출력 값',
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.left,
+                  ),
+                  Text(view.rtestCase2),
+                ],
               ),
             ),
+          ),
 
-            const Divider(
-              color: Colors.black,
-              height: 0.01,
-            ),
+          const Divider(
+            color: Colors.black,
+            height: 0.01,
+          ),
 
-            Container(
+          Container(
               width: double.infinity,
               height: cSize.height*0.55651,
               decoration: const BoxDecoration(color: Colors.white),
@@ -168,10 +187,10 @@ class _Test_inState extends State<Test_in> {
                 initialText: view.contents,
                 maxLines: 23,
               )
-            )
-          ],
-        ),
-        floatingActionButton: FloatingActionButton(onPressed: () {explain(context);}, child: Text('문제풀이'),),
+          )
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(onPressed: () {explain(context);}, child: Text('문제풀이'),),
     );
   }
 }
