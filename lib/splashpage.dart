@@ -36,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
           children: [
             Image(
               image: AssetImage('assets/image/rogo.png'), // 이미지 경로 설정
-              width: 300, // 이미지의 너비 설정
-              height: 300, // 이미지의 높이 설정
+              width: 350, // 이미지의 너비 설정
+              height: 350, // 이미지의 높이 설정
             ),
           ],
         ),
