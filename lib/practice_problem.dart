@@ -63,18 +63,34 @@ class _Practice_inState extends State<Practice_in> {
           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         actions: [
-          TextButton(
+          Container(
+            margin: const EdgeInsets.all(10), // 버튼의 크기 조절을 위한 여백
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: Text('돌아가기')),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                backgroundColor: Colors.white,
+              ),
+              child: Text(
+                '돌아가기',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
         ],
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
-          child: Divider(height: 2, thickness: 1, color: Color(0xFF005629)),
+          child: Divider(height: 2, thickness: 1, color: Colors.black),
         ),
       ),
       body: Column(

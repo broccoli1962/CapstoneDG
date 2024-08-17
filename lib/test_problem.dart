@@ -144,15 +144,42 @@ class _Test_inState extends State<Test_in> {
           textAlign: TextAlign.center,
         ),
         actions: [
-          TextButton(
+          Container(
+            margin: const EdgeInsets.all(10), // 버튼의 크기 조절을 위한 여백
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.pop(context);
               },
-              child: const Text('돌아가기')),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                backgroundColor: Colors.white,
+              ),
+              child: Text(
+                '돌아가기',
+                style: TextStyle(color: Colors.black),
+              ),
+            ),
+          ),
         ],
         leading: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: TextButton(onPressed: _executeCode, child: const Text('출력하기')),
+          padding: const EdgeInsets.all(2),
+          child: TextButton(
+              onPressed: _executeCode,
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                backgroundColor: Colors.white,
+              ),
+              child: const Text('출력하기', style: TextStyle(color: Colors.black))),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,

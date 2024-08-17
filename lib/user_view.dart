@@ -24,14 +24,21 @@ class _UserViewState extends State<UserView> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('유저 문제 푸는 페이지임'),
+        backgroundColor: Colors.white,
+        title: Text('문제'),
       ),
       body: Center(
         child: Column(
           children: [
-            Container(child: Text(usert[widget.ViewIndex].name),),
-            Container(child: Text(usert[widget.ViewIndex].title),),
-            Container(child: TextField(
+            Container(
+              color: Colors.white,
+              child: Text(usert[widget.ViewIndex].name),),
+            Container(
+              color: Colors.white,
+              child: Text(usert[widget.ViewIndex].title),),
+            Container(
+              color: Colors.white,
+              child: TextField(
             ),),
           ],
         ),

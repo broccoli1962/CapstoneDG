@@ -32,14 +32,16 @@ class _UserMakeState extends State<UserMake> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+          backgroundColor: Colors.white,
         automaticallyImplyLeading: false,
-        title: const Text('유저 문제 제작 페이지임'),
+        title: const Text('문제제작')
       ),
       body: Center(
         child: Column(
           children: [
             //제목
             Container(
+              color: Colors.white,
               child: CustomTextField(
                 initialText: titleController,
                 onTextChanged: onChangedTitleText,
@@ -47,6 +49,7 @@ class _UserMakeState extends State<UserMake> {
             ),
             //내용
             Container(
+              color: Colors.white,
               child: CustomTextField(
                 initialText: contentController,
                 onTextChanged: onChangedContentText,
@@ -54,6 +57,7 @@ class _UserMakeState extends State<UserMake> {
               ),
             ),
             Container(
+              color: Colors.white,
               child: Row(
                 children: [
                   OutlinedButton(onPressed: (){
