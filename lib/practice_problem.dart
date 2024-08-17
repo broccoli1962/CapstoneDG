@@ -24,9 +24,16 @@ class _Practice_inState extends State<Practice_in> {
   String hint = "";
 
 //data 가져오기
-  Future<void> _initData() async{
+  Future<void> _initData() async {
     FirebaseFirestore db = FirebaseFirestore.instance;
-    final ref = db.collection("practice").withConverter(fromFirestore: (snapshot, _) => FireData.fromJson(snapshot.data()!), toFirestore: (FireData product, _) => product.toJson()).where("chapter", isEqualTo: widget.pg).where("number", isEqualTo: widget.number);
+    final ref = db
+        .collection("practice")
+        .withConverter(
+            fromFirestore: (snapshot, _) =>
+                FireData_P.fromJson(snapshot.data()!),
+            toFirestore: (FireData_P product, _) => product.toJson())
+        .where("chapter", isEqualTo: widget.pg)
+        .where("number", isEqualTo: widget.number);
     final docSnap = await ref.get();
     final inData = docSnap.docs.first.data();
 
@@ -49,26 +56,25 @@ class _Practice_inState extends State<Practice_in> {
 
     return Scaffold(
       appBar: AppBar(
-        automaticallyImplyLeading:false,
+        automaticallyImplyLeading: false,
         title: Text(
-          title, textAlign: TextAlign.center,
+          title,
+          textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
         ),
         actions: [
-          TextButton(onPressed: (){
-            Navigator.pop(context);
-          }, child: Text('돌아가기')),
+          TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text('돌아가기')),
         ],
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
-          child: Divider(
-            height: 2,
-            thickness: 1,
-              color: Color(0xFF005629)
-          ),
+          child: Divider(height: 2, thickness: 1, color: Color(0xFF005629)),
         ),
       ),
       body: Column(
@@ -78,12 +84,16 @@ class _Practice_inState extends State<Practice_in> {
               children: [
                 Container(
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  height: cSize.height*0.55,
+                  height: cSize.height * 0.55,
                   width: double.infinity,
                   color: Colors.white,
                   child: SingleChildScrollView(
-                      child: Text(contents, style:TextStyle(color: Colors.black, fontSize: 20,fontWeight: FontWeight.bold, letterSpacing: 2.0))
-                  ),
+                      child: Text(contents,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2.0))),
                 )
               ],
             ),
@@ -94,12 +104,16 @@ class _Practice_inState extends State<Practice_in> {
           ),
           Container(
             padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
-            height: cSize.height*0.218,
+            height: cSize.height * 0.218,
             width: double.infinity,
             color: Colors.white,
             child: SingleChildScrollView(
-                child: Text(hint, style:const TextStyle(color: Colors.black, fontSize: 17,fontWeight: FontWeight.bold, letterSpacing: 2.0))
-            ),
+                child: Text(hint,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 17,
+                        fontWeight: FontWeight.bold,
+                        letterSpacing: 2.0))),
           ),
         ],
       ),
