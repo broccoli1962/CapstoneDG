@@ -43,45 +43,41 @@ class _memoState extends State<memo> {
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
-        appBar: PreferredSize(
+      appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
-    child: AppBar(
-    // AppBar 정의
-    title: const Stack(
-    alignment: Alignment.center,
-    children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.draw,
-                      size: 50,
-                    ),
-                    Text(' 메모리스트',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
-            ),
-          ],
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.white,
-        elevation: 0,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            height: 2,
-            thickness: 1,
-              color: Colors.black
+        child: AppBar(
+          // AppBar 정의
+          title: const Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.draw,
+                        size: 50,
+                      ),
+                      Text(' 메모리스트',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          centerTitle: true,
+          backgroundColor: Colors.white,
+          elevation: 0,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(height: 2, thickness: 1, color: Colors.black),
           ),
         ),
       ),
-        ),
       body: Column(
         children: [
           //검색 바
@@ -150,7 +146,10 @@ class _memoState extends State<memo> {
                     MaterialPageRoute(builder: (context) => Minsert()));
               },
               tooltip: '추가',
-              child: const Text('추가',style: TextStyle(fontSize: 17),),
+              child: const Text(
+                '추가',
+                style: TextStyle(fontSize: 17, color: Colors.black),
+              ),
             ),
           ),
           Align(
@@ -158,7 +157,10 @@ class _memoState extends State<memo> {
             child: FloatingActionButton(
               onPressed: () {},
               tooltip: '삭제',
-              child: const Text('삭제',style: TextStyle(fontSize: 17),),
+              child: const Text(
+                '삭제',
+                style: TextStyle(fontSize: 17, color: Colors.black),
+              ),
             ),
           ),
         ],
