@@ -69,17 +69,35 @@ class _UserTestState extends State<UserTest> {
 
         backgroundColor: Colors.white,
         actions: [
-          TextButton(
+          Container(
+            margin: const EdgeInsets.all(10), // 버튼 외부 여백 설정
+            child: ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const UserMake()),
                 );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white, // 버튼 배경색
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // 버튼 크기 조정
+              ),
               child: const Text(
-                  '문제 만들기',
-                style: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
-              )
+                '문제 만들기',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
+              ),
+            ),
           ),
+
+
         ],
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1.0),
