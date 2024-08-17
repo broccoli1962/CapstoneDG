@@ -17,7 +17,6 @@ class Test_in extends StatefulWidget {
   State<Test_in> createState() => _Test_inState();
 }
 
-
 class _Test_inState extends State<Test_in> {
   final getapi = jdoodleAPI(ClientId: '', ClientSecret: '');
   String _output = '';
@@ -26,12 +25,12 @@ class _Test_inState extends State<Test_in> {
   late String _contents;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     view = Problem_t.get(widget.pg, widget.number);
   }
 
-  void _onChangedText(String newValue){
+  void _onChangedText(String newValue) {
     setState(() {
       _contents = newValue;
     });
@@ -43,22 +42,28 @@ class _Test_inState extends State<Test_in> {
     final Size cSize = MediaQuery.of(context).size;
     final Problem_t view = Problem_t.get(widget.pg, widget.number);
 
-
-    void explain(context){
-      showDialog(context: context, builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('해설'),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Text(view.hint, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          ),
-          insetPadding: const EdgeInsets.all(10),
-          actions: [
-            OutlinedButton(onPressed: (){Navigator.of(context).pop(); }, child: Text('ok')),
-          ],
-        );
-      }
-      );
+    void explain(context) {
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: const Text('해설'),
+              content: SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: Text(view.hint,
+                    style: const TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 20)),
+              ),
+              insetPadding: const EdgeInsets.all(10),
+              actions: [
+                OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text('ok')),
+              ],
+            );
+          });
     }
 
 //코딩 api
@@ -66,12 +71,12 @@ class _Test_inState extends State<Test_in> {
       final code = view.contents;
       final language = 'c';
 
-      try{
+      try {
         final output = await getapi.executeCode(code, language);
         setState(() {
           _output = '출력 결과 : $output';
         });
-      } on Exception catch(e){
+      } on Exception catch (e) {
         setState(() {
           _output = 'Error:$e';
         });
@@ -81,8 +86,12 @@ class _Test_inState extends State<Test_in> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        automaticallyImplyLeading:false,
-        title: Text(view.title, style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
+        automaticallyImplyLeading: false,
+        title: Text(
+          view.title,
+          style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center,
+        ),
         actions: [
           Container(
             margin: const EdgeInsets.all(10), // 버튼의 크기 조절을 위한 여백
@@ -106,33 +115,38 @@ class _Test_inState extends State<Test_in> {
             ),
           ),
         ],
-
         leading: Padding(
-          padding: const EdgeInsets.all(2.0),
-          child: TextButton(onPressed: _executeCode, child: const Text('출력하기')),
+          padding: const EdgeInsets.all(2),
+          child: TextButton(
+              onPressed: _executeCode,
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                side: BorderSide(
+                  color: Color(0xFF4169E1),
+                ),
+                backgroundColor: Colors.white,
+              ),
+              child: const Text('출력하기', style: TextStyle(color: Colors.black))),
         ),
         centerTitle: true,
         backgroundColor: Colors.white,
         elevation: 0,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
-          child: Divider(
-              height: 2,
-              thickness: 1,
-              color: Colors.black
-          ),
+          child: Divider(height: 2, thickness: 1, color: Colors.black),
         ),
       ),
-
-      body:
-      Column(
+      body: Column(
         children: [
           Container(
             width: double.infinity,
             height: cSize.height * 0.17,
             padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
             decoration: const BoxDecoration(color: Colors.white),
-            child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+            child: SingleChildScrollView(
+              // SingleChildScrollView로 감싸기
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -146,18 +160,17 @@ class _Test_inState extends State<Test_in> {
               ),
             ),
           ),
-
           const Divider(
             color: Colors.black,
             height: 0.01,
           ),
-
           Container(
             width: double.infinity,
             height: cSize.height * 0.17,
             padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
             decoration: const BoxDecoration(color: Colors.white),
-            child: SingleChildScrollView( // SingleChildScrollView로 감싸기
+            child: SingleChildScrollView(
+              // SingleChildScrollView로 감싸기
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -171,26 +184,28 @@ class _Test_inState extends State<Test_in> {
               ),
             ),
           ),
-
           const Divider(
             color: Colors.black,
             height: 0.01,
           ),
-
           Container(
               width: double.infinity,
-              height: cSize.height*0.55651,
+              height: cSize.height * 0.55651,
               decoration: const BoxDecoration(color: Colors.white),
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
               child: CustomTextField(
                 onTextChanged: _onChangedText,
                 initialText: view.contents,
                 maxLines: 23,
-              )
-          )
+              ))
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: () {explain(context);}, child: Text('문제풀이'),),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          explain(context);
+        },
+        child: Text('문제풀이'),
+      ),
     );
   }
 }
