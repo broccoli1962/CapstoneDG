@@ -29,8 +29,9 @@ class _Practice_inState extends State<Practice_in> {
     final ref = db
         .collection("practice")
         .withConverter(
-            fromFirestore: (snapshot, _) => FireData.fromJson(snapshot.data()!),
-            toFirestore: (FireData product, _) => product.toJson())
+            fromFirestore: (snapshot, _) =>
+                FireData_P.fromJson(snapshot.data()!),
+            toFirestore: (FireData_P product, _) => product.toJson())
         .where("chapter", isEqualTo: widget.pg)
         .where("number", isEqualTo: widget.number);
     final docSnap = await ref.get();
