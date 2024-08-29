@@ -186,7 +186,7 @@ class _Test_inState extends State<Test_in> {
         elevation: 0,
         bottom: const PreferredSize(
           preferredSize: Size.fromHeight(1),
-          child: Divider(height: 2, thickness: 1, color: Color(0xFF005629)),
+          child: Divider(height: 2, thickness: 1, color: Colors.black),
         ),
       ),
       body: Column(
