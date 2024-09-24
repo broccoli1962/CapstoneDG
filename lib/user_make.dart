@@ -24,6 +24,7 @@ class _UserMakeState extends State<UserMake> {
   final ucontentsController = TextEditingController();
   final uhintController = TextEditingController();
   final uanswerController = TextEditingController();
+  final upwController = TextEditingController();
 
   @override
   void dispose() {
@@ -34,6 +35,7 @@ class _UserMakeState extends State<UserMake> {
     ucontentsController.dispose();
     uhintController.dispose();
     uanswerController.dispose();
+    upwController.dispose();
     super.dispose();
   }
 
@@ -45,8 +47,8 @@ class _UserMakeState extends State<UserMake> {
         urtestCase: urtestcaseController.text,
         ucontents: ucontentsController.text,
         uhint: uhintController.text,
-        uanswer: uanswerController.text);
-
+        uanswer: uanswerController.text,
+        upw: upwController.text);
     try {
       await FirebaseFirestore.instance
           .collection('user_create')
@@ -67,17 +69,6 @@ class _UserMakeState extends State<UserMake> {
 
   @override
   Widget build(BuildContext context) {
-    // void onChangedTitleText(String newText){
-    //   setState(() {
-    //     titleController = newText;
-    //   });
-    // }
-    //
-    // void onChangedContentText(String newText){
-    //   setState(() {
-    //     contentController = newText;
-    //   });
-    // }
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
@@ -249,7 +240,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: uanswerController,
                       maxLines: 5,
@@ -265,28 +255,26 @@ class _UserMakeState extends State<UserMake> {
                         return null;
                       },
                     ),
+                    TextFormField(
+                      controller: upwController,
+                      maxLines: 1,
+                      decoration: const InputDecoration(
+                        labelText: '비밀번호',
+                        filled: true, // 배경 색상을 채우기 위해 true로 설정
+                        fillColor: Colors.white,
+                      ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return '비밀번호를 입력하세요.';
+                        }
+                        return null;
+                      },
+                    ),
                     const Divider(
                       height: 2,
                       thickness: 1,
                       color: Colors.black,
                     ),
-                    // //제목
-                    // Container(
-                    //   color: Colors.white,
-                    //   child: CustomTextField(
-                    //     initialText: titleController,
-                    //     onTextChanged: onChangedTitleText,
-                    //   ),
-                    // ),
-                    // //내용
-                    // Container(
-                    //   color: Colors.white,
-                    //   child: CustomTextField(
-                    //     initialText: contentController,
-                    //     onTextChanged: onChangedContentText,
-                    //     maxLines: 10,
-                    //   ),
-                    // ),
                     Container(
                       color: Colors.white,
                       child: Row(
@@ -294,10 +282,6 @@ class _UserMakeState extends State<UserMake> {
                           OutlinedButton(
                               onPressed: () {
                                 _createData();
-                                //ulist.add(User_Create(uname: 'null', utitle: titleController, utestCase: 'null', urtestCase: 'null', ucontents: contentController, uhint: 'null', uanswer: 'null'));
-                                // Navigator.of(context).pushAndRemoveUntil(
-                                //     MaterialPageRoute(builder: (
-                                //         context) => const UserTest()), (route) => false);
                               },
                               child: const Text('확인')),
                           OutlinedButton(

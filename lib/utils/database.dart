@@ -84,9 +84,10 @@ class User_Create {
   final String ucontents;
   final String uhint;
   final String uanswer;
+  final String upw;
 
 
-  User_Create({required this.uname,required this.utitle,required this.utestCase,required this.urtestCase,required this.ucontents,required this.uhint,required this.uanswer});
+  User_Create({required this.uname,required this.utitle,required this.utestCase,required this.urtestCase,required this.ucontents,required this.uhint,required this.uanswer,required this.upw});
 
   factory User_Create.fromJson(Map<String, dynamic> json){
     return User_Create(
@@ -97,6 +98,7 @@ class User_Create {
       ucontents: json["user_contents"] ?? '',
       uhint: json["user_hint"] ?? '',
       uanswer: json["user_answer"] ?? '',
+      upw: json["user_pw"] ?? '',
     );
   }
   Map<String, dynamic> toJson(){
@@ -108,6 +110,7 @@ class User_Create {
       "user_contents":ucontents,
       "user_hint":uhint,
       "user_answer":uanswer,
+      "user_pw":upw,
     };
   }
 }
