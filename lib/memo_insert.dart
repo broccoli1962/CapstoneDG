@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/utils/util.dart';
 
 import 'memo.dart';
@@ -16,6 +17,12 @@ class _MinsertState extends State<Minsert> {
     final Size cSize = MediaQuery.of(context).size;
     TextEditingController controller = TextEditingController();
     TextEditingController controller2 = TextEditingController();
+
+    Future<void> saveMemo() async {
+      final prefs = await SharedPreferences.getInstance();
+      final encodeMemo = memos.map((memo)=> '${memo.Mtitle},${memo.contents}').toList();
+      await prefs.setStringList('memos', encodeMemo);
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -97,16 +104,17 @@ class _MinsertState extends State<Minsert> {
                 Alignment.bottomRight.x-0.4, Alignment.bottomRight.y
             ),
             child: FloatingActionButton(
-              onPressed: () {
+              onPressed: () async {
                 setState(() {
                   memos.add(
                     Memos(controller2.text ,controller.text),
                   );
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(
-                          builder: (context) => const memo()),
-                          (route) => false);
                 });
+                await saveMemo();
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(
+                        builder: (context) => const memo()),
+                        (route) => false);
               },
               tooltip: '수정',
               child: const Text('저장'),

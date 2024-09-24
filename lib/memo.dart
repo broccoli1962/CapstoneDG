@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/memo_insert.dart';
 import 'package:untitled/utils/util.dart';
 import 'memo_contents.dart';
@@ -20,6 +21,25 @@ class _memoState extends State<memo> {
     super.initState();
     searchController.addListener(Searchfilter);
     Searchfilter();
+    loadMemos();
+  }
+
+  Future<void> loadMemos() async{
+    final prefs = await SharedPreferences.getInstance();
+    final encodeMemo = prefs.getStringList('memos');
+    if(encodeMemo != null){
+      memos = encodeMemo.map((encodeMemo) {
+        final memoData = encodeMemo.split(',');
+        return Memos(memoData[0], memoData[1]);
+      }).toList();
+    }
+    Searchfilter();
+  }
+
+  Future<void> saveMemo() async {
+    final prefs = await SharedPreferences.getInstance();
+    final encodeMemo = memos.map((memo)=> '${memo.Mtitle},${memo.contents}').toList();
+    await prefs.setStringList('memos', encodeMemo);
   }
 
   void Searchfilter() {
@@ -108,6 +128,7 @@ class _memoState extends State<memo> {
                   trailing: IconButton(
                     onPressed: () {
                       memos.removeAt(memo.index);
+                      saveMemo();
                       // memos.removeAt(index);
                       Searchfilter();
                     },
