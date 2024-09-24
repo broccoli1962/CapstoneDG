@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/user_update.dart';
 import 'package:untitled/utils/http_api.dart';
 import 'package:untitled/utils/util.dart';
 
-class UserView extends StatefulWidget {
-  const UserView({super.key, required this.ViewIndex});
 
-  final int ViewIndex;
+class UserView extends StatefulWidget {
+  const UserView({super.key, required this.viewIndex});
+
+  final int viewIndex;
 
   @override
   State<UserView> createState() => _UserViewState();
@@ -50,6 +52,39 @@ class _UserViewState extends State<UserView> {
     });
   }
 
+  TextEditingController Secret = TextEditingController();
+  void secretUpdate(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+            title: const Text('수정 비밀번호 입력'),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: TextField(
+                controller: Secret,
+                maxLines: 1,
+              ),
+            ),
+            insetPadding: const EdgeInsets.all(10),
+            actions: [
+              OutlinedButton(
+                  onPressed: () {
+                    if(uList.values.elementAt(widget.viewIndex).upw == Secret.text){
+                      Navigator.of(context).pop();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex)));
+                    }
+                  },
+                  child: const Text('ok')),
+            ],
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(32)),
+            ));
+      },
+    );
+  }
+
   void explain(context) {
     showDialog(
       context: context,
@@ -59,7 +94,7 @@ class _UserViewState extends State<UserView> {
           content: SizedBox(
             width: MediaQuery.of(context).size.width,
             child: Text(
-              ulist[widget.ViewIndex].uhint,
+              uList.values.elementAt(widget.viewIndex).uhint,
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
@@ -71,7 +106,9 @@ class _UserViewState extends State<UserView> {
                 },
                 child: const Text('ok')),
           ],
-        );
+          shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(32)),
+        ));
       },
     );
   }
@@ -112,7 +149,7 @@ class _UserViewState extends State<UserView> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          ulist[widget.ViewIndex].utitle,
+          uList.values.elementAt(widget.viewIndex).utitle,
           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -179,7 +216,7 @@ class _UserViewState extends State<UserView> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
-                  Text(ulist[widget.ViewIndex].utestCase),
+                  Text(uList.values.elementAt(widget.viewIndex).utestCase),
                 ],
               ),
             ),
@@ -203,7 +240,7 @@ class _UserViewState extends State<UserView> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
-                  Text(ulist[widget.ViewIndex].urtestCase),
+                  Text(uList.values.elementAt(widget.viewIndex).urtestCase),
                 ],
               ),
             ),
@@ -219,7 +256,7 @@ class _UserViewState extends State<UserView> {
             padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
             child: tmp = CustomTextField(
               onTextChanged: onChangedContentText,
-              initialText: ulist[widget.ViewIndex].ucontents,
+              initialText: uList.values.elementAt(widget.viewIndex).ucontents,
               maxLines: 23,
             ),
           ),
@@ -227,7 +264,10 @@ class _UserViewState extends State<UserView> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          explain(context);
+          // Navigator.push(context,
+          //     MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex,)));
+          //explain(context);
+          secretUpdate(context);
         },
         child: const Text('문제풀이'),
       ),

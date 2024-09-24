@@ -1,21 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/user_main.dart';
+import 'package:untitled/user_view.dart';
 import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
 
-class UserMake extends StatefulWidget {
-  const UserMake({super.key});
+class UserUpdate extends StatefulWidget {
+  const UserUpdate({super.key, required this.viewIndex});
+
+  final int viewIndex;
 
   @override
-  State<UserMake> createState() => _UserMakeState();
+  State<UserUpdate> createState() => _UserUpdateState();
 }
 
 // //텍스트 컨트롤
 // String titleController = "";
 // String contentController = "";
 
-class _UserMakeState extends State<UserMake> {
+class _UserUpdateState extends State<UserUpdate> {
   final _formKey = GlobalKey<FormState>();
   final unameController = TextEditingController();
   final utitleController = TextEditingController();
@@ -39,8 +43,11 @@ class _UserMakeState extends State<UserMake> {
     super.dispose();
   }
 
-  Future<void> _createData() async {
-    final userCreate = User_Create(
+  Future<void> updateData() async {
+    // QuerySnapshot tmp = await FirebaseFirestore.instance.collection('user_create').get();
+    // tmp.docs[viewIndex].id;
+    DocumentSnapshot ss = uList.keys.elementAt(widget.viewIndex);
+    User_Create dd = User_Create(
         uname: unameController.text,
         utitle: utitleController.text,
         utestCase: utestcaseController.text,
@@ -48,23 +55,26 @@ class _UserMakeState extends State<UserMake> {
         ucontents: ucontentsController.text,
         uhint: uhintController.text,
         uanswer: uanswerController.text,
-        upw: upwController.text);
-    try {
-      await FirebaseFirestore.instance
-          .collection('user_create')
-          .add(userCreate.toJson());
+        upw: upwController.text
+    );
+    uList[ss] = dd;
+    await ss.reference.update(dd.toJson());
+    //ss.reference.update({});
+  }
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('문제 업로드 완료')),
-      );
-      //Navigator.pop(context);
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (context) => const UserTest()),
-              (route) => false);
-    }catch(e){
-      print('데이터 처리 오류: ${e.toString()}');
-    }
+  @override
+  void initState() {
+    User_Create block = uList.values.elementAt(widget.viewIndex);
+    unameController.text = block.uname;
+    utitleController.text = block.utitle;
+    utestcaseController.text = block.utestCase;
+    urtestcaseController.text = block.urtestCase;
+    ucontentsController.text = block.ucontents;
+    uhintController.text = block.uhint;
+    uanswerController.text = block.uanswer;
+    upwController.text = block.upw;
+    // TODO: implement initState
+    super.initState();
   }
 
   @override
@@ -72,8 +82,8 @@ class _UserMakeState extends State<UserMake> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-          backgroundColor: Colors.white,
-          automaticallyImplyLeading: false,
+        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
         title: const Stack(
           alignment: Alignment.center,
           children: [
@@ -135,7 +145,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: utitleController,
                       maxLines: 2,
@@ -156,7 +165,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: utestcaseController,
                       maxLines: 3,
@@ -177,7 +185,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: urtestcaseController,
                       maxLines: 2,
@@ -198,7 +205,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: ucontentsController,
                       maxLines: 5,
@@ -219,7 +225,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: uhintController,
                       maxLines: 2,
@@ -281,7 +286,17 @@ class _UserMakeState extends State<UserMake> {
                         children: [
                           OutlinedButton(
                               onPressed: () {
-                                _createData();
+                                updateData();
+                                Navigator.pop(context);
+                                Navigator.pop(context);
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    MaterialPageRoute(
+                                        builder: (context) => const UserTest()),
+                                        (route) => false);
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => UserView(viewIndex: widget.viewIndex)));
+                                //Navigator.pop(context);
+                                //_createData();
                               },
                               child: const Text('확인')),
                           OutlinedButton(
