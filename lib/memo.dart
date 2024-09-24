@@ -86,10 +86,14 @@ class _memoState extends State<memo> {
             controller: searchController,
             leading: Icon(Icons.search, color: Colors.blue),
             backgroundColor: WidgetStatePropertyAll(Colors.white),
-            shape: WidgetStateProperty.all(ContinuousRectangleBorder(
-                )),
+            shape: WidgetStateProperty.all(ContinuousRectangleBorder()),
             side: WidgetStateProperty.all(
-                BorderSide(color: Colors.black, width: 2)), // 테두리 색상 변경
+                BorderSide(color: Colors.white, width: 0)), // 테두리 색상 변경
+          ),
+          const Divider(
+            height: 2,
+            thickness: 1,
+            color: Colors.grey,
           ),
           Container(
             color: Colors.white,
