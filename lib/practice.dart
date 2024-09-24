@@ -82,7 +82,7 @@ class _PracticeState extends State<Practice> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+                    style: const TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
                   ),
                   value: Page.values[index], // 페이지 값
                   groupValue: page, // 그룹 값
@@ -120,7 +120,7 @@ class _PracticeState extends State<Practice> {
         ],
       ),
       // BottomNavigationBar 추가
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

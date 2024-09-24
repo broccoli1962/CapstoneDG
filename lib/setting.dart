@@ -72,7 +72,7 @@ class _settingState extends State<setting> {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: Text(
+                          child: const Text(
                             '로그인 하기',
                             style: TextStyle(fontSize: 17, color: Colors.black),
                           ),
@@ -104,13 +104,13 @@ class _settingState extends State<setting> {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: Text('개인정보 이용 방침',
+                          child: const Text('개인정보 이용 방침',
                               style:
                                   TextStyle(fontSize: 17, color: Colors.black)),
                         ),
                         TextButton(
                           onPressed: () {},
-                          child: Text('이용 약관',
+                          child: const Text('이용 약관',
                               style:
                                   TextStyle(fontSize: 17, color: Colors.black)),
                         ),
@@ -141,7 +141,7 @@ class _settingState extends State<setting> {
                       children: [
                         TextButton(
                           onPressed: () {},
-                          child: Text('광고 제거 하기',
+                          child: const Text('광고 제거 하기',
                               style:
                                   TextStyle(fontSize: 17, color: Colors.black)),
                         ),
