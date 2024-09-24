@@ -78,14 +78,41 @@ class _UserMakeState extends State<UserMake> {
       appBar: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-          title: const Text('문제제작')),
-      body: Column(
-        children: [
-          const Divider(
+        title: const Stack(
+          alignment: Alignment.center,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.person,
+                      size: 50,
+                    ),
+                    Text(' 문제제작',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold)),
+                  ],
+                ),
+              ],
+            ),
+          ],
+        ),
+        centerTitle: true,
+        elevation: 0,
+        bottom: const PreferredSize(
+          preferredSize: Size.fromHeight(1),
+          child: Divider(
             height: 2,
             thickness: 1,
             color: Colors.black,
           ),
+        ),
+      ),
+      body: Column(
+        children: [
           Expanded(
             child: Center(
               child: Form(
@@ -115,6 +142,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: utitleController,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '제목 이름',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -135,6 +163,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: utestcaseController,
+                      maxLines: 3,
                       decoration: const InputDecoration(
                         labelText: '테스트 케이스',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -155,6 +184,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: urtestcaseController,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '테스트 케이스 반환값',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -175,6 +205,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: ucontentsController,
+                      maxLines: 5,
                       decoration: const InputDecoration(
                         labelText: '문제 내용',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -195,6 +226,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: uhintController,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '힌트',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -215,6 +247,7 @@ class _UserMakeState extends State<UserMake> {
 
                     TextFormField(
                       controller: uanswerController,
+                      maxLines: 5,
                       decoration: const InputDecoration(
                         labelText: '정답',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
