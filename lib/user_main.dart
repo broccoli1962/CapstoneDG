@@ -17,16 +17,13 @@ String searchText = "";
 class _UserTestState extends State<UserTest> {
   TextEditingController searchController = TextEditingController();
 
-
   Future<void> _initData() async {
     final QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection('user_create').get();
-    setState(() {
-      ulist = snapshot.docs
-          .map(
-              (doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
-          .toList();
-    });
+    ulist = snapshot.docs
+        .map((doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
+        .toList();
+    Searchfilter();
   }
 
   List<User_Create> filtered = [];
@@ -39,7 +36,7 @@ class _UserTestState extends State<UserTest> {
     filtered = ulist;
   }
 
-  void Searchfilter(){
+  void Searchfilter() {
     final munja = searchController.text.toLowerCase();
     setState(() {
       filtered = ulist.where((us) {

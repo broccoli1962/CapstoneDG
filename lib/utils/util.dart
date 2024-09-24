@@ -145,7 +145,6 @@ class Problem_t {
 //final List<UserT> usert = [];
 List<User_Create> ulist = [];
 
-
 //바텀 바 클래스
 class BottomNav extends StatelessWidget {
   final IconData icon;
@@ -286,9 +285,10 @@ class CustomTextColor extends TextEditingController{
 }
 
 class CustomTextField extends StatefulWidget {
-  final String initialText;
-  final ValueChanged<String> onTextChanged;
+  final String initialText; //변화후 텍스트
+  final ValueChanged<String> onTextChanged; //변경 전 텍스트
   int? maxLines;
+  CustomTextColor ?controller;
 
   CustomTextField({super.key, 
     required this.initialText,
@@ -299,16 +299,17 @@ class CustomTextField extends StatefulWidget {
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
-
 //커스텀 텍스트 필드
 class _CustomTextFieldState extends State<CustomTextField> {
-  late CustomTextColor _controller;
   late FocusNode _focusNode;
+  late CustomTextColor _controller;
 
   @override
   void initState(){
     super.initState();
     _controller = CustomTextColor(text: widget.initialText);
+    widget.controller = _controller;
+
     _focusNode = FocusNode();
 
     _focusNode.addListener(() {

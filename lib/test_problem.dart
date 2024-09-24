@@ -43,6 +43,7 @@ class _Test_inState extends State<Test_in> {
       });
     }
 
+    finalData(context);
     print(_output);
   }
 
@@ -81,7 +82,8 @@ class _Test_inState extends State<Test_in> {
           title = inData.title.replaceAll("\\n", "\n");
           testCase = inData.testCase.replaceAll("\\n", "\n");
           rtestCase = inData.rtestCase.replaceAll("\\n", "\n");
-          contents = inData.context.replaceAll("\\n", "\n");
+          // contents = inData.context.replaceAll("\\n", "\n");
+          tmp?.controller?.text = inData.context.replaceAll("\\n", "\n");
           hint = inData.hint.replaceAll("\\n", "\n");
           answer = inData.answer;
         });
@@ -128,14 +130,48 @@ class _Test_inState extends State<Test_in> {
     );
   }
 
-  @override
-  void initState() {
-    _initData();
-    super.initState();
+  void finalData(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('결과값'),
+          content: SizedBox(
+            width: MediaQuery.of(context).size.width,
+            child: Text(
+              _output,
+              style:
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ),
+          insetPadding: const EdgeInsets.all(10),
+          actions: [
+            OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('ok')),
+          ],
+        );
+      },
+    );
   }
 
   @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
+  CustomTextField ?tmp;
+
+  @override
   Widget build(BuildContext context) {
+    tmp = CustomTextField(
+      onTextChanged: _onChangedText,
+      initialText: contents,
+      maxLines: 23,
+    );
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -247,11 +283,7 @@ class _Test_inState extends State<Test_in> {
               height: cSize.height * 0.55651,
               decoration: const BoxDecoration(color: Colors.white),
               padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: CustomTextField(
-                onTextChanged: _onChangedText,
-                initialText: contents,
-                maxLines: 23,
-              ),
+              child: tmp,
           ),
         ],
       ),
