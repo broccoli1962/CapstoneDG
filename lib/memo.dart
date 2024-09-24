@@ -15,20 +15,20 @@ List<Memos> filtered = [];
 TextEditingController searchController = TextEditingController();
 
 class _memoState extends State<memo> {
-
   @override
   void initState() {
     super.initState();
     searchController.addListener(Searchfilter);
     Searchfilter();
   }
-  void Searchfilter(){
+
+  void Searchfilter() {
     filtered.clear();
     final munja = searchController.text.toLowerCase();
-    for (int i = 0;i < memos.length;i++){
+    for (int i = 0; i < memos.length; i++) {
       Memos memo = memos[i];
-      if (munja.isEmpty || memo.Mtitle.toLowerCase().contains(munja)){
-        filtered.add(FilteredMemo(memo.Mtitle,memo.contents,i));
+      if (munja.isEmpty || memo.Mtitle.toLowerCase().contains(munja)) {
+        filtered.add(FilteredMemo(memo.Mtitle, memo.contents, i));
       }
     }
     setState(() {});
@@ -84,10 +84,12 @@ class _memoState extends State<memo> {
           //검색 바
           SearchBar(
             controller: searchController,
-            leading: Icon(Icons.search),
-            backgroundColor: WidgetStatePropertyAll(Colors.yellow),
-            shape: WidgetStateProperty.all(ContinuousRectangleBorder(borderRadius: BorderRadius.circular(20))),
-            side: WidgetStateProperty.all(BorderSide(color: Colors.red, width: 3)),
+            leading: Icon(Icons.search, color: Colors.blue),
+            backgroundColor: WidgetStatePropertyAll(Colors.white),
+            shape: WidgetStateProperty.all(ContinuousRectangleBorder(
+                )),
+            side: WidgetStateProperty.all(
+                BorderSide(color: Colors.black, width: 2)), // 테두리 색상 변경
           ),
           Container(
             color: Colors.white,
@@ -133,8 +135,8 @@ class _memoState extends State<memo> {
       floatingActionButton: Stack(
         children: [
           Align(
-            alignment: Alignment(
-                Alignment.bottomRight.x, Alignment.bottomRight.y),
+            alignment:
+                Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y),
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.push(context,
