@@ -165,13 +165,13 @@ class _UserMakeState extends State<UserMake> {
                       controller: utestcaseController,
                       maxLines: 3,
                       decoration: const InputDecoration(
-                        labelText: '테스트 케이스',
+                        labelText: '입력값',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
                         fillColor: Colors.white,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return '테스트 케이스를 입력하세요.';
+                          return '입력값를 입력하세요.';
                         }
                         return null;
                       },
@@ -186,13 +186,13 @@ class _UserMakeState extends State<UserMake> {
                       controller: urtestcaseController,
                       maxLines: 2,
                       decoration: const InputDecoration(
-                        labelText: '테스트 케이스 반환값',
+                        labelText: '출력값',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
                         fillColor: Colors.white,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return '테스트 케이스 반환값을 입력하세요.';
+                          return '출력값을 입력하세요.';
                         }
                         return null;
                       },
