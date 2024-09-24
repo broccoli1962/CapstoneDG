@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/user_make.dart';
 import 'package:untitled/user_view.dart';
@@ -20,9 +21,15 @@ class _UserTestState extends State<UserTest> {
   Future<void> _initData() async {
     final QuerySnapshot snapshot =
         await FirebaseFirestore.instance.collection('user_create').get();
-    ulist = snapshot.docs
-        .map((doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
-        .toList();
+    uList.clear();
+    for(var docs in snapshot.docs){
+      uList[docs] = User_Create.fromJson(docs.data() as Map<String, dynamic>);
+    }
+
+    // print(snapshot.docs[0].id);
+    // ulist = snapshot.docs
+    //     .map((doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
+    //     .toList();
     Searchfilter();
   }
 
@@ -33,13 +40,13 @@ class _UserTestState extends State<UserTest> {
     _initData();
     super.initState();
     searchController.addListener(Searchfilter);
-    filtered = ulist;
+    filtered = uList.values.toList();
   }
 
   void Searchfilter() {
     final munja = searchController.text.toLowerCase();
     setState(() {
-      filtered = ulist.where((us) {
+      filtered = uList.values.where((us) {
         return us.uname.toLowerCase().contains(munja);
       }).toList();
     });
@@ -150,7 +157,7 @@ class _UserTestState extends State<UserTest> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    UserView(ViewIndex: index)));
+                                    UserView(viewIndex: index)));
                       });
                   //return UserList(filtered[index], index);
                 },

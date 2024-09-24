@@ -1,4 +1,7 @@
 //메모
+import 'dart:collection';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
@@ -143,7 +146,7 @@ class Problem_t {
 //   }
 // }
 //final List<UserT> usert = [];
-List<User_Create> ulist = [];
+Map<DocumentSnapshot,User_Create> uList = {};
 
 //바텀 바 클래스
 class BottomNav extends StatelessWidget {
