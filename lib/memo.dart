@@ -12,30 +12,31 @@ class memo extends StatefulWidget {
 
 List<Memos> memos = [];
 List<Memos> filtered = [];
+TextEditingController searchController = TextEditingController();
 
 class _memoState extends State<memo> {
-  TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     searchController.addListener(Searchfilter);
-    filtered = memos;
+    Searchfilter();
   }
-
-  void Searchfilter() {
+  void Searchfilter(){
+    filtered.clear();
     final munja = searchController.text.toLowerCase();
-    setState(() {
-      filtered = memos.where((memo) {
-        return memo.Mtitle.toLowerCase().contains(munja);
-      }).toList();
-    });
+    for (int i = 0;i < memos.length;i++){
+      Memos memo = memos[i];
+      if (munja.isEmpty || memo.Mtitle.toLowerCase().contains(munja)){
+        filtered.add(FilteredMemo(memo.Mtitle,memo.contents,i));
+      }
+    }
+    setState(() {});
   }
 
   @override
   void dispose() {
     searchController.removeListener(Searchfilter);
-    searchController.dispose();
     super.dispose();
   }
 
@@ -81,18 +82,12 @@ class _memoState extends State<memo> {
       body: Column(
         children: [
           //검색 바
-          Container(
-            color: Colors.white,
-            child: TextField(
-              controller: searchController,
-              maxLines: 1,
-              decoration: const InputDecoration(
-                prefixIcon: Icon(
-                  Icons.search,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
+          SearchBar(
+            controller: searchController,
+            leading: Icon(Icons.search),
+            backgroundColor: WidgetStatePropertyAll(Colors.yellow),
+            shape: WidgetStateProperty.all(ContinuousRectangleBorder(borderRadius: BorderRadius.circular(20))),
+            side: WidgetStateProperty.all(BorderSide(color: Colors.red, width: 3)),
           ),
           Container(
             color: Colors.white,
@@ -101,14 +96,14 @@ class _memoState extends State<memo> {
             child: ListView.separated(
               itemCount: filtered.length,
               itemBuilder: (context, index) {
+                FilteredMemo memo = filtered[index] as FilteredMemo;
                 return ListTile(
-                  title: Text(filtered[index].Mtitle),
+                  title: Text(memo.Mtitle),
                   trailing: IconButton(
                     onPressed: () {
-                      setState(() {
-                        memos.removeAt(index);
-                        Searchfilter();
-                      });
+                      memos.removeAt(memo.index);
+                      // memos.removeAt(index);
+                      Searchfilter();
                     },
                     icon: const Icon(Icons.delete),
                   ),
@@ -117,7 +112,7 @@ class _memoState extends State<memo> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => Mcontents(
-                                  mnumber: index,
+                                  mnumber: memo.index,
                                 )));
                   },
                 );
@@ -134,31 +129,20 @@ class _memoState extends State<memo> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
       floatingActionButton: Stack(
         children: [
           Align(
             alignment: Alignment(
-                Alignment.bottomRight.x - 0.4, Alignment.bottomRight.y),
+                Alignment.bottomRight.x, Alignment.bottomRight.y),
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Minsert()));
+                    MaterialPageRoute(builder: (context) => const Minsert()));
               },
               tooltip: '추가',
               child: const Text(
                 '추가',
-                style: TextStyle(fontSize: 17, color: Colors.black),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.bottomRight,
-            child: FloatingActionButton(
-              onPressed: () {},
-              tooltip: '삭제',
-              child: const Text(
-                '삭제',
                 style: TextStyle(fontSize: 17, color: Colors.black),
               ),
             ),

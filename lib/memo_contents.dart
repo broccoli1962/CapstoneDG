@@ -74,7 +74,7 @@ class _McontentsState extends State<Mcontents> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

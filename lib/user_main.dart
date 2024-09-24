@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/user_make.dart';
+import 'package:untitled/user_view.dart';
+import 'package:untitled/utils/database.dart';
 import 'utils/util.dart';
 
 class UserTest extends StatefulWidget {
@@ -13,26 +16,40 @@ String searchText = "";
 
 class _UserTestState extends State<UserTest> {
   TextEditingController searchController = TextEditingController();
-  List<UserT> filtered = [];
+
+
+  Future<void> _initData() async {
+    final QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('user_create').get();
+    setState(() {
+      ulist = snapshot.docs
+          .map(
+              (doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
+          .toList();
+    });
+  }
+
+  List<User_Create> filtered = [];
 
   @override
-  void initState(){
+  void initState() {
+    _initData();
     super.initState();
     searchController.addListener(Searchfilter);
-    filtered = usert;
+    filtered = ulist;
   }
 
   void Searchfilter(){
     final munja = searchController.text.toLowerCase();
     setState(() {
-      filtered = usert.where((us) {
-        return us.title.toLowerCase().contains(munja);
+      filtered = ulist.where((us) {
+        return us.uname.toLowerCase().contains(munja);
       }).toList();
     });
   }
 
   @override
-  void dispose(){
+  void dispose() {
     searchController.removeListener(Searchfilter);
     searchController.dispose();
     super.dispose();
@@ -43,71 +60,69 @@ class _UserTestState extends State<UserTest> {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
-      child: AppBar(
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                    Text(' 문제',
-                        style: TextStyle(
-                            fontSize: 30, fontWeight: FontWeight.bold)),
-                  ],
+        child: AppBar(
+          title: const Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 50,
+                      ),
+                      Text(' 문제',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          backgroundColor: Colors.white,
+          actions: [
+            Container(
+              margin: const EdgeInsets.all(10), // 버튼 외부 여백 설정
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(builder: (context) => const UserMake()),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.white, // 버튼 배경색
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  side: const BorderSide(
+                    color: Color(0xFF4169E1),
+                  ),
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 16, vertical: 8), // 버튼 크기 조정
                 ),
-              ],
+                child: const Text(
+                  '문제 만들기',
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
             ),
           ],
-        ),
-
-        backgroundColor: Colors.white,
-        actions: [
-          Container(
-            margin: const EdgeInsets.all(10), // 버튼 외부 여백 설정
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const UserMake()),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white, // 버튼 배경색
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                side: BorderSide(
-                  color: Color(0xFF4169E1),
-                ),
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8), // 버튼 크기 조정
-              ),
-              child: const Text(
-                '문제 만들기',
-                style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                ),
-              ),
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1.0),
+            child: Divider(
+              height: 2,
+              thickness: 1,
+              color: Colors.black,
             ),
           ),
-
-
-        ],
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
-          child: Divider(
-            height: 2,
-            thickness: 1,
-              color: Colors.black,
-          ),
         ),
-      ),
       ),
       backgroundColor: Colors.white,
       body: Center(
@@ -130,16 +145,25 @@ class _UserTestState extends State<UserTest> {
             Expanded(
               child: ListView.separated(
                 itemBuilder: (BuildContext, int index) {
-                  return UserList(filtered[index], index);
+                  return ListTile(
+                      title: Text(filtered[index].uname),
+                      subtitle: Text(filtered[index].utitle),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    UserView(ViewIndex: index)));
+                      });
+                  //return UserList(filtered[index], index);
                 },
-
                 separatorBuilder: (BuildContext context, int index) =>
                     const Divider(
-                      height: 2,
-                      thickness: 1,
-                      color: Colors.black,
-                    ),
-                itemCount: filtered.length,
+                  height: 2,
+                  thickness: 1,
+                  color: Colors.black,
+                ),
+                itemCount: filtered.length, //filtered.length,
               ),
             ),
           ],

@@ -73,12 +73,12 @@ class _Practice_inState extends State<Practice_in> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color(0xFF4169E1),
                 ),
                 backgroundColor: Colors.white,
               ),
-              child: Text(
+              child: const Text(
                 '돌아가기',
                 style: TextStyle(color: Colors.black),
               ),
@@ -105,7 +105,7 @@ class _Practice_inState extends State<Practice_in> {
                   color: Colors.white,
                   child: SingleChildScrollView(
                       child: Text(contents,
-                          style: TextStyle(
+                          style: const TextStyle(
                               color: Colors.black,
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -119,7 +119,7 @@ class _Practice_inState extends State<Practice_in> {
             height: 0.01,
           ),
           Container(
-            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
             height: cSize.height * 0.218,
             width: double.infinity,
             color: Colors.white,
@@ -133,7 +133,7 @@ class _Practice_inState extends State<Practice_in> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
     );
   }
 }

@@ -89,7 +89,7 @@ class _TestState extends State<Test> {
                   // 페이지 선택 RadioListTile
                   title: Text(
                     nameList[index], // 장 이름
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontSize: 25,
                         color: Colors.black,
                         fontWeight: FontWeight.bold),

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled/utils/util.dart';
 
@@ -15,8 +14,8 @@ class _MinsertState extends State<Minsert> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
-    TextEditingController _controller = TextEditingController();
-    TextEditingController _controller2 = TextEditingController();
+    TextEditingController controller = TextEditingController();
+    TextEditingController controller2 = TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -67,7 +66,7 @@ class _MinsertState extends State<Minsert> {
                   hintText: '  제목 입력'
               ),
               maxLines: 1,
-              controller: _controller2,
+              controller: controller2,
             ),
           ),
           const Divider(
@@ -84,13 +83,13 @@ class _MinsertState extends State<Minsert> {
                     hintText: '  내용 입력'
                 ),
                 maxLines: 22,
-                controller: _controller,
+                controller: controller,
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: BottomBar(),
+      bottomNavigationBar: const BottomBar(),
       floatingActionButton: Stack(
         children: [
           Align(
@@ -101,7 +100,7 @@ class _MinsertState extends State<Minsert> {
               onPressed: () {
                 setState(() {
                   memos.add(
-                    Memos(_controller2.text ,_controller.text),
+                    Memos(controller2.text ,controller.text),
                   );
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(
@@ -110,7 +109,7 @@ class _MinsertState extends State<Minsert> {
                 });
               },
               tooltip: '수정',
-              child: Text('저장'),
+              child: const Text('저장'),
             ),
           ),
           Align(

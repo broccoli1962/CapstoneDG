@@ -4,15 +4,20 @@ import 'package:untitled/practice.dart';
 import 'package:untitled/setting.dart';
 import 'package:untitled/test.dart';
 import 'package:untitled/user_main.dart';
-import 'package:untitled/user_view.dart';
 
 import '../memo.dart';
+import 'database.dart';
 
 class Memos {
   String Mtitle;
   String contents;
 
   Memos(this.Mtitle, this.contents);
+}
+
+class FilteredMemo extends Memos{
+  FilteredMemo(super.Mtitle, super.contents, this.index);
+  int index;
 }
 
 // 문제 클래스
@@ -108,37 +113,38 @@ class Problem_t {
 }
 
 //유저가 문제 제작
-class UserT {
-  String name;
-  String title;
-  String content;
+// class UserT {
+//   String name;
+//   String title;
+//   String content;
+//
+//   UserT(this.name, this.title, this.content);
+// }
+//
+// class UserList extends StatelessWidget {
+//   UserList(this._data, this.number);
+//
+//   final UserT _data;
+//   final int number;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ListTile(
+//       title: Text(_data.name),
+//       subtitle: Text(_data.title),
+//       onTap: () {
+//         Navigator.push(
+//             context,
+//             MaterialPageRoute(
+//                 builder: (context) =>
+//                     UserView(ViewIndex: number)));
+//       },
+//     );
+//   }
+// }
+//final List<UserT> usert = [];
+List<User_Create> ulist = [];
 
-  UserT(this.name, this.title, this.content);
-}
-
-class UserList extends StatelessWidget {
-  UserList(this._data, this.number);
-
-  final UserT _data;
-  final int number;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(_data.name),
-      subtitle: Text(_data.title),
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) =>
-                    UserView(ViewIndex: number)));
-      },
-    );
-  }
-}
-
-final List<UserT> usert = [];
 
 //바텀 바 클래스
 class BottomNav extends StatelessWidget {
@@ -146,7 +152,7 @@ class BottomNav extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
 
-  const BottomNav({
+  const BottomNav({super.key, 
     required this.icon,
     required this.label,
     required this.onPressed,
@@ -169,7 +175,7 @@ class BottomNav extends StatelessWidget {
           ),
           Text(
             label,
-            style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           )
         ],
       ),
@@ -183,7 +189,7 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
         color: Colors.white,
         border: Border(top: BorderSide(color: Colors.black, width: 1),),
       ),
@@ -249,7 +255,7 @@ class BottomBar extends StatelessWidget {
 
 //텍스트 색 변경
 class CustomTextColor extends TextEditingController{
-  CustomTextColor({String? text}) : super(text: text);
+  CustomTextColor({super.text});
 
   @override
   TextSpan buildTextSpan({
@@ -284,7 +290,7 @@ class CustomTextField extends StatefulWidget {
   final ValueChanged<String> onTextChanged;
   int? maxLines;
 
-  CustomTextField({
+  CustomTextField({super.key, 
     required this.initialText,
     required this.onTextChanged,
     this.maxLines,

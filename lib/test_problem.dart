@@ -20,27 +20,30 @@ class Test_in extends StatefulWidget {
 
 class _Test_inState extends State<Test_in> {
   //jdoodle api
-  final getapi = jdoodleAPI(ClientId: '', ClientSecret: '');
+  final getapi = jdoodleAPI(ClientId: 'c545e7d1c9cfdfb23050d82cc1d7238e', ClientSecret: '42abd4de7564b91e4c19d07ac7819b412b30835a6f227de0cdeb3afc158664f1');
   String _output = '';
 
-  late Problem_t view;
   late String _contents;
 
   //코딩 api
   Future<void> _executeCode() async {
-    final code = view.contents;
-    final language = 'c';
+    late String code = _contents;
+    const language = 'c';
 
     try {
+      print(code);
       final output = await getapi.executeCode(code, language);
       setState(() {
         _output = '출력 결과 : $output';
       });
-    } on Exception catch (e) {
+    } on Exception catch (e,s) {
+      print(s);
       setState(() {
         _output = 'Error:$e';
       });
     }
+
+    print(_output);
   }
 
   //텍스트 실시간 변경
@@ -118,7 +121,7 @@ class _Test_inState extends State<Test_in> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
-                  child: Text('ok')),
+                  child: const Text('ok')),
             ],
           );
         },
@@ -154,12 +157,12 @@ class _Test_inState extends State<Test_in> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color(0xFF4169E1),
                 ),
                 backgroundColor: Colors.white,
               ),
-              child: Text(
+              child: const Text(
                 '돌아가기',
                 style: TextStyle(color: Colors.black),
               ),
@@ -174,7 +177,7 @@ class _Test_inState extends State<Test_in> {
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                side: BorderSide(
+                side: const BorderSide(
                   color: Color(0xFF4169E1),
                 ),
                 backgroundColor: Colors.white,
@@ -218,7 +221,7 @@ class _Test_inState extends State<Test_in> {
           Container(
             width: double.infinity,
             height: cSize.height * 0.17,
-            padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
             decoration: const BoxDecoration(color: Colors.white),
             child: SingleChildScrollView(
               // SingleChildScrollView로 감싸기
@@ -248,14 +251,15 @@ class _Test_inState extends State<Test_in> {
                 onTextChanged: _onChangedText,
                 initialText: contents,
                 maxLines: 23,
-              ))
+              ),
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           explain(context);
         },
-        child: Text('문제풀이'),
+        child: const Text('문제풀이'),
       ),
     );
   }
