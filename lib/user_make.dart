@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled/user_main.dart';
 import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
 
@@ -54,8 +55,12 @@ class _UserMakeState extends State<UserMake> {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('문제 업로드 완료')),
       );
-      Navigator.pop(context);
-    } catch (e) {
+      //Navigator.pop(context);
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(
+              builder: (context) => const UserTest()),
+              (route) => false);
+    }catch(e){
       print('데이터 처리 오류: ${e.toString()}');
     }
   }
