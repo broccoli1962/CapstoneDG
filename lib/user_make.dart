@@ -59,10 +59,9 @@ class _UserMakeState extends State<UserMake> {
       );
       //Navigator.pop(context);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(
-              builder: (context) => const UserTest()),
-              (route) => false);
-    }catch(e){
+          MaterialPageRoute(builder: (context) => const UserTest()),
+          (route) => false);
+    } catch (e) {
       print('데이터 처리 오류: ${e.toString()}');
     }
   }
@@ -71,39 +70,42 @@ class _UserMakeState extends State<UserMake> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child: AppBar(
           backgroundColor: Colors.white,
           automaticallyImplyLeading: false,
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                    Text(' 문제제작',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
+          title: const Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 50,
+                      ),
+                      Text(' 문제제작',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          centerTitle: true,
+          elevation: 0,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              height: 2,
+              thickness: 1,
+              color: Colors.black,
             ),
-          ],
-        ),
-        centerTitle: true,
-        elevation: 0,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            height: 2,
-            thickness: 1,
-            color: Colors.black,
           ),
         ),
       ),
@@ -135,10 +137,9 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: utitleController,
-                      maxLines: 2,
+                      maxLines: 1,
                       decoration: const InputDecoration(
                         labelText: '제목 이름',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -156,10 +157,9 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: utestcaseController,
-                      maxLines: 3,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '입력값',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -177,7 +177,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: urtestcaseController,
                       maxLines: 2,
@@ -198,10 +197,9 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: ucontentsController,
-                      maxLines: 5,
+                      maxLines: 4,
                       decoration: const InputDecoration(
                         labelText: '문제 내용',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -219,7 +217,6 @@ class _UserMakeState extends State<UserMake> {
                       thickness: 1,
                       color: Colors.black,
                     ),
-
                     TextFormField(
                       controller: uhintController,
                       maxLines: 2,
@@ -242,7 +239,7 @@ class _UserMakeState extends State<UserMake> {
                     ),
                     TextFormField(
                       controller: uanswerController,
-                      maxLines: 1,
+                      maxLines: 5,
                       decoration: const InputDecoration(
                         labelText: '정답',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -254,6 +251,11 @@ class _UserMakeState extends State<UserMake> {
                         }
                         return null;
                       },
+                    ),
+                    const Divider(
+                      height: 2,
+                      thickness: 1,
+                      color: Colors.black,
                     ),
                     TextFormField(
                       controller: upwController,
