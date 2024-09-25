@@ -55,8 +55,7 @@ class _UserUpdateState extends State<UserUpdate> {
         ucontents: ucontentsController.text,
         uhint: uhintController.text,
         uanswer: uanswerController.text,
-        upw: upwController.text
-    );
+        upw: upwController.text);
     uList[ss] = dd;
     await ss.reference.update(dd.toJson());
     //ss.reference.update({});
@@ -81,39 +80,42 @@ class _UserUpdateState extends State<UserUpdate> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        automaticallyImplyLeading: false,
-        title: const Stack(
-          alignment: Alignment.center,
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.person,
-                      size: 50,
-                    ),
-                    Text(' 문제제작',
-                        style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ],
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60.0),
+        child: AppBar(
+          backgroundColor: Colors.white,
+          automaticallyImplyLeading: false,
+          title: const Stack(
+            alignment: Alignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.person,
+                        size: 50,
+                      ),
+                      Text(' 문제제작',
+                          style: TextStyle(
+                              fontSize: 30, fontWeight: FontWeight.bold)),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+          centerTitle: true,
+          elevation: 0,
+          bottom: const PreferredSize(
+            preferredSize: Size.fromHeight(1),
+            child: Divider(
+              height: 2,
+              thickness: 1,
+              color: Colors.black,
             ),
-          ],
-        ),
-        centerTitle: true,
-        elevation: 0,
-        bottom: const PreferredSize(
-          preferredSize: Size.fromHeight(1),
-          child: Divider(
-            height: 2,
-            thickness: 1,
-            color: Colors.black,
           ),
         ),
       ),
@@ -260,6 +262,11 @@ class _UserUpdateState extends State<UserUpdate> {
                         return null;
                       },
                     ),
+                    const Divider(
+                      height: 2,
+                      thickness: 1,
+                      color: Colors.black,
+                    ),
                     TextFormField(
                       controller: upwController,
                       maxLines: 1,
@@ -292,9 +299,12 @@ class _UserUpdateState extends State<UserUpdate> {
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
                                         builder: (context) => const UserTest()),
-                                        (route) => false);
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => UserView(viewIndex: widget.viewIndex)));
+                                    (route) => false);
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => UserView(
+                                            viewIndex: widget.viewIndex)));
                                 //Navigator.pop(context);
                                 //_createData();
                               },
