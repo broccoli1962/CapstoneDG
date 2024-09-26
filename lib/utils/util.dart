@@ -239,7 +239,7 @@ class BottomBar extends StatelessWidget {
                       (route) => false);
             },
           ),
-          BottomNav(
+          /*BottomNav(
             icon: Icons.settings,
             label: '설정',
             onPressed: () {
@@ -248,7 +248,7 @@ class BottomBar extends StatelessWidget {
                       builder: (context) => const setting()),
                       (route) => false);
             },
-          ),
+          ),*/
         ],
       ),
     );

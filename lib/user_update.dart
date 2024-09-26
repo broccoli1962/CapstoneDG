@@ -149,7 +149,7 @@ class _UserUpdateState extends State<UserUpdate> {
                     ),
                     TextFormField(
                       controller: utitleController,
-                      maxLines: 2,
+                      maxLines: 1,
                       decoration: const InputDecoration(
                         labelText: '제목 이름',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -169,7 +169,7 @@ class _UserUpdateState extends State<UserUpdate> {
                     ),
                     TextFormField(
                       controller: utestcaseController,
-                      maxLines: 3,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '입력값',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -209,7 +209,7 @@ class _UserUpdateState extends State<UserUpdate> {
                     ),
                     TextFormField(
                       controller: ucontentsController,
-                      maxLines: 5,
+                      maxLines: 4,
                       decoration: const InputDecoration(
                         labelText: '문제 내용',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -249,7 +249,7 @@ class _UserUpdateState extends State<UserUpdate> {
                     ),
                     TextFormField(
                       controller: uanswerController,
-                      maxLines: 1,
+                      maxLines: 5,
                       decoration: const InputDecoration(
                         labelText: '정답',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
