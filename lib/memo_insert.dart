@@ -42,7 +42,7 @@ class _MinsertState extends State<Minsert> {
                     ),
                     Text(' 메모추가',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                            fontSize: 30, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ],

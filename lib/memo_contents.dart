@@ -35,7 +35,7 @@ class _McontentsState extends State<Mcontents> {
                     ),
                     Text(' 메모리스트',
                         style: TextStyle(
-                            fontSize: 24, fontWeight: FontWeight.bold)),
+                            fontSize: 30, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ],

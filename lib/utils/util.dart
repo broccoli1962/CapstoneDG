@@ -23,97 +23,97 @@ class FilteredMemo extends Memos{
   int index;
 }
 
-// 문제 클래스
-class Problem_p {
-  int page; // 장
-  int number; // 문제 번호
-  String title; // 제목
-  String contents; // 내용
-  String hint; // 힌트
-
-  // 문제 목록
-  //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
-  static List<Problem_p> problems = [
-
-  ];
-
-// 페이지와 문제 번호에 해당하는 문제 반환
-  static Problem_p get(int a, int b) {
-    for (Problem_p p in problems) {
-      if (a == p.page && b == p.number) {
-        return p;
-      }
-    }
-    return dummy; // 문제가 없는 경우 더미 반환
-  }
-
-  // 더미 문제
-  static Problem_p dummy = Problem_p(
-    0,
-    0,
-    'dummy title',
-    'contents',
-    'hint',
-  );
-
-  // Problem_p 클래스 생성자
-  Problem_p(this.page, this.number, this.title, this.contents, this.hint);
-}
-
-
-//시험
-class Problem_t {
-  int page;
-  int number;
-  String title;
-  String testCase;
-  String rtestCase2;
-  String contents;
-  String myAnswer;
-  String hint;
-  String answer;
-
-  //Problem(몇장, 몇번문제, 제목, 조건값, 출력값, 내용, 정답, 문제풀이, 정답값),
-  static List<Problem_t> problems = [
-    Problem_t(
-        1,
-        1,
-        '1-1\n<"Hi C programing">\n을 출력하세요.',
-        '10\n20\n30\n40\n50\n60',
-        'Hi C programing',
-        //
-        '#include <stdio.h>\n'
-            'int main(){\n'
-            '//안에 들어갈 내용을 적으세요.\n}',
-        '',
-        'hint',
-        'answer'),
-  ];
-
-  static Problem_t get(int a, int b) {
-    for (Problem_t p in problems) {
-      if (a == p.page && b == p.number) {
-        return p;
-      }
-    }
-    return dummy;
-  }
-
-  static Problem_t dummy = Problem_t(
-      0,
-      0,
-      'dummy title',
-      'dummy testcase',
-      'dummy rtestcase',
-      'contents',
-      'dummy',
-      'hint',
-      'answer');
-
-  Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2,
-      this.contents,
-      this.myAnswer, this.hint, this.answer);
-}
+// // 문제 클래스
+// class Problem_p {
+//   int page; // 장
+//   int number; // 문제 번호
+//   String title; // 제목
+//   String contents; // 내용
+//   String hint; // 힌트
+//
+//   // 문제 목록
+//   //Problem(몇장, 몇번문제, 문제제목, 내용, 힌트;
+//   static List<Problem_p> problems = [
+//
+//   ];
+//
+// // 페이지와 문제 번호에 해당하는 문제 반환
+//   static Problem_p get(int a, int b) {
+//     for (Problem_p p in problems) {
+//       if (a == p.page && b == p.number) {
+//         return p;
+//       }
+//     }
+//     return dummy; // 문제가 없는 경우 더미 반환
+//   }
+//
+//   // 더미 문제
+//   static Problem_p dummy = Problem_p(
+//     0,
+//     0,
+//     'dummy title',
+//     'contents',
+//     'hint',
+//   );
+//
+//   // Problem_p 클래스 생성자
+//   Problem_p(this.page, this.number, this.title, this.contents, this.hint);
+// }
+//
+//
+// //시험
+// class Problem_t {
+//   int page;
+//   int number;
+//   String title;
+//   String testCase;
+//   String rtestCase2;
+//   String contents;
+//   String myAnswer;
+//   String hint;
+//   String answer;
+//
+//   //Problem(몇장, 몇번문제, 제목, 조건값, 출력값, 내용, 정답, 문제풀이, 정답값),
+//   static List<Problem_t> problems = [
+//     Problem_t(
+//         1,
+//         1,
+//         '1-1\n<"Hi C programing">\n을 출력하세요.',
+//         '10\n20\n30\n40\n50\n60',
+//         'Hi C programing',
+//         //
+//         '#include <stdio.h>\n'
+//             'int main(){\n'
+//             '//안에 들어갈 내용을 적으세요.\n}',
+//         '',
+//         'hint',
+//         'answer'),
+//   ];
+//
+//   static Problem_t get(int a, int b) {
+//     for (Problem_t p in problems) {
+//       if (a == p.page && b == p.number) {
+//         return p;
+//       }
+//     }
+//     return dummy;
+//   }
+//
+//   static Problem_t dummy = Problem_t(
+//       0,
+//       0,
+//       'dummy title',
+//       'dummy testcase',
+//       'dummy rtestcase',
+//       'contents',
+//       'dummy',
+//       'hint',
+//       'answer');
+//
+//   Problem_t(this.page, this.number, this.title, this.testCase, this.rtestCase2,
+//       this.contents,
+//       this.myAnswer, this.hint, this.answer);
+// }
 
 //유저가 문제 제작
 // class UserT {
