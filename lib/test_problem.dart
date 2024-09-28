@@ -33,8 +33,13 @@ class _Test_inState extends State<Test_in> {
     try {
       print(code);
       final output = await getapi.executeCode(code, language);
+      print(output);
       setState(() {
-        _output = '출력 결과 : $output';
+        if(output == answer) {
+          _output = '출력 결과 : \n$output\n정답입니다.';
+        }else{
+          _output = '오답입니다.';
+        }
       });
     } on Exception catch (e,s) {
       print(s);
@@ -59,7 +64,6 @@ class _Test_inState extends State<Test_in> {
   String testCase = "";
   String rtestCase = "";
   String contents = "";
-  String myAnswer = "";
   String hint = "";
   String answer = "";
 

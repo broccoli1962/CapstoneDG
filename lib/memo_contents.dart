@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/memo_update.dart';
 import 'package:untitled/utils/util.dart';
 
 import 'memo.dart';
@@ -71,6 +72,12 @@ class _McontentsState extends State<Mcontents> {
             width: double.infinity,
             height: cSize.height*0.618,
             child: SingleChildScrollView(child: Text(memos[widget.mnumber].contents))
+          ),
+          Container(
+            child: TextButton(onPressed: (){
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => MemoUpdate(viewIndex: widget.mnumber)));
+            }, child: Text('hi')),
           ),
         ],
       ),

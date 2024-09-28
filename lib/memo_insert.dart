@@ -87,6 +87,7 @@ class _MinsertState extends State<Minsert> {
               height: cSize.height * 0.6675,
               child: TextField(
                 decoration: const InputDecoration(
+                    border: InputBorder.none,
                     hintText: '  내용 입력'
                 ),
                 maxLines: 22,

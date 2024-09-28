@@ -3,7 +3,6 @@ import 'package:untitled/user_update.dart';
 import 'package:untitled/utils/http_api.dart';
 import 'package:untitled/utils/util.dart';
 
-
 class UserView extends StatefulWidget {
   const UserView({super.key, required this.viewIndex});
 
@@ -22,7 +21,7 @@ class _UserViewState extends State<UserView> {
   String _output = '';
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
   }
 
@@ -34,7 +33,9 @@ class _UserViewState extends State<UserView> {
     try {
       final output = await getapi.executeCode(code, language);
       setState(() {
-        _output = '출력 결과 : $output';
+        if (output == uList.values.elementAt(widget.viewIndex).uanswer) {
+          _output = '출력 결과 : \n$output';
+        }
       });
     } on Exception catch (e) {
       setState(() {
@@ -53,6 +54,7 @@ class _UserViewState extends State<UserView> {
   }
 
   TextEditingController Secret = TextEditingController();
+
   void secretUpdate(context) {
     showDialog(
       context: context,
@@ -70,10 +72,14 @@ class _UserViewState extends State<UserView> {
             actions: [
               OutlinedButton(
                   onPressed: () {
-                    if(uList.values.elementAt(widget.viewIndex).upw == Secret.text){
+                    if (uList.values.elementAt(widget.viewIndex).upw ==
+                        Secret.text) {
                       Navigator.of(context).pop();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex)));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  UserUpdate(viewIndex: widget.viewIndex)));
                     }
                   },
                   child: const Text('ok')),
@@ -90,25 +96,26 @@ class _UserViewState extends State<UserView> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('해설'),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              uList.values.elementAt(widget.viewIndex).uhint,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            title: const Text('해설'),
+            content: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: Text(
+                uList.values.elementAt(widget.viewIndex).uhint,
+                style:
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
             ),
-          ),
-          insetPadding: const EdgeInsets.all(10),
-          actions: [
-            OutlinedButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                child: const Text('ok')),
-          ],
-          shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(32)),
-        ));
+            insetPadding: const EdgeInsets.all(10),
+            actions: [
+              OutlinedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text('ok')),
+            ],
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(32)),
+            ));
       },
     );
   }
@@ -139,7 +146,7 @@ class _UserViewState extends State<UserView> {
     );
   }
 
-  CustomTextField ?tmp;
+  CustomTextField? tmp;
 
   @override
   Widget build(BuildContext context) {
@@ -262,14 +269,38 @@ class _UserViewState extends State<UserView> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          // Navigator.push(context,
-          //     MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex,)));
-          //explain(context);
-          secretUpdate(context);
-        },
-        child: const Text('문제풀이'),
+      floatingActionButton: Stack(
+        children: [
+          Align(
+            alignment: Alignment(
+                Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
+            child: FloatingActionButton(
+              onPressed: () {
+                secretUpdate(context);
+              },
+              child: Text('문제 수정'),
+            ),
+          ),
+          Align(
+            alignment:
+                Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y),
+            child: FloatingActionButton(
+              onPressed: () {
+                explain(context);
+              },
+              child: Text('문제 풀이'),
+            ),
+          )
+        ],
+        // child: FloatingActionButton(
+        //   onPressed: () {
+        //     // Navigator.push(context,
+        //     //     MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex,)));
+        //     //explain(context);
+        //     secretUpdate(context);
+        //   },
+        //   child: const Text('문제풀이'),
+        // ),
       ),
     );
   }
