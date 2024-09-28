@@ -332,6 +332,9 @@ class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      decoration: const InputDecoration(
+        border: InputBorder.none,
+      ),
       controller: _controller,
       focusNode: _focusNode,
       maxLines: widget.maxLines,
