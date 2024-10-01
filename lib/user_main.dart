@@ -25,11 +25,6 @@ class _UserTestState extends State<UserTest> {
     for(var docs in snapshot.docs){
       uList[docs] = User_Create.fromJson(docs.data() as Map<String, dynamic>);
     }
-
-    // print(snapshot.docs[0].id);
-    // ulist = snapshot.docs
-    //     .map((doc) => User_Create.fromJson(doc.data() as Map<String, dynamic>))
-    //     .toList();
     Searchfilter();
   }
 
@@ -157,7 +152,7 @@ class _UserTestState extends State<UserTest> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    UserView(viewIndex: index)));
+                                    UserView(viewIndex: uList.values.toList().indexOf(filtered[index]))));
                       });
                   //return UserList(filtered[index], index);
                 },

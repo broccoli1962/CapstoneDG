@@ -58,7 +58,11 @@ class _UserUpdateState extends State<UserUpdate> {
         upw: upwController.text);
     uList[ss] = dd;
     await ss.reference.update(dd.toJson());
-    //ss.reference.update({});
+  }
+
+  Future<void> deleteData() async {
+    DocumentSnapshot ss = uList.keys.elementAt(widget.viewIndex);
+    await ss.reference.delete();
   }
 
   @override
@@ -314,6 +318,13 @@ class _UserUpdateState extends State<UserUpdate> {
                                 Navigator.pop(context);
                               },
                               child: const Text('취소')),
+                          OutlinedButton(
+                              onPressed: () {
+                                deleteData();
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+                                    builder: (context) => const UserTest()),
+                                        (route) => false);
+                              }, child: const Text('삭제')),
                         ],
                       ),
                     ),
