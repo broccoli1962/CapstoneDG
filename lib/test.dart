@@ -12,16 +12,7 @@ class Test extends StatefulWidget {
 }
 
 //문제 장
-List<String> nameList = [
-  '1장',
-  '2장',
-  '3장',
-  '4장',
-  '5장',
-  '6장',
-  '7장',
-  '8장',
-];
+List<String> nameList = [ '1장', '2장', '3장', '4장', '5장', '6장', '7장', '8장',];
 
 //문제 개수
 List<int> list = [8, 8, 8, 8, 8, 8, 8, 8];

@@ -75,7 +75,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                         Icons.person,
                         size: 50,
                       ),
-                      Text(' 문제제작',
+                      Text('메모수정',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold)),
                     ],
