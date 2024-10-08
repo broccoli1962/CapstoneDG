@@ -72,7 +72,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
-                        Icons.person,
+                        Icons.menu_book,
                         size: 50,
                       ),
                       Text('메모수정',
@@ -108,13 +108,13 @@ class _MemoUpdateState extends State<MemoUpdate> {
                     TextFormField(
                       controller: MtitleController,
                       decoration: const InputDecoration(
-                        labelText: '사용자 이름',
+                        labelText: '제목',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
                         fillColor: Colors.white,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return '사용자 이름을 입력하세요.';
+                          return '제목을 입력하세요.';
                         }
                         return null;
                       },
@@ -126,15 +126,15 @@ class _MemoUpdateState extends State<MemoUpdate> {
                     ),
                     TextFormField(
                       controller: McontentsController,
-                      maxLines: 1,
+                      maxLines: 10,
                       decoration: const InputDecoration(
-                        labelText: '제목 이름',
+                        labelText: '내용',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
                         fillColor: Colors.white,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return '제목을 입력하세요.';
+                          return '내용을 입력하세요.';
                         }
                         return null;
                       },

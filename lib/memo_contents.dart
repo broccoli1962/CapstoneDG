@@ -77,7 +77,7 @@ class _McontentsState extends State<Mcontents> {
             child: TextButton(onPressed: (){
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => MemoUpdate(viewIndex: widget.mnumber)));
-            }, child: Text('hi')),
+            }, child: Text('수정')),
           ),
         ],
       ),
