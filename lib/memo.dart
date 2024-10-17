@@ -81,7 +81,7 @@ class _memoState extends State<memo> {
                         Icons.draw,
                         size: 50,
                       ),
-                      Text(' 메모리스트',
+                      Text(' 메모',
                           style: TextStyle(
                               fontSize: 30, fontWeight: FontWeight.bold)),
                     ],

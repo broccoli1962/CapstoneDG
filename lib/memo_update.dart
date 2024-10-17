@@ -107,6 +107,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                   children: [
                     TextFormField(
                       controller: MtitleController,
+                      maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '제목',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정
@@ -126,7 +127,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                     ),
                     TextFormField(
                       controller: McontentsController,
-                      maxLines: 10,
+                      maxLines: 20,
                       decoration: const InputDecoration(
                         labelText: '내용',
                         filled: true, // 배경 색상을 채우기 위해 true로 설정

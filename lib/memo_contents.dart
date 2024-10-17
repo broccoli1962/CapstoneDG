@@ -60,7 +60,7 @@ class _McontentsState extends State<Mcontents> {
           Container(
             color: Colors.white,
             width: double.infinity,
-            height: cSize.height*0.15,
+            height: cSize.height * 0.15,
             child: Text(memos[widget.mnumber].Mtitle),
           ),
           const Divider(
@@ -68,17 +68,31 @@ class _McontentsState extends State<Mcontents> {
             height: 0.01,
           ),
           Container(
-            color: Colors.white,
-            width: double.infinity,
-            height: cSize.height*0.618,
-            child: SingleChildScrollView(child: Text(memos[widget.mnumber].contents))
+              color: Colors.white,
+              width: double.infinity,
+              height: cSize.height * 0.512,
+              child: SingleChildScrollView(
+                  child: Text(memos[widget.mnumber].contents))),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0), // 원하는 만큼 여백을 추가
+              child: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(context,
+                    MaterialPageRoute(builder: (context) =>
+                        MemoUpdate(viewIndex: widget.mnumber)),
+                  );
+                },
+                tooltip: '수정',
+                child: const Text(
+                  '수정',
+                  style: TextStyle(fontSize: 17, color: Colors.black),
+                ),
+              ),
+            ),
           ),
-          Container(
-            child: TextButton(onPressed: (){
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => MemoUpdate(viewIndex: widget.mnumber)));
-            }, child: Text('수정')),
-          ),
+
         ],
       ),
       bottomNavigationBar: const BottomBar(),
