@@ -2,25 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/memo_insert.dart';
 import 'package:untitled/utils/util.dart';
-import 'memo_contents.dart';
+import 'memo_show.dart';
 
-class memo extends StatefulWidget {
-  const memo({super.key});
+class Memo extends StatefulWidget {
+  const Memo({super.key});
 
   @override
-  State<memo> createState() => _memoState();
+  State<Memo> createState() => _MemoState();
 }
 
 List<Memos> memos = [];
 List<Memos> filtered = [];
 TextEditingController searchController = TextEditingController();
 
-class _memoState extends State<memo> {
+class _MemoState extends State<Memo> {
   @override
   void initState() {
     super.initState();
-    searchController.addListener(Searchfilter);
-    Searchfilter();
+    searchController.addListener(searchFilter);
+    searchFilter();
     loadMemos();
   }
 
@@ -33,22 +33,22 @@ class _memoState extends State<memo> {
         return Memos(memoData[0], memoData[1]);
       }).toList();
     }
-    Searchfilter();
+    searchFilter();
   }
 
   Future<void> saveMemo() async {
     final prefs = await SharedPreferences.getInstance();
-    final encodeMemo = memos.map((memo)=> '${memo.Mtitle},${memo.contents}').toList();
+    final encodeMemo = memos.map((memo)=> '${memo.memoTitle},${memo.contents}').toList();
     await prefs.setStringList('memos', encodeMemo);
   }
 
-  void Searchfilter() {
+  void searchFilter() {
     filtered.clear();
     final munja = searchController.text.toLowerCase();
     for (int i = 0; i < memos.length; i++) {
       Memos memo = memos[i];
-      if (munja.isEmpty || memo.Mtitle.toLowerCase().contains(munja)) {
-        filtered.add(FilteredMemo(memo.Mtitle, memo.contents, i));
+      if (munja.isEmpty || memo.memoTitle.toLowerCase().contains(munja)) {
+        filtered.add(FilteredMemo(memo.memoTitle, memo.contents, i));
       }
     }
     setState(() {});
@@ -56,7 +56,7 @@ class _memoState extends State<memo> {
 
   @override
   void dispose() {
-    searchController.removeListener(Searchfilter);
+    searchController.removeListener(searchFilter);
     super.dispose();
   }
 
@@ -104,11 +104,11 @@ class _memoState extends State<memo> {
           //검색 바
           SearchBar(
             controller: searchController,
-            leading: Icon(Icons.search, color: Colors.blue),
-            backgroundColor: WidgetStatePropertyAll(Colors.white),
-            shape: WidgetStateProperty.all(ContinuousRectangleBorder()),
+            leading: const Icon(Icons.search, color: Colors.blue),
+            backgroundColor: const WidgetStatePropertyAll(Colors.white),
+            shape: WidgetStateProperty.all(const ContinuousRectangleBorder()),
             side: WidgetStateProperty.all(
-                BorderSide(color: Colors.white, width: 0)), // 테두리 색상 변경
+                const BorderSide(color: Colors.white, width: 0)), // 테두리 색상 변경
           ),
           const Divider(
             height: 2,
@@ -124,13 +124,13 @@ class _memoState extends State<memo> {
               itemBuilder: (context, index) {
                 FilteredMemo memo = filtered[index] as FilteredMemo;
                 return ListTile(
-                  title: Text(memo.Mtitle),
+                  title: Text(memo.memoTitle),
                   trailing: IconButton(
                     onPressed: () {
                       memos.removeAt(memo.index);
                       saveMemo();
                       // memos.removeAt(index);
-                      Searchfilter();
+                      searchFilter();
                     },
                     icon: const Icon(Icons.delete),
                   ),
@@ -138,7 +138,7 @@ class _memoState extends State<memo> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => Mcontents(
+                            builder: (context) => MemoShow(
                                   mnumber: memo.index,
                                 )));
                   },
@@ -165,7 +165,7 @@ class _memoState extends State<memo> {
             child: FloatingActionButton(
               onPressed: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => const Minsert()));
+                    MaterialPageRoute(builder: (context) => const MemoInsert()));
               },
               tooltip: '추가',
               child: const Text(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:untitled/memo.dart';
-import 'package:untitled/memo_contents.dart';
+import 'package:untitled/memo_show.dart';
 import 'package:untitled/utils/util.dart';
 
 class MemoUpdate extends StatefulWidget {
@@ -15,8 +15,8 @@ class MemoUpdate extends StatefulWidget {
 
 class _MemoUpdateState extends State<MemoUpdate> {
   final _formKey = GlobalKey<FormState>();
-  final MtitleController = TextEditingController();
-  final McontentsController = TextEditingController();
+  final memoTitleController = TextEditingController();
+  final memoContentsController = TextEditingController();
 
   Future<void> loadMemos() async{
     final prefs = await SharedPreferences.getInstance();
@@ -30,26 +30,26 @@ class _MemoUpdateState extends State<MemoUpdate> {
   }
 
   Future<void> saveMemo() async {
-    memos[widget.viewIndex].Mtitle = MtitleController.text;
-    memos[widget.viewIndex].contents = McontentsController.text;
+    memos[widget.viewIndex].memoTitle = memoTitleController.text;
+    memos[widget.viewIndex].contents = memoContentsController.text;
     final prefs = await SharedPreferences.getInstance();
-    final encodeMemo = memos.map((memo)=> '${memo.Mtitle},${memo.contents}').toList();
+    final encodeMemo = memos.map((memo)=> '${memo.memoTitle},${memo.contents}').toList();
     await prefs.setStringList('memos', encodeMemo);
   }
 
   @override
   void initState() {
     loadMemos();
-    MtitleController.text = memos[widget.viewIndex].Mtitle;
-    McontentsController.text = memos[widget.viewIndex].contents;
+    memoTitleController.text = memos[widget.viewIndex].memoTitle;
+    memoContentsController.text = memos[widget.viewIndex].contents;
     // TODO: implement initState
     super.initState();
   }
 
   @override
   void dispose() {
-    MtitleController.dispose();
-    McontentsController.dispose();
+    memoTitleController.dispose();
+    memoContentsController.dispose();
     super.dispose();
   }
 
@@ -106,7 +106,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     TextFormField(
-                      controller: MtitleController,
+                      controller: memoTitleController,
                       maxLines: 2,
                       decoration: const InputDecoration(
                         labelText: '제목',
@@ -126,7 +126,7 @@ class _MemoUpdateState extends State<MemoUpdate> {
                       color: Colors.black,
                     ),
                     TextFormField(
-                      controller: McontentsController,
+                      controller: memoContentsController,
                       maxLines: 20,
                       decoration: const InputDecoration(
                         labelText: '내용',
@@ -156,12 +156,12 @@ class _MemoUpdateState extends State<MemoUpdate> {
                                 Navigator.pop(context);
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (context) => const memo()),
+                                        builder: (context) => const Memo()),
                                         (route) => false);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Mcontents(
+                                        builder: (context) => MemoShow(
                                             mnumber: widget.viewIndex)));
                               },
                               child: const Text('확인')),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/test_problem.dart';
+import 'package:untitled/test_show.dart';
 import 'package:untitled/utils/util.dart';
 
 enum Page { A, B, C, D, E, F, G, H }
@@ -147,7 +147,7 @@ class MakeTest extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      Test_in(pg: pg.index + 1, number: number)));
+                      TestShow(pg: pg.index + 1, number: number)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,

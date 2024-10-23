@@ -1,40 +1,42 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/user_update.dart';
-import 'package:untitled/utils/http_api.dart';
+import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
+import 'utils/http_api.dart';
 
-class UserView extends StatefulWidget {
-  const UserView({super.key, required this.viewIndex});
+class TestShow extends StatefulWidget {
+  const TestShow({
+    required this.pg,
+    required this.number,
+    super.key,
+  });
 
-  final int viewIndex;
+  final int pg;
+  final int number;
 
   @override
-  State<UserView> createState() => _UserViewState();
+  State<TestShow> createState() => _TestShowState();
 }
 
-class _UserViewState extends State<UserView> {
+class _TestShowState extends State<TestShow> {
   //jdoodle api
-  final getapi = jdoodleAPI(
-      ClientId: 'c545e7d1c9cfdfb23050d82cc1d7238e',
-      ClientSecret:
-          '42abd4de7564b91e4c19d07ac7819b412b30835a6f227de0cdeb3afc158664f1');
+  final getapi = JdoodleAPI(clientId: 'c545e7d1c9cfdfb23050d82cc1d7238e', clientSecret: '42abd4de7564b91e4c19d07ac7819b412b30835a6f227de0cdeb3afc158664f1');
   String _output = '';
 
-  @override
-  void initState() {
-    super.initState();
-  }
+  late String _contents;
 
   //코딩 api
   Future<void> _executeCode() async {
-    late String code = contentController;
+    late String code = _contents;
     const language = 'c';
 
     try {
       final output = await getapi.executeCode(code, language);
       setState(() {
-        if (output == uList.values.elementAt(widget.viewIndex).uanswer) {
-          _output = '출력 결과 : \n$output';
+        if(output == answer) {
+          _output = '출력 결과 : \n$output\n정답입니다.';
+        }else{
+          _output = '오답입니다.';
         }
       });
     } on Exception catch (e) {
@@ -42,65 +44,75 @@ class _UserViewState extends State<UserView> {
         _output = 'Error:$e';
       });
     }
+
     finalData(context);
   }
 
-  String contentController = "";
-
-  void onChangedContentText(String newText) {
+  //텍스트 실시간 변경
+  void _onChangedText(String newValue) {
     setState(() {
-      contentController = newText;
+      _contents = newValue;
     });
   }
 
-  TextEditingController Secret = TextEditingController();
+  //db
+  String title = "";
+  String testCase = "";
+  String rtestCase = "";
+  String contents = "";
+  String hint = "";
+  String answer = "";
 
-  void secretUpdate(context) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-            title: const Text('수정 비밀번호 입력'),
-            content: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: TextField(
-                controller: Secret,
-                maxLines: 1,
-              ),
-            ),
-            insetPadding: const EdgeInsets.all(10),
-            actions: [
-              OutlinedButton(
-                  onPressed: () {
-                    if (uList.values.elementAt(widget.viewIndex).upw ==
-                        Secret.text) {
-                      Navigator.of(context).pop();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  UserUpdate(viewIndex: widget.viewIndex)));
-                    }
-                  },
-                  child: const Text('ok')),
-            ],
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(32)),
-            ));
-      },
-    );
+  Future<void> _initData() async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
+    final ref = db
+        .collection("test")
+        .withConverter(
+            fromFirestore: (snapshot, _) =>
+                FireDataTest.fromJson(snapshot.data()!),
+            toFirestore: (FireDataTest product, _) => product.toJson())
+        .where("chapter", isEqualTo: widget.pg)
+        .where("number", isEqualTo: widget.number);
+    try{
+      final docSnap = await ref.get();
+      if(docSnap.docs.isNotEmpty){
+        final inData = docSnap.docs.first.data();
+
+        setState(() {
+          title = inData.title.replaceAll("\\n", "\n");
+          testCase = inData.testCase.replaceAll("\\n", "\n");
+          rtestCase = inData.rtestCase.replaceAll("\\n", "\n");
+          // contents = inData.context.replaceAll("\\n", "\n");
+          tmp?.controller?.text = inData.context.replaceAll("\\n", "\n");
+          hint = inData.hint.replaceAll("\\n", "\n");
+          answer = inData.answer;
+        });
+      }else{
+        setState(() {
+          title = "데이터 불러오기 실패";
+          testCase = "데이터 불러오기 실패";
+          rtestCase = "데이터 불러오기 실패";
+          contents = "데이터 불러오기 실패";
+          hint = "데이터 불러오기 실패";
+          answer = "데이터 불러오기 실패";
+        });
+      }
+    }catch(e){
+      print('error : $e');
+    }
   }
 
+  //메인 화면 구성
   void explain(context) {
     showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
             title: const Text('해설'),
             content: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: Text(
-                uList.values.elementAt(widget.viewIndex).uhint,
+                hint,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
@@ -113,10 +125,8 @@ class _UserViewState extends State<UserView> {
                   },
                   child: const Text('ok')),
             ],
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(32)),
-            ));
-      },
+          );
+        },
     );
   }
 
@@ -130,7 +140,8 @@ class _UserViewState extends State<UserView> {
             width: MediaQuery.of(context).size.width,
             child: Text(
               _output,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              style:
+              const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           insetPadding: const EdgeInsets.all(10),
@@ -146,17 +157,28 @@ class _UserViewState extends State<UserView> {
     );
   }
 
-  CustomTextField? tmp;
+  @override
+  void initState() {
+    super.initState();
+    _initData();
+  }
+
+  CustomTextField ?tmp;
 
   @override
   Widget build(BuildContext context) {
+    tmp = CustomTextField(
+      onTextChanged: _onChangedText,
+      initialText: contents,
+      maxLines: 23,
+    );
     final Size cSize = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Text(
-          uList.values.elementAt(widget.viewIndex).utitle,
+          title,
           style: const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
           textAlign: TextAlign.center,
         ),
@@ -223,7 +245,7 @@ class _UserViewState extends State<UserView> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
-                  Text(uList.values.elementAt(widget.viewIndex).utestCase),
+                  Text(testCase),
                 ],
               ),
             ),
@@ -247,7 +269,7 @@ class _UserViewState extends State<UserView> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     textAlign: TextAlign.left,
                   ),
-                  Text(uList.values.elementAt(widget.viewIndex).urtestCase),
+                  Text(rtestCase),
                 ],
               ),
             ),
@@ -257,50 +279,19 @@ class _UserViewState extends State<UserView> {
             height: 0.01,
           ),
           Container(
-            width: double.infinity,
-            height: cSize.height * 0.55651,
-            decoration: const BoxDecoration(color: Colors.white),
-            padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
-            child: tmp = CustomTextField(
-              onTextChanged: onChangedContentText,
-              initialText: uList.values.elementAt(widget.viewIndex).ucontents,
-              maxLines: 23,
-            ),
+              width: double.infinity,
+              height: cSize.height * 0.55651,
+              decoration: const BoxDecoration(color: Colors.white),
+              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+              child: tmp,
           ),
         ],
       ),
-      floatingActionButton: Stack(
-        children: [
-          Align(
-            alignment: Alignment(
-                Alignment.bottomRight.x, Alignment.bottomRight.y - 0.2),
-            child: FloatingActionButton(
-              onPressed: () {
-                secretUpdate(context);
-              },
-              child: Text('문제 수정'),
-            ),
-          ),
-          Align(
-            alignment:
-                Alignment(Alignment.bottomRight.x, Alignment.bottomRight.y),
-            child: FloatingActionButton(
-              onPressed: () {
-                explain(context);
-              },
-              child: Text('문제 풀이'),
-            ),
-          )
-        ],
-        // child: FloatingActionButton(
-        //   onPressed: () {
-        //     // Navigator.push(context,
-        //     //     MaterialPageRoute(builder: (context) => UserUpdate(viewIndex: widget.viewIndex,)));
-        //     //explain(context);
-        //     secretUpdate(context);
-        //   },
-        //   child: const Text('문제풀이'),
-        // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          explain(context);
+        },
+        child: const Text('문제풀이'),
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:untitled/practice_problem.dart'; // practice_problem.dart 파일의 import 문
+import 'package:untitled/practice_show.dart';
 import 'package:untitled/utils/util.dart'; // test.dart 파일의 import 문
 
 // 페이지 열거형 정의
@@ -147,7 +147,7 @@ class MakeTest extends StatelessWidget {
               context,
               MaterialPageRoute(
                   builder: (context) =>
-                      Practice_in(pg: pg.index + 1, number: number)));
+                      PracticeShow(pg: pg.index + 1, number: number)));
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.white,

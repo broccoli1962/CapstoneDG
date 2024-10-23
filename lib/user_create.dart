@@ -1,21 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/user_main.dart';
+import 'package:untitled/user.dart';
 import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
 
-class UserMake extends StatefulWidget {
-  const UserMake({super.key});
+class UserCreate extends StatefulWidget {
+  const UserCreate({super.key});
 
   @override
-  State<UserMake> createState() => _UserMakeState();
+  State<UserCreate> createState() => _UserCreateState();
 }
 
 // //텍스트 컨트롤
 // String titleController = "";
 // String contentController = "";
 
-class _UserMakeState extends State<UserMake> {
+class _UserCreateState extends State<UserCreate> {
   final _formKey = GlobalKey<FormState>();
   final unameController = TextEditingController();
   final utitleController = TextEditingController();
@@ -40,7 +40,7 @@ class _UserMakeState extends State<UserMake> {
   }
 
   Future<void> _createData() async {
-    final userCreate = User_Create(
+    final userCreate = FireDataUser(
         uname: unameController.text,
         utitle: utitleController.text,
         utestCase: utestcaseController.text,
@@ -59,7 +59,7 @@ class _UserMakeState extends State<UserMake> {
       );
       //Navigator.pop(context);
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const UserTest()),
+          MaterialPageRoute(builder: (context) => const User()),
           (route) => false);
     } catch (e) {
       print('데이터 처리 오류: ${e.toString()}');

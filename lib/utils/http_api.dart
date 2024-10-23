@@ -1,18 +1,18 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-class jdoodleAPI {
-  final String ClientId;
-  final String ClientSecret;
+class JdoodleAPI {
+  final String clientId;
+  final String clientSecret;
 
-  jdoodleAPI({required this.ClientId, required this.ClientSecret});
+  JdoodleAPI({required this.clientId, required this.clientSecret});
 
   Future<String> executeCode(String script, String language,
       {int version = 0}) async {
     final url = Uri.parse('https://api.jdoodle.com/v1/execute');
     final data = {
-      'clientId': ClientId,
-      'clientSecret': ClientSecret,
+      'clientId': clientId,
+      'clientSecret': clientSecret,
       'script': script,
       'language': language,
       'versionIndex': version

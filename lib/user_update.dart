@@ -1,8 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/user_main.dart';
-import 'package:untitled/user_view.dart';
+import 'package:untitled/user.dart';
+import 'package:untitled/user_show.dart';
 import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
 
@@ -14,10 +13,6 @@ class UserUpdate extends StatefulWidget {
   @override
   State<UserUpdate> createState() => _UserUpdateState();
 }
-
-// //텍스트 컨트롤
-// String titleController = "";
-// String contentController = "";
 
 class _UserUpdateState extends State<UserUpdate> {
   final _formKey = GlobalKey<FormState>();
@@ -44,10 +39,8 @@ class _UserUpdateState extends State<UserUpdate> {
   }
 
   Future<void> updateData() async {
-    // QuerySnapshot tmp = await FirebaseFirestore.instance.collection('user_create').get();
-    // tmp.docs[viewIndex].id;
     DocumentSnapshot ss = uList.keys.elementAt(widget.viewIndex);
-    User_Create dd = User_Create(
+    FireDataUser dd = FireDataUser(
         uname: unameController.text,
         utitle: utitleController.text,
         utestCase: utestcaseController.text,
@@ -67,7 +60,7 @@ class _UserUpdateState extends State<UserUpdate> {
 
   @override
   void initState() {
-    User_Create block = uList.values.elementAt(widget.viewIndex);
+    FireDataUser block = uList.values.elementAt(widget.viewIndex);
     unameController.text = block.uname;
     utitleController.text = block.utitle;
     utestcaseController.text = block.utestCase;
@@ -302,12 +295,12 @@ class _UserUpdateState extends State<UserUpdate> {
                                 Navigator.pop(context);
                                 Navigator.of(context).pushAndRemoveUntil(
                                     MaterialPageRoute(
-                                        builder: (context) => const UserTest()),
+                                        builder: (context) => const User()),
                                     (route) => false);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => UserView(
+                                        builder: (context) => UserShow(
                                             viewIndex: widget.viewIndex)));
                                 //Navigator.pop(context);
                                 //_createData();
@@ -322,7 +315,7 @@ class _UserUpdateState extends State<UserUpdate> {
                               onPressed: () {
                                 deleteData();
                                 Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
-                                    builder: (context) => const UserTest()),
+                                    builder: (context) => const User()),
                                         (route) => false);
                               }, child: const Text('삭제')),
                         ],

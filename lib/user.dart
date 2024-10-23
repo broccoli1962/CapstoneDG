@@ -1,21 +1,20 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/user_make.dart';
-import 'package:untitled/user_view.dart';
+import 'package:untitled/user_create.dart';
+import 'package:untitled/user_show.dart';
 import 'package:untitled/utils/database.dart';
 import 'utils/util.dart';
 
-class UserTest extends StatefulWidget {
-  const UserTest({super.key});
+class User extends StatefulWidget {
+  const User({super.key});
 
   @override
-  State<UserTest> createState() => _UserTestState();
+  State<User> createState() => _UserState();
 }
 
 String searchText = "";
 
-class _UserTestState extends State<UserTest> {
+class _UserState extends State<User> {
   TextEditingController searchController = TextEditingController();
 
   Future<void> _initData() async {
@@ -23,22 +22,22 @@ class _UserTestState extends State<UserTest> {
         await FirebaseFirestore.instance.collection('user_create').get();
     uList.clear();
     for(var docs in snapshot.docs){
-      uList[docs] = User_Create.fromJson(docs.data() as Map<String, dynamic>);
+      uList[docs] = FireDataUser.fromJson(docs.data() as Map<String, dynamic>);
     }
-    Searchfilter();
+    searchFilter();
   }
 
-  List<User_Create> filtered = [];
+  List<FireDataUser> filtered = [];
 
   @override
   void initState() {
     _initData();
     super.initState();
-    searchController.addListener(Searchfilter);
+    searchController.addListener(searchFilter);
     filtered = uList.values.toList();
   }
 
-  void Searchfilter() {
+  void searchFilter() {
     final munja = searchController.text.toLowerCase();
     setState(() {
       filtered = uList.values.where((us) {
@@ -49,7 +48,7 @@ class _UserTestState extends State<UserTest> {
 
   @override
   void dispose() {
-    searchController.removeListener(Searchfilter);
+    searchController.removeListener(searchFilter);
     searchController.dispose();
     super.dispose();
   }
@@ -89,7 +88,7 @@ class _UserTestState extends State<UserTest> {
               child: ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const UserMake()),
+                    MaterialPageRoute(builder: (context) => const UserCreate()),
                   );
                 },
                 style: ElevatedButton.styleFrom(
@@ -143,7 +142,7 @@ class _UserTestState extends State<UserTest> {
             ),
             Expanded(
               child: ListView.separated(
-                itemBuilder: (BuildContext, int index) {
+                itemBuilder: (buildContext, int index) {
                   return ListTile(
                       title: Text(filtered[index].uname),
                       subtitle: Text(filtered[index].utitle),
@@ -152,7 +151,7 @@ class _UserTestState extends State<UserTest> {
                             context,
                             MaterialPageRoute(
                                 builder: (context) =>
-                                    UserView(viewIndex: uList.values.toList().indexOf(filtered[index]))));
+                                    UserShow(viewIndex: uList.values.toList().indexOf(filtered[index]))));
                       });
                   //return UserList(filtered[index], index);
                 },

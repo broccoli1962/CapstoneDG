@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/utils/database.dart';
 import 'package:untitled/utils/util.dart';
 
-class Practice_in extends StatefulWidget {
-  const Practice_in({
+class PracticeShow extends StatefulWidget {
+  const PracticeShow({
     required this.pg,
     required this.number,
     super.key,
@@ -15,10 +15,10 @@ class Practice_in extends StatefulWidget {
   final int number;
 
   @override
-  State<Practice_in> createState() => _Practice_inState();
+  State<PracticeShow> createState() => _PracticeShowState();
 }
 
-class _Practice_inState extends State<Practice_in> {
+class _PracticeShowState extends State<PracticeShow> {
   String title = "";
   String contents = "";
   String hint = "";
@@ -30,8 +30,8 @@ class _Practice_inState extends State<Practice_in> {
         .collection("practice")
         .withConverter(
             fromFirestore: (snapshot, _) =>
-                FireData_P.fromJson(snapshot.data()!),
-            toFirestore: (FireData_P product, _) => product.toJson())
+                FireDataPractice.fromJson(snapshot.data()!),
+            toFirestore: (FireDataPractice product, _) => product.toJson())
         .where("chapter", isEqualTo: widget.pg)
         .where("number", isEqualTo: widget.number);
     final docSnap = await ref.get();
@@ -95,24 +95,22 @@ class _Practice_inState extends State<Practice_in> {
       ),
       body: Column(
         children: [
-          Container(
-            child: Column(
-              children: [
-                Container(
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-                  height: cSize.height * 0.55,
-                  width: double.infinity,
-                  color: Colors.white,
-                  child: SingleChildScrollView(
-                      child: Text(contents,
-                          style: const TextStyle(
-                              color: Colors.black,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              letterSpacing: 2.0))),
-                )
-              ],
-            ),
+          Column(
+            children: [
+              Container(
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+                height: cSize.height * 0.55,
+                width: double.infinity,
+                color: Colors.white,
+                child: SingleChildScrollView(
+                    child: Text(contents,
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2.0))),
+              )
+            ],
           ),
           const Divider(
             color: Colors.black,

@@ -4,14 +4,14 @@ import 'package:untitled/utils/util.dart';
 
 import 'memo.dart';
 
-class Minsert extends StatefulWidget {
-  const Minsert({super.key});
+class MemoInsert extends StatefulWidget {
+  const MemoInsert({super.key});
 
   @override
-  State<Minsert> createState() => _MinsertState();
+  State<MemoInsert> createState() => _MemoInsertState();
 }
 
-class _MinsertState extends State<Minsert> {
+class _MemoInsertState extends State<MemoInsert> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
@@ -20,7 +20,7 @@ class _MinsertState extends State<Minsert> {
 
     Future<void> saveMemo() async {
       final prefs = await SharedPreferences.getInstance();
-      final encodeMemo = memos.map((memo)=> '${memo.Mtitle},${memo.contents}').toList();
+      final encodeMemo = memos.map((memo)=> '${memo.memoTitle},${memo.contents}').toList();
       await prefs.setStringList('memos', encodeMemo);
     }
 
@@ -114,7 +114,7 @@ class _MinsertState extends State<Minsert> {
                 await saveMemo();
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (context) => const memo()),
+                        builder: (context) => const Memo()),
                         (route) => false);
               },
               tooltip: '수정',
@@ -127,7 +127,7 @@ class _MinsertState extends State<Minsert> {
               onPressed: () {
                 Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(
-                        builder: (context) => const memo()),
+                        builder: (context) => const Memo()),
                         (route) => false);
               },
               tooltip: '취소',

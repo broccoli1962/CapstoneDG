@@ -4,16 +4,16 @@ import 'package:untitled/utils/util.dart';
 
 import 'memo.dart';
 
-class Mcontents extends StatefulWidget {
-  const Mcontents({super.key, required this.mnumber});
+class MemoShow extends StatefulWidget {
+  const MemoShow({super.key, required this.mnumber});
 
   final int mnumber;
 
   @override
-  State<Mcontents> createState() => _McontentsState();
+  State<MemoShow> createState() => _MemoShowState();
 }
 
-class _McontentsState extends State<Mcontents> {
+class _MemoShowState extends State<MemoShow> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;
@@ -61,7 +61,7 @@ class _McontentsState extends State<Mcontents> {
             color: Colors.white,
             width: double.infinity,
             height: cSize.height * 0.15,
-            child: Text(memos[widget.mnumber].Mtitle),
+            child: Text(memos[widget.mnumber].memoTitle),
           ),
           const Divider(
             color: Colors.black,

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/utils/util.dart';
 
-class setting extends StatefulWidget {
-  const setting({super.key});
+class Setting extends StatefulWidget {
+  const Setting({super.key});
 
   @override
-  State<setting> createState() => _settingState();
+  State<Setting> createState() => _SettingState();
 }
 
-class _settingState extends State<setting> {
+class _SettingState extends State<Setting> {
   @override
   Widget build(BuildContext context) {
     final Size cSize = MediaQuery.of(context).size;

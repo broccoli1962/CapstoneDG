@@ -1,14 +1,14 @@
-class FireData_P {
+class FireDataPractice {
   final int chapter;
   final int number;
   final String title;
   final String context;
   final String hint;
 
-  FireData_P({required this.chapter, required this.number,required this.title,required this.context,required this.hint});
+  FireDataPractice({required this.chapter, required this.number,required this.title,required this.context,required this.hint});
 
-  factory FireData_P.fromJson(Map<String, dynamic> json){
-    return FireData_P(
+  factory FireDataPractice.fromJson(Map<String, dynamic> json){
+    return FireDataPractice(
       chapter: json["chapter"],
       number: json["number"],
       title: json["title"],
@@ -25,13 +25,9 @@ class FireData_P {
       "hint":hint,
     };
   }
-
-  void get(){
-    print(title);
-  }
 }
 
-class FireData_T {
+class FireDataTest {
   final int chapter;
   final int number;
   final String title;
@@ -42,11 +38,11 @@ class FireData_T {
   final String answer;
 
 
-  FireData_T(
+  FireDataTest(
       {required this.chapter, required this.number, required this.title, required this.testCase, required this.rtestCase, required this.context, required this.hint, required this.answer});
 
-  factory FireData_T.fromJson(Map<String, dynamic> json){
-    return FireData_T(
+  factory FireDataTest.fromJson(Map<String, dynamic> json){
+    return FireDataTest(
       chapter: json["chapter"] ?? '',
       number: json["number"] ?? '',
       title: json["title"] ?? '',
@@ -70,13 +66,9 @@ class FireData_T {
       "answer": answer,
     };
   }
-
-  void get() {
-    print(title);
-  }
 }
 
-class User_Create {
+class FireDataUser {
   final String uname;
   final String utitle;
   final String utestCase;
@@ -87,10 +79,10 @@ class User_Create {
   final String upw;
 
 
-  User_Create({required this.uname,required this.utitle,required this.utestCase,required this.urtestCase,required this.ucontents,required this.uhint,required this.uanswer,required this.upw});
+  FireDataUser({required this.uname,required this.utitle,required this.utestCase,required this.urtestCase,required this.ucontents,required this.uhint,required this.uanswer,required this.upw});
 
-  factory User_Create.fromJson(Map<String, dynamic> json){
-    return User_Create(
+  factory FireDataUser.fromJson(Map<String, dynamic> json){
+    return FireDataUser(
       uname: json["user_name"] ?? '',
       utitle: json["user_title"] ?? '',
       utestCase: json["user_testcase"] ?? '',
